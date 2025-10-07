@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studay - Pomodoro</title>
+
+  <!-- CSS principal do site -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- Fontes externas -->
+  <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
+  <!-- Ícone do site na aba do navegador -->
+  <link rel="shortcut icon" href="../img/faisca.png" type="image/x-icon">
+</head>
+<body>
+  <div class="main-container">
+    <!-- Sidebar lateral -->
+    <aside class="sidebar">
+      <!-- Perfil do usuário -->
+      <a href="perfil.html"><img src="../img/faisca.png" alt="Faisca - Perfil" class="icon"></a>
+      <!-- Nível do usuário -->
+      <img src="../img/medalha.png" alt="Nível" class="icon">
+      <!-- Link para Métodos (ativo) -->
+      <a href="metodos.html"><img src="../img/livro.png" alt="Métodos" class="icon active-icon"></a>
+      <!-- Seção de música com player incorporado -->
+      <div class="music-icon">
+        <img src="../img/musica.png" alt="Música" class="icon">
+        <div class="music-player">
+          <iframe width="280" height="200" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1" frameborder="0" allow="autoplay"></iframe>
+        </div>
+      </div>
+      <!-- Comunidades -->
+      <img src="../img/comunidade.png" alt="Comunidades" class="icon">
+      <!-- Configurações -->
+      <img src="../img/configuracoes.png" alt="Configurações" class="icon">
+    </aside>
+
+    <!-- Conteúdo principal da página -->
+    <main class="content">
+      <!-- Título da seção -->
+      <h2 class="metodos-title">Pomodoro</h2>
+      
+      <!-- Botão Home abaixo do título -->
+      <a href="metodos.html" class="home-btn">
+        <img src="../img/casa.png" alt="Home" class="home-icon">
+        <span>Métodos</span>
+      </a>
+
+      <!-- Container principal do Pomodoro -->
+      <div class="pomodoro-container">
+        <!-- Seção do Timer (lado esquerdo) -->
+        <div class="timer-section">
+          <!-- Botões de modo (temporizador e pausas) -->
+          <div class="mode-buttons">
+            <button class="mode-btn active-mode" data-minutes="25">Temporizador</button>
+            <button class="mode-btn" data-minutes="5">Pausa curta</button>
+            <button class="mode-btn" data-minutes="15">Pausa longa</button>
+          </div>
+          
+          <!-- Display do timer -->
+          <div id="timer-display" class="timer-display" contenteditable="false">25:00</div>
+          
+          <!-- Botões de controle do timer -->
+          <div class="timer-buttons">
+            <button id="start-btn" class="control-btn start-btn">Iniciar</button>
+            <button id="pause-btn" class="control-btn pause-btn" style="display: none;">Pausar</button>
+            <button id="reset-btn" class="control-btn reset-btn" style="display: none;">Reset</button>
+          </div>
+        </div>
+
+        <!-- Seção de Tasks (lado direito) -->
+        <div class="tasks-section">
+          <h3>Tasks</h3>
+          <!-- Lista de tarefas -->
+          <ul id="task-list"></ul>
+          <!-- Input para adicionar nova tarefa -->
+          <div class="task-input-container">
+            <input type="text" id="task-input" placeholder="Digite uma tarefa e pressione Enter..." />
+            <button id="add-task-btn" class="add-task-btn">+</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Áudio para alarme do timer -->
+  <audio id="alarm-sound" preload="auto"></audio>
+
+  <!-- Script principal da página Pomodoro -->
+  <script src="../js/pomodoro.js"></script>
+</body>
+</html>

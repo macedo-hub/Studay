@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studay - Resumos</title>
+
+  <!-- CSS principal do site -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- Font Awesome para ícones -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Fontes externas -->
+  <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
+  <!-- Ícone do site na aba do navegador -->
+  <link rel="shortcut icon" href="../img/faisca.png" type="image/x-icon">
+</head>
+<body>
+  <div class="main-container">
+    <!-- Sidebar lateral -->
+    <aside class="sidebar">
+      <!-- Perfil do usuário -->
+      <a href="perfil.html"><img src="../img/faisca.png" alt="Faisca - Perfil" class="icon"></a>
+      <!-- Nível do usuário -->
+      <img src="../img/medalha.png" alt="Nível" class="icon">
+      <!-- Link para Métodos (ativo) -->
+      <a href="metodos.html"><img src="../img/livro.png" alt="Métodos" class="icon active-icon"></a>
+      <!-- Seção de música com player incorporado -->
+      <div class="music-icon">
+        <img src="../img/musica.png" alt="Música" class="icon">
+        <div class="music-player">
+          <iframe width="280" height="200" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1" frameborder="0" allow="autoplay"></iframe>
+        </div>
+      </div>
+      <!-- Comunidades -->
+      <img src="../img/comunidade.png" alt="Comunidades" class="icon">
+      <!-- Configurações -->
+      <img src="../img/configuracoes.png" alt="Configurações" class="icon">
+    </aside>
+
+    <!-- Conteúdo principal da página -->
+    <main class="content">
+      <!-- Título da seção -->
+      <h2 class="metodos-title">Resumos</h2>
+      
+      <!-- Botão Home abaixo do título -->
+      <a href="metodos.html" class="home-btn">
+        <img src="../img/casa.png" alt="Home" class="home-icon">
+        <span>Métodos</span>
+      </a>
+
+      <!-- Container principal para resumos -->
+      <div class="resumos-area">
+        <!-- Botão para adicionar novo resumo -->
+        <button id="add-resumo-btn" class="add-resumo-btn">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+
+        <!-- Formulário para adicionar/editar resumo (inicialmente oculto) -->
+        <form id="resumo-form" class="hidden">
+          <!-- Campo para o título do resumo -->
+          <label for="resumo-title">Título:</label>
+          <input type="text" id="resumo-title" placeholder="Digite o título do resumo..." required>
+
+          <!-- Campo para o conteúdo do resumo -->
+          <label for="resumo-text">Texto:</label>
+          <textarea id="resumo-text" placeholder="Digite o conteúdo do resumo..." required></textarea>
+
+          <!-- Botões de ação do formulário -->
+          <div class="form-actions">
+            <button type="button" id="cancel-btn" class="cancel-btn">Cancelar</button>
+            <button type="submit" id="confirm-btn">Confirmar</button>
+          </div>
+        </form>
+
+        <!-- Lista de resumos cadastrados -->
+        <div id="resumos-list" class="resumos-list"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Script principal da página Resumos -->
+  <script src="../js/resumos.js"></script>
+</body>
+</html>

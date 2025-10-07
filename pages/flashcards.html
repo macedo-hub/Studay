@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcards</title>
+
+  <!-- CSS principal do site -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- Font Awesome para ícones -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Fontes externas -->
+  <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
+  <!-- Ícone do site na aba do navegador -->
+  <link rel="shortcut icon" href="../img/faisca.png" type="image/x-icon">
+</head>
+<body>
+  <div class="main-container">
+    <!-- Sidebar lateral do site -->
+    <aside class="sidebar">
+      <!-- Perfil -->
+      <a href="perfil.html"><img src="../img/faisca.png" alt="Faisca - Perfil" class="icon"></a>
+      <!-- Nível do usuário -->
+      <img src="../img/medalha.png" alt="Nível" class="icon">
+      <!-- Link para métodos (ativo) -->
+      <a href="metodos.html"><img src="../img/livro.png" alt="Métodos" class="icon active-icon"></a>
+      <!-- Seção de música com player incorporado -->
+      <div class="music-icon">
+        <img src="../img/musica.png" alt="Música" class="icon">
+        <div class="music-player">
+          <iframe width="280" height="200" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1" frameborder="0" allow="autoplay"></iframe>
+        </div>
+      </div>
+      <!-- Comunidades -->
+      <img src="../img/comunidade.png" alt="Comunidades" class="icon">
+      <!-- Configurações -->
+      <img src="../img/configuracoes.png" alt="Configurações" class="icon">
+    </aside>
+
+    <!-- Conteúdo principal da página -->
+    <main class="content">
+      <!-- Título da seção -->
+      <h2 class="metodos-title">Flashcards</h2>
+
+      <!-- Botão Home abaixo do título -->
+      <a href="metodos.html" class="home-btn">
+        <img src="../img/casa.png" alt="Home" class="home-icon">
+        <span>Métodos</span>
+      </a>
+
+      <div class="flashcard-area">
+        <!-- Abas de navegação: Flashcards e Gerenciar -->
+        <div class="flashcard-tabs">
+          <button id="tab-flashcards" class="flashcard-tab menu-active">Flashcards</button>
+          <button id="tab-gerenciar" class="flashcard-tab">Gerenciar</button>
+        </div>
+
+        <!-- Conteúdo da aba Flashcards -->
+        <div id="flashcards-content" class="flashcard-content">
+          <div class="flashcard-display-container">
+            <div class="flashcard-card">
+              <!-- Lado da frente do flashcard: pergunta -->
+              <div class="flashcard-front" id="flashcard-question-display">
+                Clique na seta para começar!
+              </div>
+              <!-- Lado de trás do flashcard: resposta -->
+              <div class="flashcard-back" id="flashcard-answer-display">
+                <!-- Resposta será carregada aqui -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Botões de controle dos flashcards -->
+          <div class="flashcard-controls">
+            <!-- Botão de resposta incorreta -->
+            <button id="btn-incorrect" class="feedback-btn errado" title="Incorreto">
+              <i class="fa-solid fa-thumbs-down"></i>
+            </button>
+            <!-- Botão para virar o flashcard -->
+            <button id="btn-flip" class="flip-btn" title="Mostrar Resposta">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <!-- Botão de resposta correta -->
+            <button id="btn-correct" class="feedback-btn certo" title="Correto">
+              <i class="fa-solid fa-thumbs-up"></i>
+            </button>
+          </div>
+          <!-- Botão para próximo flashcard, inicialmente escondido -->
+          <button id="btn-next" class="next-btn hidden">Próximo Flashcard</button>
+        </div>
+
+        <!-- Conteúdo da aba Gerenciar flashcards -->
+        <div id="manage-content" class="flashcard-content hidden">
+          <!-- Botão para adicionar novo flashcard -->
+          <button id="btn-add-new-flashcard" class="add-new-flashcard-btn">
+            <i class="fa-solid fa-plus"></i> Adicionar Novo Flashcard
+          </button>
+
+          <!-- Formulário para criar/editar flashcard -->
+          <form id="flashcard-form" class="hidden">
+            <label for="input-question">Pergunta:</label>
+            <textarea id="input-question" placeholder="Digite a pergunta..." required></textarea>
+            
+            <label for="input-answer">Resposta:</label>
+            <textarea id="input-answer" placeholder="Digite a resposta..." required></textarea>
+            
+            <div class="form-actions">
+              <!-- Botão para salvar flashcard -->
+              <button type="submit" id="btn-save-flashcard">Salvar Flashcard</button>
+              <!-- Botão para cancelar edição -->
+              <button type="button" id="cancel-edit" class="cancel-btn">Cancelar</button>
+            </div>
+          </form>
+
+          <!-- Lista de flashcards existentes para gerenciar -->
+          <div id="flashcards-list" class="manage-list">
+            <!-- Flashcards gerenciáveis serão listados aqui -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Script principal da página de flashcards -->
+  <script src="../js/flashcards.js"></script>
+</body>
+</html>

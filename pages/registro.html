@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studay - Criar Conta</title>
+
+  <!-- CSS principal do site -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- Fontes externas utilizadas -->
+  <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/sf-pro-display?" rel="stylesheet">
+  <!-- Ícone do site na aba do navegador -->
+  <link rel="shortcut icon" href="../img/faisca.png" type="image/x-icon">
+</head>
+<body>
+  <!-- Barra de navegação superior -->
+  <nav class="menu-top">
+    <a href="../index.html">Início</a> <!-- Link para página inicial -->
+    <a href="login.html">Login</a> <!-- Link para página de login -->
+    <a href="#" class="ativo">Registre-se</a> <!-- Página atual, marcada como ativa -->
+  </nav>
+
+  <!-- Conteúdo principal da página -->
+  <div class="page-wrapper">
+    <!-- Logo do site -->
+    <header class="logo">
+      <span class="logo-black">Stu</span><span class="logo-green">day</span>
+    </header>
+
+    <!-- Caixa de registro -->
+    <main class="login-box">
+      <h2>Criar Conta</h2>
+      
+      <!-- Formulário de criação de conta -->
+      <form id="registroForm">
+        <!-- Campo para nome do usuário -->
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        
+        <!-- Campo para email -->
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <!-- Campo para senha com ícone de mostrar/ocultar -->
+        <label for="senha">Senha:</label>
+        <div class="senha-container">
+          <input type="password" id="senha" name="senha" required>
+          <img src="../img/eye-close.png" alt="Mostrar senha" id="toggleSenha1" class="toggle-senha">
+        </div>
+        
+        <!-- Campo para confirmação de senha com ícone de mostrar/ocultar -->
+        <label for="confirmarSenha">Insira a sua senha novamente:</label>
+        <div class="senha-container">
+          <input type="password" id="confirmarSenha" name="confirmarSenha" required>
+          <img src="../img/eye-close.png" alt="Mostrar senha" id="toggleSenha2" class="toggle-senha">
+        </div>
+
+        <!-- Aviso de erro caso as senhas não coincidam -->
+        <p id="avisoSenha" class="aviso-erro">As senhas não se coincidem.</p>
+        
+        <!-- Botão para enviar o formulário -->
+        <button type="submit">Criar Sua Conta</button>
+      </form>
+      
+      <!-- Opção de redirecionamento para login -->
+      <div class="options">
+        <p>Você já tem uma conta? <a href="login.html">Fazer login</a></p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Script principal da página de registro -->
+  <script src="../js/registro.js"></script>
+</body>
+</html>

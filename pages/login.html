@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studay - Login</title>
+
+    <!-- CSS principal do site -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- Fonte externa utilizada no site -->
+    <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegação superior -->
+    <nav class="menu-top">
+        <a href="../index.html">Início</a> <!-- Link para página inicial -->
+        <a href="#" class="ativo">Login</a> <!-- Link da página atual, marcado como ativo -->
+        <a href="registro.html">Registre-se</a> <!-- Link para página de registro -->
+    </nav>
+
+    <!-- Conteúdo principal da página -->
+    <div class="page-wrapper">
+
+        <!-- Logo do site -->
+        <header class="logo">
+            <span class="logo-black">Stu</span><span class="logo-green">day</span>
+        </header>
+
+        <!-- Caixa de login -->
+        <main class="login-box">
+            <h2>Entrar</h2>
+
+            <!-- Formulário de login -->
+            <form id="loginForm"> 
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required /> <!-- Campo para email -->
+
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required /> <!-- Campo para senha -->
+
+                <button type="submit">Continuar</button> <!-- Botão de envio do formulário -->
+            </form>
+
+            <!-- Opções adicionais abaixo do formulário -->
+            <div class="options">
+                <a href="#">Esqueceu a senha?</a> <!-- Link para recuperar senha -->
+                <p>Não tem uma conta? <a href="registro.html">Crie aqui!</a></p> <!-- Link para registro -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Script principal da página de login -->
+    <script src="../js/login.js"></script>
+</body>
+</html>

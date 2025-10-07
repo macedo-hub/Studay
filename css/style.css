@@ -1,0 +1,1390 @@
+/* ==========================================================================
+   1. IMPORTAÇÕES E CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+
+/* Importa as fontes externas que serão utilizadas no projeto. */
+@import url('https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy');
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display?');
+
+/* Define a fonte "Stars & Love" para a logo, com vários formatos para garantir compatibilidade entre navegadores. */
+@font-face {
+    font-family: "Stars & Love Bottom Heavy";
+    src: url("https://db.onlinewebfonts.com/t/d353583e5cdf878d047eae178df5b757.eot");
+    src: url("https://db.onlinewebfonts.com/t/d353583e5cdf878d047eae178df5b757.eot?#iefix") format("embedded-opentype"),
+         url("https://db.onlinewebfonts.com/t/d353583e5cdf878d047eae178df5b757.woff2") format("woff2"),
+         url("https://db.onlinewebfonts.com/t/d353583e5cdf878d047eae178df5b757.woff") format("woff"),
+         url("https://db.onlinewebfonts.com/t/d353583e5cdf878d047eae178df5b757.ttf") format("truetype"),
+         url("https://db.onlinewebfonts.com/t/d353583e5cdf878d047eae178df5b757.svg#Stars & Love Bottom Heavy") format("svg");
+}
+
+/* Reset CSS: remove margens e preenchimentos padrão de todos os elementos. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo base para o corpo da página (body). Define o fundo, a fonte principal e centraliza o conteúdo. */
+body {
+    font-family: 'SF Pro Display', sans-serif;
+    background: linear-gradient(to right, #003554, #006494); 
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* ==========================================================================
+   2. ESTILOS GERAIS E COMPARTILHADOS
+   (Usados em múltiplas páginas como Index, Login, Registro, etc.)
+   ========================================================================== */
+
+/* Um "container" que envolve o conteúdo principal das páginas de Login e Registro. */
+.page-wrapper {
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo principal da logo "Studay" nas páginas de Login e Registro. */
+.logo {
+    font-family: "Stars & Love Bottom Heavy", sans-serif;
+    font-size: 9.5rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+    text-shadow: #012a4a65 10px 10px 10px;
+}
+
+/* Variação da logo para a página inicial, com margem maior. (Específico do index.html) */
+.logo-index {
+  font-family: "Stars & Love Bottom Heavy", sans-serif;
+  font-size: 9.5rem;
+  margin-bottom: 15rem;
+  text-align: left;
+  text-shadow: #012a4a65 10px 10px 10px;
+}
+
+/* Estilo das partes da logo para aplicar cores diferentes. */
+.logo-black {
+    color: black; /* Parte "Stu" da logo. */
+}
+.logo-green {
+    color: #19dfbb; /* Parte "day" da logo. */
+}
+
+/* Caixa principal dos formulários de Login e Registro. */
+.login-box {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+}
+
+/* Título "Entrar" ou "Criar Conta" dentro da caixa de formulário. */
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Estilização base para todos os formulários. */
+form {
+    display: flex;
+    flex-direction: column;
+}
+form label {
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+form input {
+    padding: 0.6rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+/* Estilo padrão para botões. */
+button {
+    padding: 0.7rem;
+    background-color: #19dfbb;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+button:hover {
+    background-color: #14bda0; /* Efeito ao passar o mouse. */
+}
+
+/* Seção de links abaixo dos formulários (Ex: "Esqueceu a senha?"). */
+.options {
+    text-align: center;
+    margin-top: 1rem;
+}
+.options a {
+    color: #19dfbb;
+    text-decoration: none;
+}
+.options a:hover {
+    text-decoration: underline;
+}
+
+/* Título principal nas páginas de métodos (Ex: "Pomodoro", "Flashcards"). (Usado em metodos.html e outros) */
+/* OBS: Esta regra é sobrescrita por uma mais específica abaixo. */
+.metodos-title {
+    font-family: 'Seasons', sans-serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+ 
+/* Container que organiza a tela em sidebar (esquerda) e conteúdo (direita) nas páginas de métodos. */
+.main-container {
+    display: flex;
+    min-height: 100vh;
+    background: transparent; 
+}
+
+/* Barra lateral fixa à esquerda, usada em todas as páginas de métodos. */
+.sidebar {
+    width: 80px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    gap: 15px;
+}
+ 
+/* Ícones dentro da sidebar. */
+.sidebar .icon {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+ 
+/* Ícone de música na sidebar. */
+.music-icon {
+    position: relative; /* Necessário para posicionar o player. */
+}
+ 
+/* Player de música que aparece ao passar o mouse. */
+.music-player {
+    display: none; /* Começa escondido. */
+    position: absolute;
+    left: 50px; /* Aparece ao lado da sidebar. */
+    top: 0;
+    z-index: 10; /* Garante que fique sobre outros elementos. */
+}
+ 
+/* Mostra o player quando o mouse está sobre o ícone de música. */
+.music-icon:hover .music-player {
+    display: block;
+}
+ 
+/* Área principal de conteúdo, à direita da sidebar, em todas as páginas de métodos. */
+.content {
+    margin-left: 100px; /* Espaçamento para não ficar atrás da sidebar. */
+    padding: 40px;
+    color: white;
+    flex: 1; /* Ocupa o restante do espaço. */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;    
+    min-height: 100vh;       
+}
+
+/* Menu de navegação superior (Início, Login, Registre-se), fixo no canto direito. */
+.menu-top {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  display: flex;
+  gap: 2rem;
+}
+.menu-top a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.menu-top a:hover {
+  color: #19dfbb;
+}
+
+/* Estilo para o link da página ativa no menu superior. */
+.menu-top a.ativo {
+  color: #19dfbb;
+  border-bottom: 2px solid #19dfbb;
+  padding-bottom: 2px;
+}
+
+/* Estilos específicos do formulário de registro (registro.html). */
+.senha-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+/* Adiciona espaço no campo de senha para o ícone de olho. */
+.senha-container input {
+  width: 100%;
+  padding-right: 40px;
+}
+/* Ícone de olho para mostrar/ocultar senha. */
+.toggle-senha {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.8;
+}
+
+/* Mensagem de erro que aparece caso as senhas não coincidam (registro.html). */
+.aviso-erro {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+  margin: 0.5rem 0 1rem 0;
+  display: none; /* Começa escondido. */
+  border: 2px solid #ff0000;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Botão de "submit" dos formulários. */
+button[type="submit"] {
+  width: 100%;
+  background-color: #19dfbb;
+  color: black;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+button[type="submit"]:hover {
+  background-color: #14bda0;
+}
+
+/* Destaque visual para o ícone do método ativo na sidebar. */
+.active-icon {
+  filter: brightness(1.2);
+  border: 2px solid #19dfbb;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+/* Botão para voltar à página "Métodos", presente em cada método específico. */
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 10px auto 40px auto;
+  transition: background 0.3s;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  max-width: 150px;
+}
+.home-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.home-icon {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* ==========================================================================
+   3. ESTILOS EXCLUSIVOS DE PÁGINAS ESPECÍFICAS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PÁGINA: index.html
+   -------------------------------------------------------------------------- */
+/* Botão "Continuar" fixo no canto inferior direito. */
+.btn-continuar {
+    position: fixed;
+    bottom: 45px;
+    right: 45px;
+    padding: 0.7rem 1.5rem;
+    background-color: #19dfbb;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    width: 7.5em;  
+    height: 2em;
+    font-size: 1.5em;
+    z-index: 1000; 
+    box-shadow: #2319428f 5px 5px 10px;
+}
+.btn-continuar:hover {
+    background-color: #14bda0;
+}
+
+/* Frase de efeito abaixo da logo. */
+.frase {
+    font-size: 1.5rem;
+  margin-top: -15rem;
+  text-align: center;
+}
+
+/* Container dos ícones de apresentação (Pomodoro, Resumos, etc.) na lateral esquerda. */
+.icones-apresentacao {
+    position: absolute;
+    top: 150px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    z-index: 10;
+}
+/* Caixa individual para cada ícone e seu nome. */
+.icone-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.icone-box img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0px 4px 6px #00000050); /* Sombra na imagem. */
+}
+.icone-box p {
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffffdd;
+    font-family: 'Arial', sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   PÁGINA: metodos.html
+   -------------------------------------------------------------------------- */
+/* Grade que organiza os botões dos métodos. */
+.metodos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 450px);
+    gap: 60px;
+}
+ 
+/* Botão individual de cada método (Ex: "POMODORO"). */
+.metodo-btn {
+    display: inline-block;
+    padding: 34px 64px;
+    margin: 12px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    background-color: #ffffff22;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+ 
+.metodo-btn:hover {
+    background-color: #ffffff44;
+    transform: scale(1.03); /* Efeito de leve crescimento. */
+}
+ 
+/* Definição da fonte 'TheSeasons' para o título principal da página de métodos. */
+@font-face {
+    font-family: 'TheSeasons';
+    src: url('fontes/Fontspring-DEMO-theseasons-reg.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+ 
+/* Estilo final do título da página de métodos, sobrescrevendo a regra anterior. */
+.metodos-title {
+    font-family: 'TheSeasons', sans-serif;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+/* Regra duplicada para a sidebar, o navegador aplicará a última que ler. */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: 100vh;
+  padding: 20px 0;
+  width: 120px; 
+  background: linear-gradient(to bottom, #003049, #000814); 
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   PÁGINA: pomodoro.html
+   -------------------------------------------------------------------------- */
+/* Container principal da ferramenta Pomodoro, dividindo em timer e tasks. */
+.pomodoro-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 500px;
+}
+
+/* Seção do timer (lado esquerdo). */
+.timer-section {
+  flex: 1; /* Ocupa uma parte do espaço disponível. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  max-width: 300px;
+}
+
+/* Botões de modo (Temporizador, Pausa curta, Pausa longa). */
+.mode-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.mode-btn {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.mode-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.mode-btn.active-mode {
+  background: #19dfbb; /* Cor de destaque para o modo ativo. */
+  color: #000;
+  box-shadow: 0 2px 8px rgba(25, 223, 187, 0.4);
+}
+
+/* Display do tempo (Ex: "25:00"). */
+.timer-display {
+  font-size: 96px;
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  background: transparent;
+  outline: none;
+  user-select: none;
+}
+.timer-display:hover, .timer-display:focus {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+.timer-display[contenteditable="true"] {
+  background: rgba(255, 255, 255, 0.2);
+  color: #000;
+  font-size: 48px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Botões de controle do timer (Iniciar, Pausar, Reset). */
+.timer-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.control-btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 100px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.start-btn, .pause-btn {
+  background-color: #19dfbb;
+  color: #000;
+}
+.start-btn:hover, .pause-btn:hover {
+  background-color: #14bda0;
+  transform: translateY(-2px);
+}
+.reset-btn {
+  background-color: #ff4d4d;
+  color: #fff;
+}
+.reset-btn:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+}
+.control-btn:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* Seção da lista de tarefas (lado direito). */
+.tasks-section {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  justify-content: space-between;
+}
+.tasks-section h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Lista de tarefas. */
+#task-list {
+  list-style: none;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 5px;
+}
+
+/* Item individual da lista de tarefas. */
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: #fff;
+  transition: all 0.3s;
+  position: relative;
+}
+.task-item.completed {
+  background: rgba(25, 223, 187, 0.2);
+}
+/* Estilo para texto de tarefa concluída. */
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: #ccc;
+}
+.delete-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  background: rgba(255, 77, 77, 0.7);
+  color: #fff;
+}
+.delete-btn:hover {
+  background: #ff4d4d;
+  transform: scale(1.1);
+}
+.check-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  background: rgba(128, 128, 128, 0.7);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.check-btn:hover {
+  background: rgba(128, 128, 128, 0.9);
+  transform: scale(1.05);
+}
+/* Botão de check quando a tarefa está concluída. */
+.check-btn.completed {
+  background: #19dfbb;
+  color: #000;
+  border-color: #19dfbb;
+}
+.task-text {
+  flex: 1;
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+/* Container do campo de adicionar nova tarefa. */
+.task-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+#task-input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-size: 16px;
+}
+#task-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 1);
+}
+/* Botão "+" para adicionar tarefa. */
+.add-task-btn {
+  width: 40px;
+  height: 40px;
+  background: #19dfbb;
+  color: #000;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+.add-task-btn:hover {
+  background: #14bda0;
+  transform: scale(1.05);
+}
+
+
+/* --------------------------------------------------------------------------
+   PÁGINA: flashcards.html
+   -------------------------------------------------------------------------- */
+/* Container principal da área de flashcards. */
+.flashcard-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 20px;
+  background: rgba(0, 53, 84, 0.7);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Abas de navegação (Flashcards / Gerenciar). */
+.flashcard-tabs {
+  display: flex;
+  margin-bottom: 25px;
+  width: 100%;
+  justify-content: center;
+  gap: 15px;
+}
+.flashcard-tab {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.flashcard-tab:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.flashcard-tab.menu-active {
+  background-color: #19dfbb;
+  color: #000;
+  box-shadow: 0 4px 15px rgba(25, 223, 187, 0.5);
+}
+
+/* Conteúdo que muda conforme a aba selecionada. */
+.flashcard-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* O flashcard que vira. */
+.flashcard-display-container {
+  perspective: 1000px; /* Efeito 3D para a virada. */
+  width: 100%;
+  max-width: 600px;
+  height: 250px;
+  margin-bottom: 30px;
+}
+.flashcard-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+/* Classe adicionada via JS para virar o card. */
+.flashcard-card.flipped {
+  transform: rotateY(180deg);
+}
+/* Frente e verso do flashcard. */
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Esconde o lado de trás. */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 1.8rem;
+  text-align: center;
+  word-break: break-word;
+  color: #fff;
+  background: linear-gradient(to bottom right, #006494, #003554);
+  border: 2px solid #19dfbb;
+}
+.flashcard-back {
+  transform: rotateY(180deg); /* Posiciona o verso "de costas". */
+  background: linear-gradient(to bottom left, #003554, #006494);
+}
+
+/* Controles do flashcard (botões de feedback e virar). */
+.flashcard-controls {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+/* Botão central para virar o card. */
+.flip-btn {
+  background-color: #19dfbb;
+  color: #000;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: 2.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flip-btn:hover {
+  background-color: #14bda0;
+  transform: scale(1.05);
+}
+/* Botões de feedback (certo/errado). */
+.feedback-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.feedback-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+/* Estilo para quando o botão de feedback é clicado. */
+.feedback-btn.certo.feedback-active {
+  background-color: #28a745; /* Verde. */
+}
+.feedback-btn.errado.feedback-active {
+  background-color: #dc3545; /* Vermelho. */
+}
+
+/* Botão "Próximo Flashcard". */
+.next-btn {
+  background-color: #006494;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.next-btn:hover {
+  background-color: #004a70;
+  transform: translateY(-2px);
+}
+
+/* --- Estilos da aba "Gerenciar" dos Flashcards --- */
+.add-new-flashcard-btn {
+  background-color: #19dfbb;
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.add-new-flashcard-btn:hover {
+  background-color: #14bda0;
+  transform: translateY(-2px);
+}
+
+/* Formulário para adicionar/editar flashcards. */
+#flashcard-form {
+  background: rgba(0, 53, 84, 0.8);
+  padding: 25px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+#flashcard-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+#flashcard-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #006494;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 80px;
+}
+#flashcard-form textarea:focus {
+  outline: none;
+  border-color: #19dfbb;
+  box-shadow: 0 0 0 3px rgba(25, 223, 187, 0.3);
+}
+
+/* Botões de salvar e cancelar no formulário. */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+#flashcard-form button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#btn-save-flashcard {
+  background-color: #19dfbb;
+  color: #000;
+}
+#btn-save-flashcard:hover {
+  background-color: #14bda0;
+  transform: translateY(-1px);
+}
+.cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+.cancel-btn:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Lista de flashcards gerenciáveis. */
+.manage-list {
+  width: 100%;
+  max-width: 600px;
+}
+.manage-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 100, 148, 0.7);
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.manage-card:hover {
+  background: rgba(0, 100, 148, 0.9);
+}
+.manage-card p {
+  flex-grow: 1;
+  margin-right: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.manage-card button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: color 0.3s ease, transform 0.2s;
+}
+.manage-card button:hover {
+  transform: scale(1.1);
+}
+.edit-btn:hover {
+  color: #19dfbb;
+}
+.delete-btn:hover {
+  color: #dc3545;
+}
+
+/* Classe utilitária para esconder elementos. Usada em várias páginas. */
+.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   PÁGINA: videoaulas.html
+   -------------------------------------------------------------------------- */
+/* Container da barra de busca. */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto 0;
+}
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+/* Campo de texto da busca. */
+#search-input {
+  width: 100%;
+  padding: 15px 50px 15px 20px; /* Espaço para o ícone da lupa. */
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-family: 'SF Pro Display', sans-serif;
+}
+#search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+#search-input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 20px rgba(25, 223, 187, 0.3);
+  transform: scale(1.02);
+}
+/* Ícone de lupa posicionado sobre a barra de busca. */
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+.search-icon:hover {
+  transform: translateY(-50%) scale(1.1);
+  filter: brightness(1.2);
+}
+.search-icon svg {
+  stroke: #19dfbb;
+  transition: stroke 0.3s ease;
+}
+.search-icon:hover svg {
+  stroke: #14bda0;
+}
+
+/* --------------------------------------------------------------------------
+   PÁGINA: resumos.html
+   -------------------------------------------------------------------------- */
+/* Container principal da área de resumos. */
+.resumos-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; 
+  margin-top: 20px;
+  background: rgba(0, 53, 84, 0.7);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+/* Botão "+" para adicionar novo resumo. */
+.add-resumo-btn {
+  width: 40px;
+  height: 40px;
+  background: #19dfbb;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px; 
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(25, 223, 187, 0.3);
+  transition: all 0.3s;
+  flex-shrink: 0;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-resumo-btn:hover {
+  background: #14bda0;
+  transform: scale(1.05);
+}
+.add-resumo-btn i {
+  font-size: 18px; 
+}
+
+/* Formulário para criar/editar resumo. */
+#resumo-form {
+  background: rgba(0, 53, 84, 0.8);
+  padding: 25px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+#resumo-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.1rem;
+}
+#resumo-title {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #006494;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-size: 1rem;
+}
+#resumo-title:focus {
+  outline: none;
+  border-color: #19dfbb;
+  box-shadow: 0 0 0 3px rgba(25, 223, 187, 0.3);
+}
+#resumo-text {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #006494;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 100px;
+}
+#resumo-text:focus {
+  outline: none;
+  border-color: #19dfbb;
+  box-shadow: 0 0 0 3px rgba(25, 223, 187, 0.3);
+}
+#resumo-form button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+#confirm-btn {
+  background-color: #19dfbb;
+  color: #000;
+}
+#confirm-btn:hover {
+  background-color: #14bda0;
+  transform: translateY(-1px);
+}
+#cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+#cancel-btn:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Lista de resumos salvos. */
+.resumos-list {
+  width: 100%;
+  max-width: 700px;
+}
+/* Item individual da lista de resumos. */
+.resumo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: rgba(0, 100, 148, 0.7);
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 1.1rem;
+  transition: background 0.3s ease;
+  gap: 10px;
+}
+.resumo-item:hover {
+  background: rgba(0, 100, 148, 0.9);
+}
+.resumo-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.resumo-text {
+  font-size: 1rem;
+  line-height: 1.4;
+  max-height: 100px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limita o texto a 4 linhas. */
+  -webkit-box-orient: vertical;
+  flex: 1;
+}
+/* Ações (editar/excluir) para cada resumo. */
+.resumo-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-self: flex-end;
+}
+/* Botões de editar e excluir resumo. */
+.edit-resumo-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  background: rgba(128, 128, 128, 0.7);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.edit-resumo-btn:hover {
+  background: #19dfbb;
+  color: #000;
+  border-color: #19dfbb;
+  transform: scale(1.05);
+}
+.edit-resumo-btn i {
+  font-size: 12px;
+}
+.delete-resumo-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  background: rgba(255, 77, 77, 0.7);
+  color: #fff;
+}
+.delete-resumo-btn:hover {
+  background: #ff4d4d;
+  transform: scale(1.1);
+}
+.delete-resumo-btn i {
+  font-size: 12px;
+}
+
+
+/* ==========================================================================
+   4. RESPONSIVIDADE
+   (Ajustes para telas menores, como celulares)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Videoaulas */
+  .search-container {
+    margin: 20px auto 0;
+    padding: 0 20px;
+  }
+  #search-input {
+    padding: 12px 45px 12px 15px;
+    font-size: 1rem;
+  }
+  .search-icon {
+    right: 12px;
+    width: 20px;
+    height: 20px;
+  }
+  .search-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Resumos */
+  .resumos-area {
+    padding: 20px;
+    margin-top: 10px;
+    max-width: 100%;
+  }
+  .add-resumo-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .add-resumo-btn i {
+    font-size: 16px;
+  }
+  #resumo-form {
+    padding: 20px;
+  }
+  #resumo-title, #resumo-text {
+    font-size: 0.95rem;
+  }
+  .resumos-list {
+    max-width: 100%;
+  }
+  .resumo-item {
+    padding: 12px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .resumo-actions {
+    align-self: stretch;
+    justify-content: flex-end;
+    margin-top: 10px;
+    gap: 8px;
+  }
+  .edit-resumo-btn, .delete-resumo-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
+  .edit-resumo-btn i, .delete-resumo-btn i {
+    font-size: 10px;
+  }
+  .resumo-text {
+    -webkit-line-clamp: 3;
+  }
+  
+  /* Flashcards */
+  .flashcard-area {
+    padding: 20px;
+  }
+  .flashcard-tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .flashcard-tab {
+    width: 100%;
+    text-align: center;
+  }
+  .flashcard-front, .flashcard-back {
+    font-size: 1.4rem;
+    padding: 15px;
+  }
+  .flashcard-controls {
+    flex-direction: row;
+    gap: 15px;
+  }
+  .flip-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+  .feedback-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+  }
+  #flashcard-form {
+    padding: 20px;
+  }
+  #flashcard-form textarea {
+    font-size: 0.9rem;
+  }
+  .manage-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 15px;
+  }
+  .manage-card p {
+    margin-bottom: 10px;
+    margin-right: 0;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  .manage-card button {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}
