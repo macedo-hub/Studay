@@ -99,16 +99,16 @@ studay/
 ├── README.md           # Documentação
 │
 ├── css/
-│   └── style.css       # Estilos globais e específicos
+│   └── style.css       # Todo o CSS
 │
-├── js/                 # Lógica JavaScript
-│   ├── avaliacoes.js   # Lógica da Calculadora de Média
-│   ├── flashcards.js   # Lógica dos Flashcards (CRUD + Flip)
-│   ├── pomodoro.js     # Lógica do Timer e Tasks
-│   ├── resumos.js      # Lógica de Resumos (LocalStorage)
-│   ├── videoaulas.js   # Busca no YouTube
-│   ├── login.js        # Redirecionamento simples
-│   └── registro.js     # Validação de senhas e Toggle de visualização
+├── js/                 # JavaScript
+│   ├── avaliacoes.js   
+│   ├── flashcards.js   
+│   ├── pomodoro.js     
+│   ├── resumos.js      
+│   ├── videoaulas.js   
+│   ├── login.js        
+│   └── registro.js     
 │
 ├── img/                # Imagens e Ícones
 │
@@ -120,4 +120,5 @@ studay/
     ├── flashcards.html
     ├── resumos.html
     ├── videoaulas.html
-    └── avaliacoes.html # Página da Calculadora de Média
+    └── avaliacoes.html 
+
