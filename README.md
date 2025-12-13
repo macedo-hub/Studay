@@ -38,7 +38,7 @@ O objetivo principal foi implementar a lógica de programação para **captura d
 
 O projeto agora conta com lógica JavaScript robusta em todas as páginas. Abaixo, detalhamos as implementações:
 
-#### 1. Calculadora de Média (Nova Seção Obrigatória) 
+#### 1. Calculadora de Média (Novo) 
 *Atende ao requisito de processamento de formulários e lógica matemática.*
 - **Funcionamento:** O usuário insere notas em campos gerados dinamicamente.
 - **Lógica JS:**
@@ -121,4 +121,5 @@ studay/
     ├── resumos.html
     ├── videoaulas.html
     └── avaliacoes.html 
+
 
