@@ -117,7 +117,11 @@ Siga os passos abaixo para testar as funcionalidades do sistema:
    - Clique em "Continuar" e depois em "Registre-se".
    - Crie uma conta (a validação de senhas iguais está ativa).
    - Faça login (simulação de acesso).
-3. **Menu de Métodos:** Após o login, você verá o painel principal. Escolha uma ferramenta.
+3. **Menu de Métodos:** Após o login, você verá o painel principal. Escolha uma ferramenta. 
+<div align="center">
+  <img width="663" alt="Image" src="https://github.com/user-attachments/assets/13f27672-3f5a-43bd-bf10-e50c83f5b35d" />
+</div>
+
 4. **Testando a Nova Funcionalidade (Calcular média):**
    - Clique no ícone de calculadora (canto inferior direito) ou acesse via URL `pages/avaliacoes.html`.
    - Adicione quantas notas desejar clicando no botão `+`.
@@ -162,6 +166,7 @@ studay/
     ├── resumos.html
     ├── videoaulas.html
     └── avaliacoes.html 
+
 
 
 
