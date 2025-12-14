@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studay - Avaliações</title>
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <!-- Fontes -->
+  <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
+
+  <!-- Ícone -->
+  <link rel="shortcut icon" href="../img/faisca.png" type="image/x-icon">
+</head>
+<body>
+
+<div class="main-container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="perfil.html">
+      <img src="../img/faisca.png" alt="Perfil" class="icon">
+    </a>
+
+    <img src="../img/medalha.png" alt="Nível" class="icon">
+
+    <a href="metodos.html">
+      <img src="../img/livro.png" alt="Métodos" class="icon active-icon">
+    </a>
+
+    <div class="music-icon">
+      <img src="../img/musica.png" alt="Música" class="icon">
+      <div class="music-player">
+        <iframe
+          width="280"
+          height="200"
+          src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1"
+          frameborder="0"
+          allow="autoplaay">
+        </iframe>
+      </div>
+    </div>
+
+    <img src="../img/comunidade.png" alt="Comunidades" class="icon">
+    <img src="../img/configuracoes.png" alt="Configurações" class="icon">
+  </aside>
+
+
+  <main class="content">
+
+    <h2 class="metodos-title">Calculadora de Média</h2>
+
+    <a href="metodos.html" class="home-btn">
+      <img src="../img/casa.png" alt="Home" class="home-icon">
+      <span>Métodos</span>
+    </a>
+
+    <!-- CONTAINER CENTRAL -->
+<div class="pomodoro-container" style="width: 90%; max-width: 1100px;">
+      <div class="tasks-section">
+
+        <h3>Notas</h3>
+
+        <!-- FORMULÁRIO -->
+        <form id="media-form">
+
+          <!-- NOTAS -->
+          <div id="notas-container">
+
+            <!-- DUAS NOTAS PADRÃO (SEM LIXEIRA) -->
+            <div class="task-input-container sem-lixeira">
+              <input type="number" class="nota-input" placeholder="Nota 1 (0 a 100)">
+            </div>
+
+
+            <div class="task-input-container sem-lixeira">
+                <input type="number" class="nota-input" placeholder="Nota 2 (0 a 100)">
+              </div>
+
+
+          </div>
+
+          <!-- BOTÃO -->
+          <div style="display:flex; justify-content:center; margin:15px 0;">
+            <button type="button" id="add-nota-btn" class="add-task-btn">+</button>
+          </div>
+
+          <!-- CALCULAR -->
+
+        <p id="mensagem-erro-media" class="aviso-erro"></p>
+        <button type="submit" class="control-btn start-btn">
+          Calcular Média
+        </button>
+
+
+
+        <p id="resultado-media" style="margin-top:15px;"></p>
+
+        </form>
+
+        <!-- RESULTADO -->
+        <p id="resultado-media" style="margin-top:15px;"></p>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="../js/avaliacoes.js"></script>
+</body>
+</html>
