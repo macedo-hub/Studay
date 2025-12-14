@@ -1264,6 +1264,86 @@ button[type="submit"]:hover {
   font-size: 12px;
 }
 
+/* ======================================================================
+   CALCULADORA DE MÉDIA – ESTILOS ESPECÍFICOS
+   ====================================================================== */
+
+/* Container das notas */
+#notas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza tudo */
+  gap: 12px;
+}
+
+/* Linha individual da nota */
+.task-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 76%;
+  gap: 10px;
+}
+
+/* Campo de nota */
+.task-input-container input {
+  width: 75%;
+  max-width: 520px;
+}
+
+/* Notas fixas (sem botão de excluir) */
+.task-input-container.sem-lixeira {
+  justify-content: center;
+    width: 100%;
+}
+
+.task-input-container.sem-lixeira input {
+  margin-right: 0;
+}
+
+/* Texto do resultado da média */
+#resultado-media {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+  /* ==========================================================
+   ATALHO CALCULADORA DE MÉDIA (metodos.html)
+   ========================================================== */
+
+.atalho-calculadora {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+
+  width: 70px;
+  height: 70px;
+
+  background-color: #ffffff22;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  z-index: 1000;
+}
+
+.atalho-calculadora img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.atalho-calculadora:hover {
+  transform: scale(1.08);
+    background-color: #ffffff44;
+}
 
 /* ==========================================================================
    4. RESPONSIVIDADE
