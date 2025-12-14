@@ -104,7 +104,7 @@ O código foi estruturado para atender a todos os critérios da avaliação:
 
 O projeto está hospedado e funcional no GitHub Pages. Acesse através do link abaixo:
 
-**[https://macedo-hub.github.io/studay/]**
+**[https://macedo-hub.github.io/Studay/]**
 
 ---
 
@@ -166,6 +166,7 @@ studay/
     ├── resumos.html
     ├── videoaulas.html
     └── avaliacoes.html 
+
 
 
 
