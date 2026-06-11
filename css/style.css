@@ -168,8 +168,8 @@ button:hover {
  
 /* Ícones dentro da sidebar. */
 .sidebar .icon {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
 }
  
@@ -1344,6 +1344,7 @@ button[type="submit"]:hover {
   transform: scale(1.08);
     background-color: #ffffff44;
 }
+
 
 /* ==========================================================================
    4. RESPONSIVIDADE
