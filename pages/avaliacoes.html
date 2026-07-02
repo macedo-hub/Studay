@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Studay - Avaliações</title>
 
-  <!-- CSS principal -->
+  <!-- CSS da pagina -->
   <link rel="stylesheet" href="../css/style.css" />
-
-  <!-- Fontes -->
+  <link rel="stylesheet" href="../css/musica-modal.css" />
   <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
   <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
-
-  <!-- Ícone -->
   <link rel="shortcut icon" href="../img/faisca.png" type="image/x-icon">
 </head>
 <body>
@@ -31,20 +28,11 @@
       <img src="../img/livro.png" alt="Métodos" class="icon active-icon">
     </a>
 
-    <div class="music-icon">
-      <img src="../img/musica.png" alt="Música" class="icon">
-      <div class="music-player">
-        <iframe
-          width="280"
-          height="200"
-          src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1"
-          frameborder="0"
-          allow="autoplaay">
-        </iframe>
-      </div>
-    </div>
+    <button type="button" class="sidebar-music-btn js-open-music-modal" aria-label="Abrir player de música">
+        <img src="../img/musica.png" alt="Música" class="icon">
+      </button>
 
-    <img src="../img/comunidade.png" alt="Comunidades" class="icon">
+    <a href="sobre.html"><img src="../img/sobre.png" alt="Sobre" class="icon"></a>
     <img src="../img/configuracoes.png" alt="Configurações" class="icon">
   </aside>
 
@@ -111,5 +99,103 @@
 </div>
 
 <script src="../js/avaliacoes.js"></script>
+
+  <!-- área de música -->
+  <div class="music-modal-overlay js-music-modal-overlay"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Player de música para estudo">
+
+    <div class="music-modal">
+
+      <!-- Cabeçalho do modal -->
+      <div class="music-modal-header">
+        <h3>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+          </svg>
+          Música para estudar
+        </h3>
+        <!-- Fecha o modal (música continua tocando em background) -->
+        <button class="music-modal-close js-close-music-modal"
+                type="button"
+                aria-label="Fechar modal (a música continuará tocando)">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="music-modal-body">
+
+        <!-- musicas pre-selecionadas -->
+        <div class="music-shortcuts" role="group" aria-label="Playlists sugeridas">
+          <button class="music-shortcut-btn js-shortcut"
+                  data-url="https://www.youtube.com/watch?v=lTRiuFIWV54"
+                  type="button">
+            Lo-Fi
+          </button>
+          <button class="music-shortcut-btn js-shortcut"
+                  data-url="https://www.youtube.com/watch?v=6X_OEUFV0v4"
+                  type="button">
+            Piano
+          </button>
+          <button class="music-shortcut-btn js-shortcut"
+                  data-url="https://www.youtube.com/watch?v=Dx5qFachd3A"
+                  type="button">
+            Jazz
+          </button>
+          <button class="music-shortcut-btn js-shortcut"
+                  data-url="https://www.youtube.com/watch?v=q76bMs-NwRk"
+                  type="button">
+            Chuva
+          </button>
+        </div>
+
+        <!-- Campo de URL personalizada -->
+        <div class="music-url-row">
+          <input type="url"
+                 class="music-url-input js-music-url-input"
+                 placeholder="Cole aqui a URL do YouTube..."
+                 aria-label="URL do YouTube para carregar no player">
+          <button class="music-load-btn js-music-load-btn"
+                  type="button"
+                  aria-label="Carregar URL no player">
+            Carregar
+          </button>
+        </div>
+
+        <!-- Área do iframe -->
+        <div class="music-iframe-container js-music-iframe-container">
+          <div class="music-iframe-placeholder js-music-placeholder">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+            </svg>
+            Cole uma URL do YouTube ou escolha uma playlist acima
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- icone flutuante de música tocando  -->
+  <div class="music-playing-indicator js-music-indicator"
+       role="status"
+       aria-live="polite"
+       title="Clique para reabrir o player">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 18V5l12-2v13"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="18" cy="16" r="3"/>
+    </svg>
+    Tocando...
+  </div>
+
+  <script src="../js/musica.js"></script>
 </body>
 </html>

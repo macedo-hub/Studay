@@ -1,0 +1,306 @@
+body.sobre-page {
+    height: auto;
+    min-height: 100vh;
+    display: block;
+}
+
+/* Título da página */
+.page-title {
+    font-family: 'TheSeasons', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #ffffff;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.sobre-content {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding-bottom: 40px;
+    color: #ffffff;
+}
+
+/*  Cabeçalho da história  */
+.sobre-hero {
+    text-align: center;
+}
+
+.sobre-hero .page-title {
+    margin-bottom: 14px;
+}
+
+.sobre-hero p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.70);
+    line-height: 1.7;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.sobre-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sobre-section-title {
+    font-family: 'TheSeasons', sans-serif;
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    color: #ffffff;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(25, 223, 187, 0.30);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sobre-section-title svg {
+    width: 24px;
+    height: 24px;
+    stroke: #19dfbb;
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/*  Timeline da História  */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 28px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: linear-gradient(to bottom, #19dfbb, rgba(25, 223, 187, 0.10));
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 36px;
+    position: relative;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -28px;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #19dfbb;
+    border: 3px solid rgba(0, 53, 84, 0.80);
+    box-shadow: 0 0 0 3px rgba(25, 223, 187, 0.20);
+    flex-shrink: 0;
+}
+
+.timeline-step {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: #19dfbb;
+    margin-bottom: 2px;
+}
+
+.timeline-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.timeline-item p {
+    font-size: 0.93rem;
+    color: rgba(255, 255, 255, 0.70);
+    line-height: 1.65;
+}
+
+.timeline-img-wrapper {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(25, 223, 187, 0.20);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.timeline-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.timeline-img-wrapper:hover .timeline-img {
+    transform: scale(1.03);
+}
+
+.timeline-img:not([src]),
+.timeline-img[src=""] {
+    display: none;
+}
+
+/*  Cards dos integrantes  */
+.integrantes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.integrante-card {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 20px;
+    padding: 24px 16px;
+    text-align: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.integrante-card:hover {
+    background: rgba(255, 255, 255, 0.17);
+    transform: translateY(-3px);
+}
+
+.integrante-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(25, 223, 187, 0.25), rgba(0, 100, 148, 0.50));
+    border: 2px solid rgba(25, 223, 187, 0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #19dfbb;
+    font-family: 'TheSeasons', sans-serif;
+    overflow: hidden;
+}
+
+.integrante-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.integrante-avatar img:not([src]),
+.integrante-avatar img[src=""] {
+    display: none;
+}
+
+.integrante-nome {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.integrante-papel {
+    font-size: 0.80rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* Card do Professor */
+.professor-card {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(25, 223, 187, 0.20);
+    border-radius: 20px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.professor-info {
+    flex: 1;
+}
+
+.professor-info strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.professor-info span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* Link para GitHub */
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 22px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 9999px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.github-link svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.github-link:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.30);
+    transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVIDADE 
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+    .integrantes-grid {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .professor-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .timeline {
+        padding-left: 22px;
+    }
+}

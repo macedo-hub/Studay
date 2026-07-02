@@ -1,0 +1,278 @@
+/* Botão de música na sidebar */
+.sidebar-music-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: block;
+}
+
+
+.music-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 10, 20, 0.70);
+    z-index: 300;
+    backdrop-filter: blur(3px);
+    align-items: center;
+    justify-content: center;
+}
+
+.music-modal-overlay.open {
+    display: flex;
+}
+
+.music-modal {
+    background: linear-gradient(160deg, #001f33, #00304d);
+    border: 1px solid rgba(25, 223, 187, 0.20);
+    border-radius: 20px;
+    width: min(480px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.60), 0 0 0 1px rgba(25, 223, 187, 0.08);
+    animation: musicModalAppear 0.22s ease;
+}
+
+@keyframes musicModalAppear {
+    from { opacity: 0; transform: scale(0.95) translateY(12px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.music-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.music-modal-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.music-modal-header h3 svg {
+    stroke: #19dfbb;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.music-modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.music-modal-close:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+.music-modal-close svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.music-modal-body {
+    padding: 20px 24px 24px;
+}
+
+/* Atalhos rápidos de playlists */
+.music-shortcuts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.music-shortcut-btn {
+    padding: 7px 14px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 9999px;
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 0.83rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.music-shortcut-btn:hover {
+    background: rgba(255, 255, 255, 0.17);
+    color: #ffffff;
+    border-color: rgba(25, 223, 187, 0.30);
+}
+
+.music-shortcut-btn.loaded {
+    background: rgba(25, 223, 187, 0.12);
+    color: #19dfbb;
+    border-color: rgba(25, 223, 187, 0.40);
+}
+
+/* Campo de URL + botão carregar */
+.music-url-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.music-url-input {
+    flex: 1;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    outline: none;
+}
+
+.music-url-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.music-url-input:focus {
+    border-color: rgba(25, 223, 187, 0.50);
+    background: rgba(255, 255, 255, 0.11);
+}
+
+.music-load-btn {
+    padding: 10px 16px;
+    background: #19dfbb;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.music-load-btn:hover {
+    background: #14bda0;
+    transform: translateY(-1px);
+}
+
+/* Container do iframe */
+.music-iframe-container {
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.30);
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-iframe-placeholder {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.88rem;
+    text-align: center;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.music-iframe-placeholder svg {
+    width: 32px;
+    height: 32px;
+    stroke: rgba(255, 255, 255, 0.45);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.6;
+}
+
+#music-iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    display: block;
+}
+
+/* Indicador "música tocando" */
+.music-playing-indicator {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 100px;
+    background: rgba(0, 31, 51, 0.92);
+    border: 1px solid rgba(25, 223, 187, 0.30);
+    border-radius: 9999px;
+    padding: 7px 16px 7px 12px;
+    color: #19dfbb;
+    font-size: 0.8rem;
+    font-weight: 600;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    z-index: 99;
+    transition: opacity 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.music-playing-indicator.visible {
+    display: flex;
+}
+
+.music-playing-indicator svg {
+    width: 14px;
+    height: 14px;
+    stroke: #19dfbb;
+    fill: none;
+    stroke-width: 2;
+    animation: musicPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+}
+
+@media (max-width: 400px) {
+    .music-modal {
+        width: 100vw;
+        max-height: 100vh;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .music-modal-overlay.open {
+        align-items: flex-end;
+    }
+}
