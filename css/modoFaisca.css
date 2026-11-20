@@ -1,0 +1,557 @@
+/* ==========================================================================
+   MODO FAÍSCA — usa as variáveis de style.css (cores, bordas, sombras)
+   ========================================================================== */
+
+.faisca-subtitulo {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-top: -14px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.faisca-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 28px;
+    width: 100%;
+    max-width: 980px;
+    align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   FAÍSCA (mascote)
+   -------------------------------------------------------------------------- */
+.faisca-lateral {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.faisca-visual {
+    --altura: 1;
+    --largura: 1;
+    --brilho: 1;
+    --saturacao: 1;
+    --aura: 1;
+    position: relative;
+    width: 230px;
+    height: 230px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.faisca-aura {
+    position: absolute;
+    top: -6%;
+    left: 50%;
+    width: 70%;
+    height: 70%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255, 170, 60, 0.50) 0%, transparent 68%);
+    opacity: var(--aura);
+    transition: opacity 1.2s ease;
+    animation: faisca-pulsar 2.4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.faisca-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform-origin: 50% 92%;
+    transform: scale(var(--largura), var(--altura));
+    filter: brightness(var(--brilho)) saturate(var(--saturacao)) drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
+    transition: transform 1.2s ease, filter 1.2s ease;
+}
+
+/* Estágios do derretimento (efeito de reserva, enquanto não há imagens/vídeos) */
+.faisca-visual[data-estagio="2"] { --altura: 0.93; --largura: 1.03; --aura: 0.85; }
+.faisca-visual[data-estagio="3"] { --altura: 0.84; --largura: 1.06; --aura: 0.65; --brilho: 0.97; }
+.faisca-visual[data-estagio="4"] { --altura: 0.72; --largura: 1.10; --aura: 0.45; --brilho: 0.93; }
+.faisca-visual[data-estagio="5"] { --altura: 0.60; --largura: 1.14; --aura: 0.25; --brilho: 0.86; --saturacao: 0.85; }
+.faisca-visual[data-estagio="6"] { --altura: 0.52; --largura: 1.17; --aura: 0;    --brilho: 0.60; --saturacao: 0.40; }
+
+.faisca-visual[data-estagio="6"] .faisca-aura {
+    animation: none;
+}
+
+/* Quando existem imagens próprias de cada estágio, o efeito de reserva é desligado */
+.faisca-visual[data-imagens="true"] .faisca-img {
+    transform: none;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
+}
+
+@keyframes faisca-pulsar {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50%      { transform: translateX(-50%) scale(1.08); }
+}
+
+/* Balão de fala */
+.faisca-fala {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--border-radius-md);
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    text-align: center;
+    color: var(--color-text-primary);
+    backdrop-filter: blur(8px);
+    width: 100%;
+}
+
+.faisca-fala::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    transform: translateX(-50%) rotate(45deg);
+    background: var(--color-surface);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Timer da sessão */
+.faisca-timer {
+    width: 100%;
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: var(--border-radius-lg);
+    padding: 18px 16px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.faisca-timer-tempo {
+    font-family: var(--font-title);
+    font-size: 2.6rem;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    line-height: 1.1;
+}
+
+.faisca-timer-bloco {
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    margin: 6px 0 14px;
+}
+
+.faisca-timer-botoes {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.faisca-demo {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: var(--color-text-muted);
+    text-align: left;
+    cursor: pointer;
+}
+
+.faisca-demo input {
+    accent-color: var(--color-accent);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CARD PRINCIPAL (formulário e cronograma)
+   -------------------------------------------------------------------------- */
+.faisca-card {
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(8px);
+}
+
+.faisca-card h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    margin-bottom: 1.4rem;
+}
+
+.faisca-card h2 svg {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    stroke: var(--color-accent);
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* --------------------------------------------------------------------------
+   FORMULÁRIO
+   -------------------------------------------------------------------------- */
+.faisca-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.faisca-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.faisca-campo label,
+.faisca-rotulo {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.faisca-campo input[type="text"],
+.faisca-campo input[type="number"],
+.faisca-campo select,
+.faisca-campo textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.faisca-campo textarea {
+    resize: vertical;
+    min-height: 84px;
+}
+
+.faisca-campo input:focus,
+.faisca-campo select:focus,
+.faisca-campo textarea:focus {
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.faisca-campo input::placeholder,
+.faisca-campo textarea::placeholder {
+    color: var(--color-text-muted);
+}
+
+.faisca-campo select option {
+    background: #001f33;
+    color: #fff;
+}
+
+/* Radios (disposição) */
+.faisca-radios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.faisca-radio input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.faisca-radio-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--border-radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.faisca-radio-box svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--color-text-secondary);
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke var(--transition-fast);
+}
+
+.faisca-radio-box:hover {
+    background: var(--color-surface-hover);
+    transform: translateY(-2px);
+}
+
+.faisca-radio input:checked + .faisca-radio-box {
+    background: rgba(25, 223, 187, 0.16);
+    border-color: var(--color-accent);
+}
+
+.faisca-radio input:checked + .faisca-radio-box svg {
+    stroke: var(--color-accent);
+}
+
+.faisca-radio input:focus-visible + .faisca-radio-box {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Mensagens de erro */
+.faisca-erro {
+    color: #0b132b;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.faisca-aviso-erro {
+    color: #0b132b;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.2rem;
+}
+
+/* Botões */
+.faisca-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--color-accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: var(--border-radius-sm);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.faisca-btn:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-1px);
+}
+
+.faisca-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.faisca-btn svg[hidden] {
+    display: none;
+}
+
+.faisca-btn-sec {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.faisca-btn-sec:hover {
+    background: var(--color-surface-hover);
+}
+
+.faisca-btn-grande {
+    padding: 12px;
+    font-size: 1rem;
+    margin-top: 6px;
+    width: 100%;
+}
+
+.faisca-btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   CRONOGRAMA
+   -------------------------------------------------------------------------- */
+.faisca-resumo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.faisca-resumo li {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--border-radius-full);
+    padding: 5px 12px;
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    overflow-wrap: anywhere;
+}
+
+.faisca-resumo strong {
+    color: var(--color-text-primary);
+}
+
+.faisca-meta,
+.faisca-obs {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+    margin-bottom: 18px;
+    overflow-wrap: anywhere;
+}
+
+.faisca-meta strong,
+.faisca-obs strong {
+    color: var(--color-text-primary);
+}
+
+.faisca-obs {
+    margin-top: 18px;
+    margin-bottom: 0;
+}
+
+.cronograma-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cronograma-bloco {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 4px solid rgba(255, 255, 255, 0.20);
+    border-radius: var(--border-radius-md);
+    transition: background var(--transition-normal), border-color var(--transition-normal), opacity var(--transition-normal);
+}
+
+.cronograma-icone svg {
+    width: 26px;
+    height: 26px;
+    stroke: var(--color-accent);
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    display: block;
+}
+
+.cronograma-pausa .cronograma-icone svg {
+    stroke: #ffb86b;
+}
+
+.cronograma-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cronograma-info h3 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.cronograma-info p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+}
+
+.cronograma-min {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    white-space: nowrap;
+}
+
+/* Estados controlados pelo JS durante a sessão */
+.cronograma-bloco.ativo {
+    background: rgba(25, 223, 187, 0.14);
+    border-left-color: var(--color-accent);
+    box-shadow: 0 0 0 1px rgba(25, 223, 187, 0.25);
+}
+
+.cronograma-bloco.concluido {
+    opacity: 0.55;
+    border-left-color: var(--color-success);
+}
+
+.faisca-acoes {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVIDADE
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+    .faisca-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .faisca-lateral {
+        position: static;
+        max-width: 420px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .faisca-visual {
+        width: 170px;
+        height: 170px;
+    }
+}
+
+@media (max-width: 480px) {
+    .faisca-card {
+        padding: 1.3rem;
+    }
+
+    .faisca-radios {
+        gap: 6px;
+    }
+
+    .cronograma-bloco {
+        flex-wrap: wrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faisca-aura {
+        animation: none;
+    }
+
+    .faisca-img,
+    .faisca-aura {
+        transition: none;
+    }
+}

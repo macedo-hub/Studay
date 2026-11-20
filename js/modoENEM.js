@@ -1,7 +1,6 @@
 let painelAberto = null;
 
 /**
- * Abre ou fecha um painel.
  * @param {string} id
  */
 

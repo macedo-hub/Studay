@@ -1,65 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Studay - Início</title>
-    <!-- Link para o CSS principal do site -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- Fontes externas utilizadas no site -->
-    <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/sf-pro-display?" rel="stylesheet">
-    <!-- Ícone do site na aba do navegador -->
-    <link rel="shortcut icon" href="img/faisca.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studay — Seu site de estudos</title>
+    <link rel="shortcut icon" href="img/logo/faisca.webp" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
-    <!-- Barra de navegação superior -->
-    <nav class="menu-top">
-        <a href="#" class="ativo">Início</a> <!-- Link da página atual -->
-        <a href="pages/login.html">Login</a> <!-- Link para a página de login -->
-        <a href="pages/registro.html">Registre-se</a> <!-- Link para a página de registro -->
-    </nav>
-  
-    <!-- Seção de ícones de apresentação das funcionalidades -->
-    <div class="icones-apresentacao">
-      <!-- Ícone do Pomodoro -->
-      <div class="icone-box">
-        <img src="img/pomodoro.png" alt="Pomodoro">
-        <p>Pomodoro</p>
-      </div>
-      <!-- Ícone de Resumos -->
-      <div class="icone-box">
-        <img src="img/resumos.png" alt="Resumos">
-        <p>Resumos</p>
-      </div>
-      <!-- Ícone de Videoaulas -->
-      <div class="icone-box">
-        <img src="img/videoaulas.png" alt="Videoaulas">
-        <p>Videoaulas</p>
-      </div>
-      <!-- Ícone de Flashcards -->
-      <div class="icone-box">
-        <img src="img/flashcards.png" alt="Flashcards">
-        <p>Flashcards</p>
-      </div>
-    </div>
-  
-    <!-- Conteúdo principal da página -->
-    <div class="page-wrapper">
-      <!-- Logo do site -->
-      <header class="logo-index">
-        <span class="logo-black">Stu</span><span class="logo-green">day</span>
-      </header>
-      <!-- Frase de destaque na página inicial -->
-      <p class="frase">Seu site de estudos que transforma <br> esforço em resultados!</p>
-      
-      <!-- Botão principal para continuar -->
-      <main style="margin-top: 3rem;">
-        <a href="pages/login.html">
-          <button class="btn-continuar">Continuar</button>
+<body class="landing-page">
+
+    <!-- NAVBAR SUPERIOR -->
+    <nav class="landing-nav" aria-label="Navegação principal">
+        <a href="index.html" class="studay-logo landing-nav-logo" aria-label="Studay">
+            <span class="logo-stu">Stu</span><span class="logo-day">day</span>
         </a>
-      </main>
-    </div>
-  </body>
-  
+        <div class="landing-nav-links">
+            <a href="index.html">Início</a>
+            <a href="pages/login.php">Login</a>
+            <a href="pages/registro.php" class="landing-nav-cta">Criar conta</a>
+        </div>
+    </nav>
+
+    <!-- Imagem do Faísca -->
+    <section class="hero" aria-label="Apresentação do Studay">
+        <div class="hero-inner">
+
+            <div class="hero-text">
+
+                <span class="studay-logo hero-logo" aria-label="Studay">
+                    <span class="logo-stu">Stu</span><span class="logo-day">day</span>
+                </span>
+
+                <p class="hero-tagline">
+                    Seu site de estudos que transforma esforço em resultados!<br>
+                    <strong>Pomodoro, Flashcards, Resumos, Videoaulas</strong>
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="pages/registro.php" class="hero-btn-primary">
+                        Criar conta
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                    <a href="pages/login.php" class="hero-btn-secondary">
+                        Já tenho conta
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-mascot" aria-hidden="true">
+                <div class="hero-mascot-glow"></div>
+                <img src="img/logo/faisca.webp"
+                     alt="Faísca — mascote do Studay"
+                     class="hero-mascot-img">
+            </div>
+
+        </div>
+</body>
 </html>

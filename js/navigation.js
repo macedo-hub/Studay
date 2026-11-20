@@ -1,47 +1,39 @@
-/**
- * js/musica.js
- *
- * Sistema de música (portado da Versão 2).
- * Controla o modal de música: abrir/fechar, atalhos de playlist,
- * carregar URL personalizada do YouTube e o indicador flutuante
- * de "tocando".
- *
- * Substitui o antigo comportamento de mostrar um iframe ao passar
- * o mouse sobre o ícone de música na sidebar.
- */
+
 
 (function () {
     'use strict';
 
     const sel = {
-        overlay:         document.querySelector('.js-music-modal-overlay'),
-        openBtns:        document.querySelectorAll('.js-open-music-modal'),
-        closeBtn:        document.querySelector('.js-close-music-modal'),
-        urlInput:        document.querySelector('.js-music-url-input'),
-        loadBtn:         document.querySelector('.js-music-load-btn'),
+        overlay:       document.querySelector('.js-music-modal-overlay'),
+        openBtns:      document.querySelectorAll('.js-open-music-modal'),
+        closeBtn:      document.querySelector('.js-close-music-modal'),
+        urlInput:      document.querySelector('.js-music-url-input'),
+        loadBtn:       document.querySelector('.js-music-load-btn'),
         iframeContainer: document.querySelector('.js-music-iframe-container'),
-        placeholder:     document.querySelector('.js-music-placeholder'),
-        indicator:       document.querySelector('.js-music-indicator'),
-        shortcuts:       document.querySelectorAll('.js-shortcut'),
+        placeholder:   document.querySelector('.js-music-placeholder'),
+        indicator:     document.querySelector('.js-music-indicator'),
+        shortcuts:     document.querySelectorAll('.js-shortcut'),
+
+        moreToggle:    document.querySelector('.js-more-toggle'),
+        morePopup:     document.querySelector('.js-more-popup'),
+        moreOverlay:   document.querySelector('.js-more-overlay'),
+        moreChevron:   document.querySelector('.js-more-chevron'),
     };
 
-    let musicIsPlaying = false; // true quando o iframe já foi carregado com uma URL
+    let musicIsPlaying = false; 
+
 
     /**
-     * Converte uma URL normal do YouTube para o formato embed.
-     * Suporta os formatos:
-     *   - youtube.com/watch?v=VIDEO_ID
-     *   - youtu.be/VIDEO_ID
-     *   - youtube.com/embed/VIDEO_ID (já está no formato correto)
-     *
-     * @param {string} url — URL digitada pelo usuário
-     * @returns {string|null} — URL no formato embed ou null se inválida
+     * @param {string} url 
+     * @returns {string|null}
      */
     function parseYoutubeUrl(url) {
         url = url.trim();
 
-        if (url.includes('youtube.com/embed/')) {
-            return url;
+        // Aceita só o ID de 11 caracteres e remonta a URL (evita "javascript:" e outros esquemas)
+        const embedMatch = url.match(/^https:\/\/(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/);
+        if (embedMatch) {
+            return `https://www.youtube.com/embed/${embedMatch[1]}`;
         }
 
         const watchMatch = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
@@ -58,47 +50,37 @@
     }
 
     /**
-     * Carrega uma URL no iframe do player de música.
-     * Sem autoplay — o usuário precisa clicar no play manualmente.
-     * Persiste a URL no localStorage para restaurar na próxima visita.
-     *
-     * @param {string} rawUrl — URL do YouTube (qualquer formato)
-     * @param {HTMLElement|null} shortcutBtn — botão de atalho clicado (para marcá-lo como ativo)
+     * @param {string} rawUrl 
+     * @param {HTMLElement|null} shortcutBtn 
      */
     function loadMusicUrl(rawUrl, shortcutBtn = null) {
         const embedUrl = parseYoutubeUrl(rawUrl);
 
         if (!embedUrl) {
-            if (sel.urlInput) {
-                sel.urlInput.style.borderColor = 'rgba(255, 77, 77, 0.6)';
-                sel.urlInput.focus();
-                setTimeout(() => {
-                    sel.urlInput.style.borderColor = '';
-                }, 2000);
-            }
+            sel.urlInput.style.borderColor = 'rgba(255, 77, 77, 0.6)';
+            sel.urlInput.focus();
+            setTimeout(() => {
+                sel.urlInput.style.borderColor = '';
+            }, 2000);
             return;
         }
 
-        const existingIframe = sel.iframeContainer
-            ? sel.iframeContainer.querySelector('#music-iframe')
-            : null;
+        const existingIframe = sel.iframeContainer.querySelector('#music-iframe');
         if (existingIframe) existingIframe.remove();
 
         if (sel.placeholder) sel.placeholder.style.display = 'none';
 
         const iframe = document.createElement('iframe');
-        iframe.id              = 'music-iframe';
-        iframe.src             = embedUrl; // SEM ?autoplay=1 — play manual
-        iframe.allow           = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.id           = 'music-iframe';
+        iframe.src          = embedUrl; 
+        iframe.allow        = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         iframe.allowFullscreen = true;
-        iframe.title           = 'Player de música para estudo';
-        if (sel.iframeContainer) sel.iframeContainer.appendChild(iframe);
+        iframe.title        = 'Player de música para estudo';
+        sel.iframeContainer.appendChild(iframe);
 
         musicIsPlaying = true;
-        if (sel.urlInput) {
-            sel.urlInput.value = rawUrl;
-            sel.urlInput.style.borderColor = '';
-        }
+        sel.urlInput.value = rawUrl;
+        sel.urlInput.style.borderColor = '';
 
         sel.shortcuts.forEach(btn => btn.classList.remove('loaded'));
         if (shortcutBtn) shortcutBtn.classList.add('loaded');
@@ -108,11 +90,9 @@
             const activeShortcutUrl = shortcutBtn ? shortcutBtn.dataset.url : null;
             localStorage.setItem('studay_music_shortcut', activeShortcutUrl || '');
         } catch (e) {
-            // localStorage pode não estar disponível em alguns contextos
         }
     }
 
-    /** Abre o modal de música */
     function openMusicModal() {
         if (!sel.overlay) return;
         sel.overlay.classList.add('open');
@@ -125,7 +105,6 @@
         }, 100);
     }
 
-    /** Fecha o modal (a música continua tocando) */
     function closeMusicModal() {
         if (!sel.overlay) return;
         sel.overlay.classList.remove('open');
@@ -182,7 +161,6 @@
         sel.indicator.addEventListener('click', openMusicModal);
     }
 
-    // Restaurar última URL do localStorage
     (function restoreLastUrl() {
         try {
             const savedUrl = localStorage.getItem('studay_music_url');
@@ -198,12 +176,40 @@
                         }
                     });
                 }
-                // Nota: não carrega automaticamente o iframe — o usuário
-                // precisa clicar em "Carregar" ou no atalho para iniciar.
             }
         } catch (e) {
-            // localStorage indisponível — ignora silenciosamente
         }
     })();
+
+    function openMorePopup() {
+        if (!sel.morePopup) return;
+        sel.morePopup.classList.add('open');
+        sel.moreOverlay && sel.moreOverlay.classList.add('open');
+        sel.moreToggle && sel.moreToggle.setAttribute('aria-expanded', 'true');
+        if (sel.moreChevron) {
+            sel.moreChevron.style.transform = 'rotate(180deg)';
+        }
+    }
+
+    function closeMorePopup() {
+        if (!sel.morePopup) return;
+        sel.morePopup.classList.remove('open');
+        sel.moreOverlay && sel.moreOverlay.classList.remove('open');
+        sel.moreToggle && sel.moreToggle.setAttribute('aria-expanded', 'false');
+        if (sel.moreChevron) {
+            sel.moreChevron.style.transform = '';
+        }
+    }
+
+    if (sel.moreToggle) {
+        sel.moreToggle.addEventListener('click', function () {
+            const isOpen = sel.morePopup && sel.morePopup.classList.contains('open');
+            isOpen ? closeMorePopup() : openMorePopup();
+        });
+    }
+
+    if (sel.moreOverlay) {
+        sel.moreOverlay.addEventListener('click', closeMorePopup);
+    }
 
 })();

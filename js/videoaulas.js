@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const query = searchInput.value.trim();
     if (query) {
       const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
-      window.open(youtubeUrl, '_blank'); // Abre em nova aba
-      searchInput.value = ''; // Limpa o input após busca
+      window.open(youtubeUrl, '_blank'); 
+      searchInput.value = ''; 
     } else {
-      // Opcional: alerta se vazio (mas mantive simples, sem alerta)
       searchInput.placeholder = 'Digite algo para buscar!';
       setTimeout(() => {
         searchInput.placeholder = 'Digite o tema da videoaula (ex: HTML para iniciantes)...';
@@ -18,13 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Event listener para Enter no input
   searchInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
       performSearch();
     }
   });
 
-  // Event listener para clique na lupa
   searchIcon.addEventListener('click', performSearch);
 });

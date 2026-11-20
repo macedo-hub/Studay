@@ -1,18 +1,4 @@
-body.sobre-page {
-    height: auto;
-    min-height: 100vh;
-    display: block;
-}
-
-/* Título da página */
-.page-title {
-    font-family: 'TheSeasons', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    color: #ffffff;
-    margin-bottom: 28px;
-    text-align: center;
-}
-
+/* Container principal da página Sobre */
 .sobre-content {
     width: 100%;
     max-width: 760px;
@@ -20,10 +6,9 @@ body.sobre-page {
     flex-direction: column;
     gap: 48px;
     padding-bottom: 40px;
-    color: #ffffff;
 }
 
-/*  Cabeçalho da história  */
+/* ---------- Seção: Cabeçalho da história ---------- */
 .sobre-hero {
     text-align: center;
 }
@@ -34,12 +19,13 @@ body.sobre-page {
 
 .sobre-hero p {
     font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.70);
+    color: var(--color-text-secondary);
     line-height: 1.7;
     max-width: 580px;
     margin: 0 auto;
 }
 
+/* ---------- Seção genérica com título + conteúdo ---------- */
 .sobre-section {
     display: flex;
     flex-direction: column;
@@ -47,9 +33,9 @@ body.sobre-page {
 }
 
 .sobre-section-title {
-    font-family: 'TheSeasons', sans-serif;
+    font-family: var(--font-title);
     font-size: clamp(1.4rem, 2.8vw, 2rem);
-    color: #ffffff;
+    color: var(--color-text-primary);
     padding-bottom: 10px;
     border-bottom: 2px solid rgba(25, 223, 187, 0.30);
     display: flex;
@@ -60,7 +46,7 @@ body.sobre-page {
 .sobre-section-title svg {
     width: 24px;
     height: 24px;
-    stroke: #19dfbb;
+    stroke: var(--color-accent);
     fill: none;
     stroke-width: 1.75;
     stroke-linecap: round;
@@ -68,7 +54,7 @@ body.sobre-page {
     flex-shrink: 0;
 }
 
-/*  Timeline da História  */
+/* ---------- Timeline da História ---------- */
 .timeline {
     display: flex;
     flex-direction: column;
@@ -77,6 +63,7 @@ body.sobre-page {
     padding-left: 28px;
 }
 
+/* Linha vertical da timeline */
 .timeline::before {
     content: '';
     position: absolute;
@@ -84,9 +71,10 @@ body.sobre-page {
     top: 12px;
     bottom: 12px;
     width: 2px;
-    background: linear-gradient(to bottom, #19dfbb, rgba(25, 223, 187, 0.10));
+    background: linear-gradient(to bottom, var(--color-accent), rgba(25, 223, 187, 0.10));
 }
 
+/* Item da timeline */
 .timeline-item {
     display: flex;
     flex-direction: column;
@@ -99,6 +87,7 @@ body.sobre-page {
     padding-bottom: 0;
 }
 
+/* Marcador circular na linha */
 .timeline-marker {
     position: absolute;
     left: -28px;
@@ -106,7 +95,7 @@ body.sobre-page {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #19dfbb;
+    background: var(--color-accent);
     border: 3px solid rgba(0, 53, 84, 0.80);
     box-shadow: 0 0 0 3px rgba(25, 223, 187, 0.20);
     flex-shrink: 0;
@@ -117,51 +106,52 @@ body.sobre-page {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.10em;
-    color: #19dfbb;
+    color: var(--color-accent);
     margin-bottom: 2px;
 }
 
 .timeline-item h3 {
     font-size: 1.05rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--color-text-primary);
 }
 
 .timeline-item p {
     font-size: 0.93rem;
-    color: rgba(255, 255, 255, 0.70);
+    color: var(--color-text-secondary);
     line-height: 1.65;
 }
 
+/* Wrapper de imagem real na timeline (substitui o antigo placeholder de texto) */
 .timeline-img-wrapper {
     width: 100%;
-    max-width: 480px;
-    aspect-ratio: 4 / 3;
-    border-radius: 12px;
+    max-width: 600px;
+    border-radius: var(--border-radius-md);
     overflow: hidden;
     border: 1px solid rgba(25, 223, 187, 0.20);
     background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .timeline-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 440px;
+    object-fit: contain;
 }
 
-.timeline-img-wrapper:hover .timeline-img {
-    transform: scale(1.03);
-}
 
 .timeline-img:not([src]),
 .timeline-img[src=""] {
     display: none;
 }
 
-/*  Cards dos integrantes  */
+
 .integrantes-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -169,19 +159,14 @@ body.sobre-page {
 }
 
 .integrante-card {
-    background: rgba(255, 255, 255, 0.10);
+    background: var(--color-surface);
     border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 20px;
+    border-radius: var(--border-radius-lg);
     padding: 24px 16px;
     text-align: center;
-    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.integrante-card:hover {
-    background: rgba(255, 255, 255, 0.17);
-    transform: translateY(-3px);
-}
-
+/* Avatar placeholder */
 .integrante-avatar {
     width: 68px;
     height: 68px;
@@ -194,8 +179,8 @@ body.sobre-page {
     margin: 0 auto 14px;
     font-size: 1.8rem;
     font-weight: 700;
-    color: #19dfbb;
-    font-family: 'TheSeasons', sans-serif;
+    color: var(--color-accent);
+    font-family: var(--font-title);
     overflow: hidden;
 }
 
@@ -207,6 +192,7 @@ body.sobre-page {
     display: block;
 }
 
+
 .integrante-avatar img:not([src]),
 .integrante-avatar img[src=""] {
     display: none;
@@ -215,20 +201,19 @@ body.sobre-page {
 .integrante-nome {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--color-text-primary);
     margin-bottom: 4px;
 }
 
 .integrante-papel {
     font-size: 0.80rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: var(--color-text-muted);
 }
 
-/* Card do Professor */
 .professor-card {
-    background: rgba(255, 255, 255, 0.10);
+    background: var(--color-surface);
     border: 1px solid rgba(25, 223, 187, 0.20);
-    border-radius: 20px;
+    border-radius: var(--border-radius-lg);
     padding: 20px 24px;
     display: flex;
     align-items: center;
@@ -243,13 +228,13 @@ body.sobre-page {
     display: block;
     font-size: 1rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--color-text-primary);
     margin-bottom: 2px;
 }
 
 .professor-info span {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: var(--color-text-muted);
 }
 
 /* Link para GitHub */
@@ -260,11 +245,11 @@ body.sobre-page {
     padding: 11px 22px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 9999px;
-    color: #ffffff;
+    border-radius: var(--border-radius-full);
+    color: var(--color-text-primary);
     font-weight: 600;
     font-size: 0.92rem;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
     text-decoration: none;
 }
 
@@ -286,7 +271,7 @@ body.sobre-page {
 }
 
 /* --------------------------------------------------------------------------
-   RESPONSIVIDADE 
+   RESPONSIVIDADE — sobre.php
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
     .integrantes-grid {

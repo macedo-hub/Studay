@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let isRunning = false;
     let isEditing = false;
     let originalTime = 25 * 60; // Tempo original para reset
-    let currentMode = 'focus'; // Rastreia o modo ativo
+    let currentMode = 'focus'; 
   
     // Atualizar display do timer
     function updateDisplay() {
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   
-    // Botões de modo (Focus, Short Break, Long Break)
     modeBtns.forEach(btn => {
       btn.addEventListener('click', function() {
         if (isRunning) return; // Não permite mudar modo enquanto roda
@@ -39,21 +38,19 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   
-    // Editar display: clique para tornar editável (só minutos)
     timerDisplay.addEventListener('click', function() {
       if (isRunning || isEditing) return;
       isEditing = true;
       timerDisplay.contentEditable = true;
       timerDisplay.focus();
-      timerDisplay.textContent = Math.floor(originalTime / 60).toString(); // Mostra só minutos para edição
+      timerDisplay.textContent = Math.floor(originalTime / 60).toString(); 
     });
   
-    // Confirmar edição com Enter
     timerDisplay.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         e.preventDefault();
         const minutes = parseInt(timerDisplay.textContent) || 25;
-        if (minutes > 0 && minutes <= 60) { // Limite razoável
+        if (minutes > 0 && minutes <= 60) { 
           timeLeft = minutes * 60;
           originalTime = timeLeft;
         }
@@ -63,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   
-    // Cancelar edição ao perder foco (blur)
     timerDisplay.addEventListener('blur', function() {
       if (isEditing) {
         isEditing = false;
@@ -72,14 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   
-    // Iniciar timer
     startBtn.addEventListener('click', function() {
-      if (isEditing) return; // Não inicia se editando
+      if (isEditing) return; 
       isRunning = true;
       startBtn.style.display = 'none';
       pauseBtn.style.display = 'inline-block';
       resetBtn.style.display = 'inline-block';
-      pauseBtn.textContent = 'Pausar'; // Garante texto inicial
+      pauseBtn.textContent = 'Pausar'; 
       
       timerInterval = setInterval(() => {
         timeLeft--;
@@ -96,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
       updateDisplay();
     });
   
-    // Pausar/Retomar
     pauseBtn.addEventListener('click', function() {
       if (isRunning) {
         // Pausar
@@ -105,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         pauseBtn.textContent = 'Retomar';
       } else {
         // Retomar
-        startBtn.style.display = 'none'; // Mantém Iniciar escondido
+        startBtn.style.display = 'none'; 
         pauseBtn.textContent = 'Pausar';
         timerInterval = setInterval(() => {
           timeLeft--;
@@ -116,14 +110,13 @@ document.addEventListener('DOMContentLoaded', function() {
             startBtn.style.display = 'inline-block';
             pauseBtn.style.display = 'none';
             resetBtn.style.display = 'none';
-            playAlarm(); // Só som
+            playAlarm(); 
           }
         }, 1000);
         isRunning = true;
       }
     });
   
-    // Reset: volta ao tempo original do modo
     resetBtn.addEventListener('click', function() {
       clearInterval(timerInterval);
       isRunning = false;
@@ -131,11 +124,10 @@ document.addEventListener('DOMContentLoaded', function() {
       startBtn.style.display = 'inline-block';
       pauseBtn.style.display = 'none';
       resetBtn.style.display = 'none';
-      pauseBtn.textContent = 'Pausar'; // Reset texto
+      pauseBtn.textContent = 'Pausar'; 
       updateDisplay();
     });
   
-    // Som de alarme (beep simples via AudioContext, sem notificação)
     function playAlarm() {
       try {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -143,76 +135,69 @@ document.addEventListener('DOMContentLoaded', function() {
         const gainNode = audioContext.createGain();
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
-        oscillator.frequency.value = 800; // Tom do beep
+        oscillator.frequency.value = 800; 
         oscillator.type = 'sine';
         gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
         oscillator.start(audioContext.currentTime);
         oscillator.stop(audioContext.currentTime + 1);
       } catch (e) {
-        // Fallback silencioso se não suportar (sem alert)
         console.log('Alarme tocado (som não suportado no browser)');
       }
     }
   
-    // Elementos das Tarefas
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
     const addTaskBtn = document.getElementById('add-task-btn');
   
-    // Adicionar tarefa via Enter ou botão +
     function addTask(text) {
       if (!text.trim()) return;
       const li = document.createElement('li');
       li.className = 'task-item';
       li.innerHTML = `
         <button class="check-btn" onclick="toggleComplete(this)">✓</button>
-        <span class="task-text">${text}</span>
+        <span class="task-text"></span>
         <button class="delete-btn" onclick="deleteTask(this)">X</button>
       `;
+      // textContent escreve o texto da tarefa como TEXTO (não interpreta HTML/JavaScript)
+      li.querySelector('.task-text').textContent = text;
       taskList.appendChild(li);
-      taskInput.value = ''; // Limpa input
+      taskInput.value = ''; 
     }
   
-    // Evento para Enter no input (placeholder some ao digitar)
     taskInput.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         addTask(taskInput.value);
       }
     });
   
-    // Evento para botão +
     addTaskBtn.addEventListener('click', function() {
       addTask(taskInput.value);
-      taskInput.focus(); // Foca no input após adicionar
+      taskInput.focus();
     });
   
-    // Função para deletar tarefa (X)
     window.deleteTask = function(btn) {
       btn.parentElement.remove();
     };
   
-    // Função para completar tarefa (check: verde, risco no texto, cinza)
     window.toggleComplete = function(btn) {
       const taskItem = btn.parentElement;
       const taskText = taskItem.querySelector('.task-text');
-      const deleteBtn = taskItem.querySelector('.delete-btn'); // X não muda
+      const deleteBtn = taskItem.querySelector('.delete-btn'); 
       
       taskItem.classList.toggle('completed');
       btn.classList.toggle('completed');
       
       if (taskItem.classList.contains('completed')) {
         taskText.style.textDecoration = 'line-through';
-        taskText.style.color = '#ccc'; // Cinza só no texto
+        taskText.style.color = '#ccc'; 
       } else {
         taskText.style.textDecoration = 'none';
-        taskText.style.color = '#fff'; // Branco normal
+        taskText.style.color = '#fff'; 
       }
       
-      // X permanece vermelho, sem mudança
     };
   
-    // Inicializar display
     updateDisplay();
   });
   

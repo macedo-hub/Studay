@@ -1,0 +1,90 @@
+/* Container da pesquisa */
+.search-container {
+    width: 100%;
+    max-width: 640px;
+    margin-bottom: 28px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--border-radius-full);
+    overflow: hidden;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.search-box:focus-within {
+    border-color: rgba(25, 223, 187, 0.50);
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 0 0 3px var(--color-accent-glow);
+}
+
+#search-input {
+    flex: 1;
+    padding: 13px 20px 13px 12px;
+    background: transparent;
+    border: none;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    outline: none;
+}
+
+#search-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.search-icon {
+    padding: 0 0 0 18px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-accent);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Estado de carregamento / vazio */
+.videoaulas-message {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 640px;
+}
+
+.videoaulas-message svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--color-text-muted);
+    fill: none;
+    stroke-width: 1.5;
+    opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVIDADE — videoaulas.php
+   -------------------------------------------------------------------------- */
+@media (max-width: 520px) {
+    #search-input {
+        font-size: 0.88rem;
+        padding: 11px 14px;
+    }
+}

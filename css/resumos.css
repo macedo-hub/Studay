@@ -1,0 +1,264 @@
+.resumos-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 680px;
+    gap: 20px;
+}
+
+.add-resumo-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 24px;
+    background: var(--color-accent);
+    color: #000;
+    border: none;
+    border-radius: var(--border-radius-full);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.add-resumo-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    flex-shrink: 0;
+}
+
+.add-resumo-btn:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+}
+
+/* Formulário de criar/editar resumo */
+#resumo-form {
+    background: var(--color-surface-strong);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#resumo-form label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+#resumo-form input[type="text"],
+#resumo-form textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.90);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: var(--border-radius-sm);
+    color: #000;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+#resumo-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+#resumo-form input:focus,
+#resumo-form textarea:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-glow);
+}
+
+#resumo-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+#resumo-form #confirm-btn {
+    padding: 9px 22px;
+    background: var(--color-accent);
+    color: #000;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--border-radius-full);
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background var(--transition-fast);
+}
+
+#resumo-form #confirm-btn:hover {
+    background: var(--color-accent-hover);
+}
+
+#resumo-form .cancel-btn {
+    padding: 9px 22px;
+    background: rgba(220, 53, 69, 0.70);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--border-radius-full);
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background var(--transition-fast);
+}
+
+#resumo-form .cancel-btn:hover {
+    background: #c82333;
+}
+
+/* Lista de resumos */
+.resumos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+/* Card individual de resumo */
+.resumo-card {
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+    transition: background var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.resumo-card:hover {
+    background: var(--color-surface-hover);
+    box-shadow: var(--shadow-md);
+}
+
+/* Cabeçalho do card com título e ações */
+.resumo-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.resumo-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    flex: 1;
+    word-break: break-word;
+}
+
+.resumo-card-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.resumo-card-actions button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 0.85rem;
+}
+
+.resumo-card-actions button svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.resumo-edit-btn {
+    background: rgba(25, 223, 187, 0.15);
+    color: var(--color-accent);
+}
+
+.resumo-edit-btn:hover {
+    background: rgba(25, 223, 187, 0.30);
+    transform: scale(1.08);
+}
+
+.resumo-delete-btn {
+    background: rgba(255, 77, 77, 0.15);
+    color: #ff6b6b;
+}
+
+.resumo-delete-btn:hover {
+    background: rgba(255, 77, 77, 0.30);
+    transform: scale(1.08);
+}
+
+/* Texto do resumo */
+.resumo-card-text {
+    font-size: 0.92rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Estado vazio (sem resumos cadastrados) */
+.resumos-empty {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--color-text-muted);
+}
+
+.resumos-empty svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--color-text-muted);
+    fill: none;
+    stroke-width: 1.5;
+    margin: 0 auto 14px;
+    opacity: 0.5;
+}
+
+.resumos-empty p {
+    font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVIDADE — resumos.php
+   -------------------------------------------------------------------------- */
+@media (max-width: 520px) {
+    .resumos-area {
+        max-width: 100%;
+    }
+
+    .add-resumo-btn {
+        align-self: stretch;
+        justify-content: center;
+    }
+
+    .resumo-card-header {
+        flex-direction: column;
+    }
+
+    .resumo-card-actions {
+        align-self: flex-end;
+    }
+}

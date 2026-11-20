@@ -1,0 +1,417 @@
+
+.flashcard-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    background: var(--color-surface-strong);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+}
+
+.flashcard-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    width: 100%;
+    justify-content: center;
+}
+
+.flashcard-tab {
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--color-text-secondary);
+    border: none;
+    padding: 10px 24px;
+    border-radius: var(--border-radius-full);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.flashcard-tab:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--color-text-primary);
+}
+
+.flashcard-tab.menu-active {
+    background: var(--color-accent);
+    color: #000;
+    box-shadow: 0 4px 14px var(--color-accent-glow);
+}
+
+.flashcard-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flashcard-display-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 560px;
+    height: 220px;
+    margin-bottom: 24px;
+}
+
+.flashcard-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.flashcard-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: var(--border-radius-md);
+    font-size: 1.6rem;
+    text-align: center;
+    word-break: break-word;
+    color: var(--color-text-primary);
+    background: linear-gradient(135deg, #006494, #003554);
+    border: 2px solid rgba(25, 223, 187, 0.25);
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #003554, #004a6e);
+    border-color: rgba(25, 223, 187, 0.40);
+}
+
+.flashcard-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.flip-btn {
+    background: var(--color-accent);
+    color: #000;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 14px var(--color-accent-glow);
+}
+
+.flip-btn:hover {
+    background: var(--color-accent-hover);
+    transform: scale(1.06);
+}
+
+.flip-btn svg {
+    width: 26px;
+    height: 26px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.feedback-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-text-primary);
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.feedback-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.feedback-btn.certo.feedback-active  { background: var(--color-success); }
+.feedback-btn.errado.feedback-active { background: var(--color-error); }
+
+.feedback-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.next-btn {
+    background: #006494;
+    color: var(--color-text-primary);
+    padding: 10px 24px;
+    border-radius: var(--border-radius-full);
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.next-btn:hover {
+    background: #004a70;
+    transform: translateY(-2px);
+}
+
+/* Aba Gerenciar */
+.add-new-flashcard-btn {
+    background: var(--color-accent);
+    color: #000;
+    padding: 12px 26px;
+    border-radius: var(--border-radius-full);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.add-new-flashcard-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.add-new-flashcard-btn:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+}
+
+#flashcard-form {
+    background: rgba(0, 53, 84, 0.85);
+    padding: 22px;
+    border-radius: var(--border-radius-md);
+    width: 100%;
+    max-width: 560px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#flashcard-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    margin-top: 14px;
+}
+
+#flashcard-form label:first-child { margin-top: 0; }
+
+#flashcard-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 4px;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.92);
+    color: #000;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    resize: vertical;
+    min-height: 80px;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+#flashcard-form textarea:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-glow);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+#btn-save-flashcard {
+    background: var(--color-accent);
+    color: #000;
+    padding: 9px 20px;
+    border-radius: var(--border-radius-full);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all var(--transition-fast);
+}
+
+#btn-save-flashcard:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-1px);
+}
+
+.cancel-btn {
+    background: rgba(220, 53, 69, 0.70);
+    color: #fff;
+    padding: 9px 20px;
+    border-radius: var(--border-radius-full);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all var(--transition-fast);
+}
+
+.cancel-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+.manage-list {
+    width: 100%;
+    max-width: 560px;
+}
+
+.manage-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 100, 148, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 13px 18px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-md);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    transition: background var(--transition-fast);
+    gap: 10px;
+}
+
+.manage-card:hover {
+    background: rgba(0, 100, 148, 0.80);
+}
+
+.manage-card p {
+    flex-grow: 1;
+    margin-right: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.manage-card button {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    padding: 4px;
+    font-family: var(--font-body);
+}
+
+.manage-card button:hover {
+    transform: scale(1.12);
+}
+
+.edit-btn:hover   { color: var(--color-accent); }
+.delete-btn:hover { color: var(--color-error); }
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .flashcard-area {
+        padding: 18px;
+    }
+
+    .flashcard-tabs {
+        gap: 8px;
+    }
+
+    .flashcard-tab {
+        flex: 1;
+        text-align: center;
+        padding: 9px 12px;
+    }
+
+    .flashcard-front,
+    .flashcard-back {
+        font-size: 1.2rem;
+        padding: 14px;
+    }
+
+    .flashcard-display-container {
+        height: 180px;
+    }
+
+    .flip-btn {
+        width: 54px;
+        height: 54px;
+        font-size: 1.6rem;
+    }
+
+    .feedback-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.4rem;
+    }
+
+    .add-new-flashcard-btn {
+        width: 100%;
+    }
+
+    .manage-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .manage-card p {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+
+    .manage-card button {
+        margin-left: 0;
+    }
+}

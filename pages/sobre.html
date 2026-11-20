@@ -1,302 +1,465 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studay - Sobre</title>
-
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/musica-modal.css" />
-  <link rel="stylesheet" href="../css/sobre.css" />
-  <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
-  <link href="https://db.onlinewebfonts.com/c/d353583e5cdf878d047eae178df5b757?family=Stars+%26+Love+Bottom+Heavy" rel="stylesheet">
-  <link rel="shortcut icon" href="../img/faisca.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studay — Sobre</title>
+    <link rel="shortcut icon" href="../img/logo/faisca.webp" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/sobre.css">
 </head>
-<body class="sobre-page">
-  <div class="main-container">
-    <!-- Sidebar lateral -->
-    <aside class="sidebar">
-      <a href="perfil.html"><img src="../img/faisca.png" alt="Faisca - Perfil" class="icon"></a>
-       <a href="modoENEM.php"><img src="../img/modoEnem.png" alt="Modo Enem" class="icon"></a>
-      <a href="metodos.html"><img src="../img/livro.png" alt="Métodos" class="icon"></a>
-      <button type="button" class="sidebar-music-btn js-open-music-modal" aria-label="Abrir player de música">
-        <img src="../img/musica.png" alt="Música" class="icon">
-      </button>
-      <a href="sobre.html"><img src="../img/sobre.png" alt="Sobre" class="icon active-icon"></a>
-      <img src="../img/configuracoes.png" alt="Configurações" class="icon">
-    </aside>
+<body>
+<div class="main-container">
 
-    <main class="content">
-      <div class="sobre-content">
 
-        <section class="sobre-hero">
-          <h1 class="page-title">Sobre o Studay</h1>
-          <p>
-            Uma plataforma de estudos criada por estudantes, para estudantes.
-            Nascida de uma necessidade real e construída com criatividade,
-            colaboração e muita vontade de aprender.
-          </p>
-        </section>
+<!-- SIDEBAR  -->
+<aside class="sidebar" aria-label="Menu de navegação principal">
 
-        <!-- A História -->
-        <section class="sobre-section">
-          <h2 class="sobre-section-title">
+    <!-- Logo no topo da sidebar -->
+    <div class="sidebar-header">
+        <a href="metodos.html" class="studay-logo sidebar-logo" aria-label="Studay — ir para métodos">
+            <span class="logo-stu">Stu</span><span class="logo-day">day</span>
+        </a>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Páginas do Studay">
+
+        <!-- Métodos -->
+        <a href="metodos.html"
+           class="sidebar-item"
+           aria-label="Ir para Métodos de estudo">
+            <!-- Lucide: layout-grid -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
             </svg>
-            A História
-          </h2>
+            <span>Métodos</span>
+        </a>
 
-          <div class="timeline">
-
-            <!-- Etapa 1: A ideia -->
-            <div class="timeline-item">
-              <div class="timeline-marker"></div>
-              <span class="timeline-step">Etapa 1</span>
-              <h3>A ideia que nasceu no escuro</h3>
-              <p>
-                Tudo começou em um dia diferente no <strong>IFPB Campus Santa Luzia</strong>.
-                A energia elétrica faltou e, sem computadores ou internet disponíveis,
-                o grupo precisou pensar de forma criativa. Foi exatamente nesse momento
-                que o Studay começou a ganhar forma. O projeto inteiro foi esboçado
-                manualmente.
-              </p>
-              <div class="timeline-img-wrapper">
-                <img src="../img/sobre/esboco.webp"
-                     alt="Esboço à mão do projeto Studay"
-                     class="timeline-img"
-                     loading="lazy">
-              </div>
-            </div>
-
-            <!-- Etapa 2: Do papel ao Canva -->
-            <div class="timeline-item">
-              <div class="timeline-marker"></div>
-              <span class="timeline-step">Etapa 2</span>
-              <h3>Do papel ao Canva</h3>
-              <p>
-                Com a energia de volta, o próximo passo foi digitalizar o que estava no papel.
-                O grupo usou o <strong>Canva</strong> para transformar os rabiscos em um
-                protótipo visual organizado, definindo a identidade visual do Studay:
-                as cores, o gradiente, a tipografia e o mascote <strong>Faísca</strong>.
-              </p>
-              <div class="timeline-img-wrapper">
-                <img src="../img/sobre/canva.webp"
-                     alt="Protótipo do Studay criado no Canva"
-                     class="timeline-img"
-                     loading="lazy">
-              </div>
-            </div>
-
-            <!-- Etapa 3: O código -->
-            <div class="timeline-item">
-              <div class="timeline-marker"></div>
-              <span class="timeline-step">Etapa 3</span>
-              <h3>O protótipo vira código</h3>
-              <p>
-                Com o design definido, chegou a hora de transformar tudo em realidade.
-                Usando <strong>HTML e CSS puros</strong> o grupo construiu todas as
-                funcionalidades do Studay: Pomodoro, Flashcards, Resumos, Videoaulas.
-              </p>
-              <div class="timeline-img-wrapper">
-                <img src="../img/sobre/codigo.webp"
-                     alt="Studay finalizado em código"
-                     class="timeline-img"
-                     loading="lazy">
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- Integrantes -->
-        <section class="sobre-section">
-          <h2 class="sobre-section-title">
+        <!-- Modo ENEM -->
+        <a href="modoENEM.php"
+           class="sidebar-item"
+           aria-label="Ir para Modo ENEM">
+            <!-- Lucide: graduation-cap -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/>
             </svg>
-            Equipe
-          </h2>
+            <span>modoENEM</span>
+        </a>
 
-          <div class="integrantes-grid">
-
-            <div class="integrante-card">
-              <div class="integrante-avatar">
-                <img src="../img/sobre/lucas.webp" alt="Lucas Emanuel Nóbrega de Macêdo" loading="lazy">
-              </div>
-              <p class="integrante-nome">Lucas Emanuel<br>Nóbrega de Macêdo</p>
-              <p class="integrante-papel">Desenvolvedor</p>
-            </div>
-
-            <div class="integrante-card">
-              <div class="integrante-avatar">
-                <img src="../img/sobre/iasmim.webp" alt="Iasmim Anahí Alves Silva" loading="lazy">
-              </div>
-              <p class="integrante-nome">Iasmim Anahí<br>Alves Silva</p>
-              <p class="integrante-papel">Desenvolvedora</p>
-            </div>
-
-            <div class="integrante-card">
-              <div class="integrante-avatar">
-                <img src="../img/sobre/sabrina.webp" alt="Sabrina Yasmine Araújo da Silva" loading="lazy">
-              </div>
-              <p class="integrante-nome">Sabrina Yasmine<br>Araújo da Silva</p>
-              <p class="integrante-papel">Desenvolvedora</p>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- Professor -->
-        <section class="sobre-section">
-          <h2 class="sobre-section-title">
+        <!-- Modo Faísca -->
+        <a href="modoFaisca.php"
+           class="sidebar-item"
+           aria-label="Ir para Modo Faísca">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-              <path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/>
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
             </svg>
-            Professor Orientador
-          </h2>
+            <span>Modo Faísca</span>
+        </a>
 
-          <div class="professor-card">
-            <div class="integrante-avatar">
-              <img src="../img/sobre/felipe.webp" alt="Prof. Felipe Ramos" loading="lazy">
-            </div>
-            <div class="professor-info">
-              <strong>Dr. Felipe Barbosa Araujo Ramos</strong>
-              <span>IFPB Campus Santa Luzia — Técnico em Informática</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="sobre-section">
-          <h2 class="sobre-section-title">
+        <!-- Calculadora de Média -->
+        <a href="avaliacoes.html"
+           class="sidebar-item"
+           aria-label="Ir para Calculadora de Média">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m18 16 4-4-4-4"/>
-              <path d="m6 8-4 4 4 4"/>
-              <path d="m14.5 4-5 16"/>
+                <rect x="4" y="2" width="16" height="20" rx="2"/>
+                <line x1="8" y1="6" x2="16" y2="6"/>
+                <line x1="16" y1="10" x2="16" y2="10"/>
+                <line x1="12" y1="10" x2="12" y2="10"/>
+                <line x1="8"  y1="10" x2="8"  y2="10"/>
+                <line x1="16" y1="14" x2="16" y2="14"/>
+                <line x1="12" y1="14" x2="12" y2="14"/>
+                <line x1="8"  y1="14" x2="8"  y2="14"/>
+                <line x1="16" y1="18" x2="16" y2="18"/>
+                <line x1="12" y1="18" x2="12" y2="18"/>
+                <line x1="8"  y1="18" x2="8"  y2="18"/>
             </svg>
-            Código Aberto
-          </h2>
+            <span>Calculadora de média</span>
+        </a>
 
-          <p style="color: rgba(255, 255, 255, 0.70); font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px;">
-            O Studay é um projeto de código aberto. Você pode ver todo o código-fonte,
-            acompanhar o desenvolvimento e contribuir com sugestões no repositório oficial do GitHub.
-          </p>
-
-          <a href="https://github.com/macedo-hub/Studay"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="github-link">
+        <button class="sidebar-item sidebar-item-music js-open-music-modal"
+                aria-label="Abrir player de música"
+                aria-haspopup="dialog"
+                type="button">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
             </svg>
-            Ver no GitHub
-          </a>
-        </section>
+            <span>Música</span>
+        </button>
 
-      </div>
+        <a href="sobre.html"
+           class="sidebar-item active"
+           aria-label="Ir para página Sobre">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="8"/>
+                <line x1="12" y1="12" x2="12" y2="16"/>
+            </svg>
+            <span>Sobre</span>
+        </a>
 
-    </main>
-  </div>
+    </nav>
 
-  <!-- Área de música -->
-  <div class="music-modal-overlay js-music-modal-overlay"
-       role="dialog"
-       aria-modal="true"
-       aria-label="Player de música para estudo">
+</aside>
+
+<nav class="navbar-mobile" aria-label="Navegação principal mobile">
+    <div class="navbar-mobile-inner">
+
+        <!-- Métodos -->
+        <a href="metodos.html"
+           class="navbar-mobile-item"
+           aria-label="Métodos">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+            <span>Métodos</span>
+        </a>
+
+        <!-- modoENEM -->
+        <a href="modoENEM.php"
+           class="navbar-mobile-item"
+           aria-label="modoENEM">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/>
+            </svg>
+            <span>modoENEM</span>
+        </a>
+
+        <!-- Música -->
+        <button class="navbar-mobile-item js-open-music-modal"
+                type="button"
+                aria-label="Abrir player de música">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+            </svg>
+            <span>Música</span>
+        </button>
+
+        <button class="navbar-mobile-item js-more-toggle"
+                type="button"
+                aria-label="Mais opções"
+                aria-haspopup="true"
+                aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="js-more-chevron">
+                <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            <span>Mais</span>
+        </button>
+
+    </div>
+</nav>
+
+<div class="navbar-more-overlay js-more-overlay" aria-hidden="true"></div>
+
+<div class="navbar-more-popup js-more-popup" role="menu" aria-label="Mais opções">
+    <a href="modoFaisca.php" class="navbar-more-item" role="menuitem">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+        </svg>
+        Modo Faísca
+    </a>
+    <a href="avaliacoes.html" class="navbar-more-item" role="menuitem">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <line x1="8" y1="6" x2="16" y2="6"/>
+            <line x1="8" y1="10" x2="16" y2="10"/>
+            <line x1="8" y1="14" x2="16" y2="14"/>
+        </svg>
+        Calculadora de média
+    </a>
+    <a href="sobre.html" class="navbar-more-item" role="menuitem">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="8"/>
+            <line x1="12" y1="12" x2="12" y2="16"/>
+        </svg>
+        Sobre
+    </a>
+</div>
+
+
+<div class="music-modal-overlay js-music-modal-overlay"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Player de música para estudo">
 
     <div class="music-modal">
 
-      <div class="music-modal-header">
-        <h3>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M9 18V5l12-2v13"/>
-            <circle cx="6" cy="18" r="3"/>
-            <circle cx="18" cy="16" r="3"/>
-          </svg>
-          Música para estudar
-        </h3>
-        <button class="music-modal-close js-close-music-modal"
-                type="button"
-                aria-label="Fechar modal (a música continuará tocando)">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="music-modal-body">
-
-        <!-- músicas pré-selecionadas -->
-        <div class="music-shortcuts" role="group" aria-label="Playlists sugeridas">
-          <button class="music-shortcut-btn js-shortcut"
-                  data-url="https://www.youtube.com/watch?v=lTRiuFIWV54"
-                  type="button">
-            Lo-Fi
-          </button>
-          <button class="music-shortcut-btn js-shortcut"
-                  data-url="https://www.youtube.com/watch?v=6X_OEUFV0v4"
-                  type="button">
-            Piano
-          </button>
-          <button class="music-shortcut-btn js-shortcut"
-                  data-url="https://www.youtube.com/watch?v=Dx5qFachd3A"
-                  type="button">
-            Jazz
-          </button>
-          <button class="music-shortcut-btn js-shortcut"
-                  data-url="https://www.youtube.com/watch?v=q76bMs-NwRk"
-                  type="button">
-            Chuva
-          </button>
+        <div class="music-modal-header">
+            <h3>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 18V5l12-2v13"/>
+                    <circle cx="6" cy="18" r="3"/>
+                    <circle cx="18" cy="16" r="3"/>
+                </svg>
+                Música para estudar
+            </h3>
+            <button class="music-modal-close js-close-music-modal"
+                    type="button"
+                    aria-label="Fechar modal (a música continuará tocando)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
         </div>
 
-        <!-- Campo de URL personalizada -->
-        <div class="music-url-row">
-          <input type="url"
-                 class="music-url-input js-music-url-input"
-                 placeholder="Cole aqui a URL do YouTube..."
-                 aria-label="URL do YouTube para carregar no player">
-          <button class="music-load-btn js-music-load-btn"
-                  type="button"
-                  aria-label="Carregar URL no player">
-            Carregar
-          </button>
-        </div>
+        <div class="music-modal-body">
 
-        <!-- Área do iframe -->
-        <div class="music-iframe-container js-music-iframe-container">
-          <div class="music-iframe-placeholder js-music-placeholder">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
-              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
-            </svg>
-            Cole uma URL do YouTube ou escolha uma playlist acima
-          </div>
-        </div>
+            <div class="music-shortcuts" role="group" aria-label="Playlists sugeridas">
+                <button class="music-shortcut-btn js-shortcut"
+                        data-url="https://www.youtube.com/watch?v=lTRiuFIWV54"
+                        type="button">
+                    Lo-Fi
+                </button>
+                <button class="music-shortcut-btn js-shortcut"
+                        data-url="https://www.youtube.com/watch?v=6X_OEUFV0v4"
+                        type="button">
+                    Piano
+                </button>
+                <button class="music-shortcut-btn js-shortcut"
+                        data-url="https://www.youtube.com/watch?v=Dx5qFachd3A"
+                        type="button">
+                    Jazz
+                </button>
+                <button class="music-shortcut-btn js-shortcut"
+                        data-url="https://www.youtube.com/watch?v=q76bMs-NwRk"
+                        type="button">
+                    Chuva
+                </button>
+            </div>
 
-      </div>
+            <!-- Campo de URL personalizada -->
+            <div class="music-url-row">
+                <input type="url"
+                       class="music-url-input js-music-url-input"
+                       placeholder="Cole aqui a URL do YouTube..."
+                       aria-label="URL do YouTube para carregar no player">
+                <button class="music-load-btn js-music-load-btn"
+                        type="button"
+                        aria-label="Carregar URL no player">
+                    Carregar
+                </button>
+            </div>
+
+            <!-- Área do iframe -->
+            <div class="music-iframe-container js-music-iframe-container">
+                <div class="music-iframe-placeholder js-music-placeholder">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+                    </svg>
+                    Cole uma URL do YouTube ou escolha uma playlist acima
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
+</div>
 
-  <!--  icone flutuante de música tocando -->
-  <div class="music-playing-indicator js-music-indicator"
-       role="status"
-       aria-live="polite"
-       title="Clique para reabrir o player">
+<div class="music-playing-indicator js-music-indicator"
+     role="status"
+     aria-live="polite"
+     title="Clique para reabrir o player">
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M9 18V5l12-2v13"/>
-      <circle cx="6" cy="18" r="3"/>
-      <circle cx="18" cy="16" r="3"/>
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
     </svg>
     Tocando...
-  </div>
+</div>
 
-  <script src="../js/musica.js"></script>
+
+    <main class="content">
+
+        <div class="sobre-content">
+
+            <section class="sobre-hero">
+                <h1 class="page-title">Sobre o Studay</h1>
+                <p>
+                    Uma plataforma de estudos criada por estudantes, para estudantes.
+                    Nascida de uma necessidade real e construída com criatividade,
+                    colaboração e muita vontade de aprender.
+                </p>
+            </section>
+
+            <!-- A História -->
+            <section class="sobre-section">
+                <h2 class="sobre-section-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    A História
+                </h2>
+
+                <div class="timeline">
+
+                    <!-- Etapa 1: A ideia -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <span class="timeline-step">Etapa 1</span>
+                        <h3>A ideia que nasceu no escuro</h3>
+                        <p>
+                            Tudo começou em um dia diferente no <strong>IFPB Campus Santa Luzia</strong>.
+                            A energia elétrica faltou e, sem computadores ou internet disponíveis,
+                            o grupo precisou pensar de forma criativa. Foi exatamente nesse momento 
+                            que o Studay começou a ganhar forma. O projeto inteiro foi esboçado 
+                            manualmente.
+                        </p>
+                        <div class="timeline-img-wrapper">
+                            <img src="../img/sobre/esboco.webp"
+                                 alt="Esboço à mão do projeto Studay"
+                                 class="timeline-img"
+                                 loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Etapa 2: Do papel ao Canva -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <span class="timeline-step">Etapa 2</span>
+                        <h3>Do papel ao Canva</h3>
+                        <p>
+                            Com a energia de volta, o próximo passo foi digitalizar o que estava no papel.
+                            O grupo usou o <strong>Canva</strong> para transformar os rabiscos em um
+                            protótipo visual organizado, definindo a identidade visual do Studay:
+                            as cores, o gradiente, a tipografia e o mascote <strong>Faísca</strong>.
+                        </p>
+                        <div class="timeline-img-wrapper">
+                            <img src="../img/sobre/canva.webp"
+                                 alt="Protótipo do Studay criado no Canva"
+                                 class="timeline-img"
+                                 loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Etapa 3: O código -->
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <span class="timeline-step">Etapa 3</span>
+                        <h3>O protótipo vira código</h3>
+                        <p>
+                            Com o design definido, chegou a hora de transformar tudo em realidade.
+                            Usando <strong>HTML e CSS puros</strong> o grupo construiu todas as 
+                            funcionalidades do Studay: Pomodoro, Flashcards, Resumos, Videoaulas. 
+                        </p>
+                        <div class="timeline-img-wrapper">
+                            <img src="../img/sobre/codigo.webp"
+                                 alt="Studay finalizado em código"
+                                 class="timeline-img"
+                                 loading="lazy">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Integrantes -->
+            <section class="sobre-section">
+                <h2 class="sobre-section-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    Equipe
+                </h2>
+
+                <div class="integrantes-grid">
+
+                    <div class="integrante-card">
+                        <div class="integrante-avatar">
+                            <img src="../img/sobre/lucas.webp" alt="Lucas Emanuel Nóbrega de Macêdo" loading="lazy">
+                        </div>
+                        <p class="integrante-nome">Lucas Emanuel<br>Nóbrega de Macêdo</p>
+                        <p class="integrante-papel">Desenvolvedor</p>
+                    </div>
+
+                    <div class="integrante-card">
+                        <div class="integrante-avatar">
+                            <img src="../img/sobre/iasmim.webp" alt="Iasmim Anahí Alves Silva" loading="lazy">
+                        </div>
+                        <p class="integrante-nome">Iasmim Anahí<br>Alves Silva</p>
+                        <p class="integrante-papel">Desenvolvedora</p>
+                    </div>
+
+                    <div class="integrante-card">
+                        <div class="integrante-avatar">
+                            <img src="../img/sobre/sabrina.webp" alt="Sabrina Yasmine Araújo da Silva" loading="lazy">
+                        </div>
+                        <p class="integrante-nome">Sabrina Yasmine<br>Araújo da Silva</p>
+                        <p class="integrante-papel">Desenvolvedora</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Professor -->
+            <section class="sobre-section">
+                <h2 class="sobre-section-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                        <path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/>
+                    </svg>
+                    Professor Orientador
+                </h2>
+
+                <div class="professor-card">
+                    <div class="integrante-avatar">
+                        <img src="../img/sobre/felipe.webp" alt="Prof. Felipe Ramos" loading="lazy">
+                    </div>
+                    <div class="professor-info">
+                        <strong>Dr. Felipe Barbosa Araujo Ramos</strong>
+                        <span>IFPB Campus Santa Luzia — Técnico em Informática</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sobre-section">
+                <h2 class="sobre-section-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m18 16 4-4-4-4"/>
+                        <path d="m6 8-4 4 4 4"/>
+                        <path d="m14.5 4-5 16"/>
+                    </svg>
+                    Código Aberto
+                </h2>
+
+                <p style="color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px;">
+                    O Studay é um projeto de código aberto. Você pode ver todo o código-fonte,
+                    acompanhar o desenvolvimento e contribuir com sugestões no repositório oficial do GitHub.
+                </p>
+
+                <a href="https://github.com/macedo-hub/Studay"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="github-link">
+                    <!-- Lucide: github -->
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                    Ver no GitHub
+                </a>
+            </section>
+
+        </div>
+
+    </main>
+</div>
+
+<script src="../js/navigation.js"></script>
 </body>
 </html>

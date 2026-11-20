@@ -324,3 +324,26 @@
     font-size: 0.9rem;
   }
 }
+
+/* ==========================================================================
+   PATCH DE COMPATIBILIDADE — refatoração style.css
+   Sobrescreve apenas o que conflita com o novo layout de sidebar.
+   A lógica visual original do modoENEM foi preservada integralmente.
+   ========================================================================== */
+
+/* O .content do style.css usa align-items: center por padrão;
+   o modoENEM precisa alinhar à esquerda para o quiz ficar legível. */
+.enem-main {
+    align-items: flex-start !important;
+}
+
+/* Corrige o padding-bottom para não sobrepor a navbar mobile */
+@media (max-width: 768px) {
+    .enem-main {
+        padding-bottom: calc(var(--navbar-mobile-height) + 24px) !important;
+    }
+
+    .enem-container-wrapper {
+        margin-bottom: 20px;
+    }
+}

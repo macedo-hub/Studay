@@ -1,0 +1,202 @@
+.calculadora-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.calculadora-box {
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: var(--border-radius-lg);
+    padding: 28px 24px;
+    width: 100%;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.calculadora-box h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+#notas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nota-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nota-input {
+    flex: 1;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.90);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: var(--border-radius-sm);
+    color: #000;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    min-width: 0;
+}
+
+.nota-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-glow);
+    background: #fff;
+}
+
+.nota-remove-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 77, 77, 0.20);
+    color: #ff6b6b;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.nota-remove-btn svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.nota-remove-btn:hover {
+    background: rgba(255, 77, 77, 0.40);
+    transform: scale(1.08);
+}
+
+.nota-row.sem-lixeira .nota-remove-btn {
+    display: none;
+}
+
+.add-nota-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+    box-shadow: 0 2px 8px var(--color-accent-glow);
+}
+
+.add-nota-btn:hover {
+    background: var(--color-accent-hover);
+    transform: scale(1.06);
+}
+
+/* Mensagem de erro */
+#mensagem-erro-media {
+    color: #ff8080;
+    font-size: 0.88rem;
+    text-align: center;
+    min-height: 1.2em;
+    font-weight: 600;
+    display: none;
+}
+
+#mensagem-erro-media.visible {
+    display: block;
+}
+
+.btn-calcular {
+    width: 100%;
+    padding: 12px;
+    background: var(--color-accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background var(--transition-fast), transform var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-calcular:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+}
+
+.resultado-box {
+    background: rgba(25, 223, 187, 0.10);
+    border: 1px solid rgba(25, 223, 187, 0.25);
+    border-radius: var(--border-radius-md);
+    padding: 18px 24px;
+    text-align: center;
+    width: 100%;
+    display: none;
+}
+
+.resultado-box.visible {
+    display: block;
+}
+
+.resultado-label {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+}
+
+#resultado-media {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.resultado-status {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+.resultado-status.aprovado { color: var(--color-success); }
+.resultado-status.reprovado { color: var(--color-error); }
+
+/* RESPONSIVIDADE */
+@media (max-width: 480px) {
+    .calculadora-box {
+        padding: 20px 16px;
+    }
+
+    #resultado-media {
+        font-size: 2.2rem;
+    }
+}

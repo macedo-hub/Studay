@@ -1,0 +1,333 @@
+
+.pomodoro-container {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 820px;
+}
+
+.timer-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: var(--border-radius-lg);
+    padding: 36px 28px;
+    box-shadow: var(--shadow-md);
+    max-width: 320px;
+}
+
+/* Botões de seleção de modo */
+.mode-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    padding: 7px 14px;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-text-secondary);
+    border: none;
+    border-radius: var(--border-radius-full);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.mode-btn:hover {
+    background: rgba(255, 255, 255, 0.20);
+    color: var(--color-text-primary);
+}
+
+.mode-btn.active-mode {
+    background: var(--color-accent);
+    color: #000;
+    box-shadow: 0 2px 10px var(--color-accent-glow);
+}
+
+/* Display do tempo */
+.timer-display {
+    font-size: 86px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 28px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.40);
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: none;
+    background: transparent;
+    outline: none;
+    user-select: none;
+    border-radius: var(--border-radius-md);
+    padding: 4px 12px;
+}
+
+.timer-display:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.timer-display[contenteditable="true"] {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 48px;
+    padding: 10px 16px;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-accent);
+}
+
+/* Botões de controle do timer */
+.timer-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.control-btn {
+    padding: 11px 22px;
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-width: 90px;
+    box-shadow: var(--shadow-sm);
+    font-family: var(--font-body);
+}
+
+.start-btn,
+.pause-btn {
+    background: var(--color-accent);
+    color: #000;
+}
+
+.start-btn:hover,
+.pause-btn:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+}
+
+.reset-btn {
+    background: rgba(255, 77, 77, 0.80);
+    color: #fff;
+}
+
+.reset-btn:hover {
+    background: var(--color-error);
+    transform: translateY(-2px);
+}
+
+.control-btn:disabled {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.40);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ---------- Seção de Tasks ---------- */
+.tasks-section {
+    flex: 1;
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: var(--border-radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+}
+
+.tasks-section h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+/* Lista de tarefas */
+#task-list {
+    list-style: none;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    padding-right: 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+#task-list::-webkit-scrollbar {
+    width: 4px;
+}
+#task-list::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+}
+
+/* Item de tarefa */
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.10);
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-primary);
+    transition: background var(--transition-fast);
+    gap: 6px;
+}
+
+.task-item.completed {
+    background: rgba(25, 223, 187, 0.12);
+}
+
+.task-text {
+    flex: 1;
+    font-size: 0.92rem;
+    margin: 0 6px;
+    word-break: break-word;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--color-text-muted);
+}
+
+.check-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-text-secondary);
+    border: 2px solid rgba(255, 255, 255, 0.20);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.check-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.check-btn.completed {
+    background: var(--color-accent);
+    color: #000;
+    border-color: var(--color-accent);
+}
+
+.delete-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 77, 77, 0.50);
+    color: #fff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: none;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.delete-btn:hover {
+    background: var(--color-error);
+    transform: scale(1.1);
+}
+
+/* Campo para adicionar tarefa */
+.task-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+}
+
+#task-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--border-radius-sm);
+    background: rgba(255, 255, 255, 0.90);
+    color: #000;
+    font-size: 0.92rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+#task-input:focus {
+    border-color: var(--color-accent);
+    background: #fff;
+}
+
+.add-task-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--color-accent);
+    color: #000;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.add-task-btn:hover {
+    background: var(--color-accent-hover);
+    transform: scale(1.06);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVIDADE — pomodoro.php
+   -------------------------------------------------------------------------- */
+@media (max-width: 680px) {
+    .pomodoro-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timer-section,
+    .tasks-section {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .timer-display {
+        font-size: 70px;
+    }
+
+    .mode-buttons {
+        gap: 6px;
+    }
+
+    .mode-btn {
+        font-size: 0.78rem;
+        padding: 6px 11px;
+    }
+}
