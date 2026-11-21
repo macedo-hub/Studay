@@ -1,0 +1,199 @@
+/* ==========================================================================
+   COMO FUNCIONA O XP
+   ========================================================================== */
+.explica-intro,
+.explica-passos,
+.explica-caixa,
+.explica-acoes {
+    width: 100%;
+    max-width: 820px;
+}
+
+.explica-intro {
+    margin-bottom: 22px;
+    text-align: center;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+}
+
+.explica-passos {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.explica-passo {
+    flex: 1;
+    min-width: 0;
+    padding: 18px 14px;
+    text-align: center;
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.explica-passo h2 {
+    font-family: var(--font-title);
+    font-size: 1.3rem;
+    margin: 8px 0 4px;
+}
+
+.explica-passo p {
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+}
+
+.explica-numero {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #00263d;
+    font-family: var(--font-body);
+    font-weight: 800;
+}
+
+.explica-seta {
+    align-self: center;
+    flex-shrink: 0;
+    color: var(--color-accent);
+}
+
+.explica-seta .icone { width: 22px; height: 22px; }
+
+.explica-caixa {
+    margin-bottom: 22px;
+    padding: 22px;
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.explica-caixa h2 {
+    font-family: var(--font-title);
+    font-size: 1.45rem;
+    margin-bottom: 8px;
+}
+
+.explica-texto {
+    margin-bottom: 14px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+}
+
+.explica-texto a,
+.explica-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.explica-aviso { margin: 14px 0 0; }
+
+/* Tabela de quanto vale cada atividade */
+.explica-tabela {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.explica-tabela li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: var(--border-radius-md);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.explica-icone {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(25, 223, 187, 0.16);
+    color: var(--color-accent);
+}
+
+.explica-icone .icone { width: 20px; height: 20px; }
+
+.explica-tabela-texto {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.explica-tabela-texto span { font-size: 0.8rem; color: var(--color-text-secondary); }
+
+.explica-tabela-valor {
+    flex-shrink: 0;
+    max-width: 44%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 2px;
+}
+
+.explica-tabela-valor b { font-size: 0.84rem; color: var(--color-accent); }
+.explica-tabela-valor small { font-size: 0.72rem; color: var(--color-text-muted); }
+
+.explica-regras {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.explica-regras li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.explica-regras .icone {
+    margin-top: 2px;
+    width: 18px;
+    height: 18px;
+    color: var(--color-accent);
+}
+
+.explica-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px 22px;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 640px) {
+    .explica-passos { flex-direction: column; }
+    .explica-seta { transform: rotate(90deg); }
+    .explica-tabela li { flex-wrap: wrap; }
+    .explica-tabela-valor {
+        max-width: none;
+        width: 100%;
+        align-items: flex-start;
+        text-align: left;
+        padding-left: 54px;
+    }
+}
