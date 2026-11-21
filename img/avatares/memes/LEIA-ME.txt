@@ -1,0 +1,17 @@
+AVATARES — categoria: Memes
+============================================================
+
+Coloque aqui os arquivos com EXATAMENTE estes nomes:
+
+faisca-nerd.webp                  Faísca nerd
+faisca-surpreso.webp              Faísca surpreso
+faisca-sobrancelha.webp           Faísca desconfiado
+faisca-pensando.webp              Faísca pensativo
+faisca-riso.webp                  Faísca morrendo de rir
+faisca-implorando.webp            Faísca pidão
+
+Formato:  .webp, quadrado 1:1, 512x512 (fica leve e nítido)
+Peso:     de preferência menos de 60 KB cada
+Fundo:    cor lisa amarela. O site corta em círculo, então deixe o rosto bem no centro.
+
+Se algum arquivo não existir, o site mostra o Faísca clássico no lugar. Nada quebra.

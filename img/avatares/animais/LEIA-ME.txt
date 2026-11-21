@@ -1,0 +1,17 @@
+AVATARES — categoria: Animais
+============================================================
+
+Coloque aqui os arquivos com EXATAMENTE estes nomes:
+
+gato.webp                         Gatinho
+cachorro.webp                     Cachorrinho
+capivara.webp                     Capivara
+coruja.webp                       Coruja
+panda.webp                        Panda
+raposa.webp                       Raposa
+
+Formato:  .webp, quadrado 1:1, 512x512 (fica leve e nítido)
+Peso:     de preferência menos de 60 KB cada
+Fundo:    cor lisa azul-clara. O site corta em círculo, então deixe o rosto bem no centro.
+
+Se algum arquivo não existir, o site mostra o Faísca clássico no lugar. Nada quebra.

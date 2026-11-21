@@ -1,0 +1,17 @@
+IMAGENS DO FAÍSCA POR NÍVEL — coloque os arquivos aqui, com EXATAMENTE estes nomes
+===================================================================================
+
+nivel-1.webp   Fagulha      (começando, chamininha pequena)
+nivel-2.webp   Chama Viva   (chama maior e alegre)
+nivel-3.webp   Tocha        (chama forte, vela confiante)
+nivel-4.webp   Fogueira     (chama grande, brilho em volta)
+nivel-5.webp   Labareda     (chama enorme, vela poderosa)
+nivel-6.webp   Estrela      (versão final, dourada e brilhante)
+
+Formato:  .webp com fundo transparente (se o ChatGPT gerar PNG, converta para WEBP)
+Tamanho:  quadrado, 800x800 (fica leve e nítido)
+Peso:     de preferência menos de 150 KB cada
+
+Os arquivos estagio-1.webp até estagio-6.webp (a vela derretendo no Modo Faísca) NÃO mudam. Deixe como estão.
+
+Se algum nivel-X.webp não existir, o site usa o Faísca normal com um brilho que cresce a cada nível.

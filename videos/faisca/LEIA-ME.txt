@@ -1,0 +1,21 @@
+VÍDEOS DO FAÍSCA — coloque os arquivos aqui, com EXATAMENTE estes nomes
+=========================================================================
+
+1) faisca-apresentacao.mp4
+   Onde aparece: tela inicial do site (seção "Conheça o Faísca").
+   Ideia: o Faísca acenando e se apresentando, sorrindo. Loop suave.
+
+2) faisca-comemorando.mp4
+   Onde aparece: janelinha de "Você subiu de nível!".
+   Ideia: o Faísca pulando de alegria, com brilhos e confete.
+
+Formato:  .mp4 (H.264), sem som
+Tamanho:  o Gemini costuma gerar em 16:9 (horizontal). Pode usar assim mesmo:
+          o site corta o vídeo em quadrado no centro. Por isso deixe o Faísca
+          BEM NO MEIO do quadro, com bastante espaço em volta.
+Fundo:    cor lisa #003554 (azul-escuro do site). Assim o vídeo se mistura com a página.
+Duração:  de 3 a 6 segundos (o vídeo repete sozinho)
+Peso:     de preferência menos de 3 MB cada (o InfinityFree é grátis e limita o tamanho).
+          Se passar, comprima em https://www.freeconvert.com/video-compressor
+
+Se o arquivo não estiver aqui, o site NÃO quebra: mostra a imagem do Faísca no lugar.

@@ -1,0 +1,18 @@
+AVATARES — categoria: Faíscas
+============================================================
+
+Coloque aqui os arquivos com EXATAMENTE estes nomes:
+
+(faisca-classico  não precisa de arquivo: usa img/logo/faisca-sem-fundo.webp)
+faisca-oculos-escuros.webp        Faísca estiloso
+faisca-heroi.webp                 Faísca herói
+faisca-sono.webp                  Faísca com sono
+faisca-fones.webp                 Faísca de fones
+faisca-formando.webp              Faísca formando
+faisca-cafe.webp                  Faísca com café
+
+Formato:  .webp, quadrado 1:1, 512x512 (fica leve e nítido)
+Peso:     de preferência menos de 60 KB cada
+Fundo:    cor lisa turquesa. O site corta em círculo, então deixe o rosto bem no centro.
+
+Se algum arquivo não existir, o site mostra o Faísca clássico no lugar. Nada quebra.

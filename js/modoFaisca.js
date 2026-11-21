@@ -9,12 +9,12 @@
 
     const usaImagens = visual.dataset.imagens === 'true';
 
-    // Falas da Faísca de acordo com o estágio do cronômetro
+    // Falas do Faísca de acordo com o estágio do cronômetro
     const FALAS_ESTAGIO = {
         1: 'Minha chama está a todo vapor! Vamos nessa.',
         2: 'Já estou derretendo um pouquinho... mas ainda dá pra render!',
         3: 'Metade do caminho! Continue firme.',
-        4: 'Sua velinha já está se apagando... faltam poucos minutos!',
+        4: 'Já estou quase me apagando... faltam poucos minutos!',
         5: 'Última chama! Termine o bloco com tudo.',
         6: 'Missão cumprida! Pode me apagar com orgulho. Descanse um pouco.'
     };
@@ -26,7 +26,7 @@
         cansado: 'Hoje o pavio está curtinho, então vamos leve e com uma pausa.'
     };
 
-    // Atualiza a fala e a imagem da Faísca
+    // Atualiza a fala e a imagem do Faísca
     function aplicarEstagio(estagio) {
         visual.dataset.estagio = String(estagio);
         fala.textContent = FALAS_ESTAGIO[estagio];
@@ -62,6 +62,7 @@
     let restanteSeg = totalSeg;
     let intervalo = null;
     let estagioAtual = 1;
+    let usouAcelerar = false;   // se acelerou o tempo, não ganha XP
 
     // Pega a duração de cada bloco do cronograma
     const duracoes = blocos.map(function (bloco) {
@@ -78,7 +79,7 @@
             String(segundosRestantes).padStart(2, '0');
     }
 
-    // Define o estágio da Faísca de acordo com o tempo restante
+    // Define o estágio do Faísca de acordo com o tempo restante
     function calcularEstagio() {
         if (restanteSeg <= 0) return 6;
 
@@ -152,6 +153,7 @@
     // Diminui o tempo a cada segundo
     function tick() {
         const passo = chkAcelerar && chkAcelerar.checked ? 60 : 1;
+        if (passo > 1) { usouAcelerar = true; }
 
         restanteSeg = Math.max(0, restanteSeg - passo);
         atualizar();
@@ -160,6 +162,11 @@
             parar();
             textoBotao('Concluído');
             btnIniciar.disabled = true;
+
+            // Gamificação: sessão completa e sem acelerar rende XP (se estiver logado)
+            if (window.Studay && !usouAcelerar) {
+                window.Studay.registrarXp('faisca', { minutos: totalMin });
+            }
         }
     }
 
@@ -173,6 +180,9 @@
 
         if (restanteSeg === totalSeg) {
             aplicarEstagio(1);
+            usouAcelerar = false;
+            // Gamificação: avisa o servidor que a sessão começou
+            if (window.Studay) { window.Studay.iniciarCronometro('faisca'); }
         }
 
         intervalo = setInterval(tick, 1000);
@@ -180,12 +190,13 @@
         atualizar();
     });
 
-    // Reinicia o cronômetro e a Faísca
+    // Reinicia o cronômetro e o Faísca
     btnReiniciar.addEventListener('click', function () {
         parar();
 
         restanteSeg = totalSeg;
         estagioAtual = 1;
+        usouAcelerar = false;
 
         btnIniciar.disabled = false;
         textoBotao('Iniciar');

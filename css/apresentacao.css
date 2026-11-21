@@ -1,0 +1,360 @@
+/* ==========================================================================
+   APRESENTAÇÃO DO FAÍSCA — passeio curtinho com holofote no menu
+   ========================================================================== */
+body.apr-aberta {
+    overflow: hidden;
+}
+
+.apr-fundo {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background: rgba(0, 8, 20, 0.82);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.apr-fundo.apr-visivel {
+    opacity: 1;
+}
+
+/* Com holofote: o escurecido vem da sombra gigante do próprio holofote */
+.apr-fundo.apr-com-foco {
+    background: transparent;
+    backdrop-filter: none;
+}
+
+.apr-foco {
+    position: fixed;
+    border-radius: var(--border-radius-md);
+    border: 2px solid var(--color-accent);
+    box-shadow: 0 0 0 9999px rgba(0, 8, 20, 0.82), 0 0 24px 4px var(--color-accent-glow);
+    pointer-events: none;
+    transition: top 0.4s ease, left 0.4s ease, width 0.4s ease, height 0.4s ease;
+    animation: aprPulsa 1.6s ease-in-out infinite;
+}
+
+@keyframes aprPulsa {
+    0%, 100% { border-color: var(--color-accent); }
+    50%      { border-color: #ffd166; }
+}
+
+/* ---------- Palco: Faísca + balão ---------- */
+.apr-palco {
+    position: fixed;
+    left: 50%;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    width: min(520px, calc(100vw - 24px));
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    transition: bottom 0.4s ease;
+}
+
+.apr-fundo.apr-centro .apr-palco {
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.apr-faisca {
+    flex-shrink: 0;
+    width: 104px;
+    height: 104px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 16px rgba(255, 170, 60, 0.5));
+    transform-origin: 50% 100%;
+}
+
+.apr-faisca.apr-fala-nova {
+    animation: aprBalanca 0.7s ease;
+}
+
+@keyframes aprBalanca {
+    0%   { transform: translateY(0) rotate(0) scale(1); }
+    25%  { transform: translateY(-14px) rotate(-6deg) scale(1.06); }
+    55%  { transform: translateY(0) rotate(4deg) scale(0.97, 1.03); }
+    100% { transform: translateY(0) rotate(0) scale(1); }
+}
+
+.apr-cartao {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    padding: 16px 18px 14px;
+    border-radius: var(--border-radius-lg);
+    border-bottom-left-radius: 6px;
+    background: linear-gradient(160deg, #003554, #00263d);
+    border: 1px solid rgba(25, 223, 187, 0.45);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Pontinha do balão apontando para o Faísca */
+.apr-cartao::before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    bottom: 18px;
+    width: 16px;
+    height: 16px;
+    background: #003554;
+    border-left: 1px solid rgba(25, 223, 187, 0.45);
+    border-bottom: 1px solid rgba(25, 223, 187, 0.45);
+    transform: rotate(45deg);
+}
+
+.apr-fala {
+    margin: 0 0 4px;
+    min-height: 1.4em;
+    font-size: 1.12rem;
+    font-weight: 700;
+    line-height: 1.35;
+    cursor: pointer;
+}
+
+.apr-extra {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.apr-extra-visivel {
+    opacity: 1;
+    transform: none;
+}
+
+.apr-demo:empty {
+    display: none;
+}
+
+.apr-demo {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+/* Demonstração do XP */
+.apr-xp-numero {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    animation: aprXpSobe 1.4s ease-out infinite;
+}
+
+@keyframes aprXpSobe {
+    0%   { transform: translateY(8px) scale(0.85); opacity: 0; }
+    30%  { transform: translateY(0) scale(1.08); opacity: 1; }
+    80%  { transform: translateY(-2px) scale(1); opacity: 1; }
+    100% { transform: translateY(-8px); opacity: 0; }
+}
+
+.apr-xp-barra {
+    height: 8px;
+    margin: 6px 0 8px;
+    border-radius: var(--border-radius-full);
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+}
+
+.apr-xp-cheia {
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-accent), #ffd166);
+    animation: aprBarraEncher 1.4s ease-out infinite;
+}
+
+@keyframes aprBarraEncher {
+    0%   { width: 15%; }
+    70%  { width: 55%; }
+    100% { width: 55%; }
+}
+
+/* Lista dos níveis */
+.apr-niveis {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.apr-niveis li {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    column-gap: 8px;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: var(--border-radius-sm);
+    background: rgba(255, 255, 255, 0.07);
+    animation: aprItemEntra 0.4s ease both;
+}
+
+.apr-niveis b {
+    grid-row: 1 / span 2;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--color-accent);
+    color: #00263d;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+}
+
+.apr-niveis span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.84rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.apr-niveis em {
+    font-style: normal;
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+}
+
+@keyframes aprItemEntra {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.apr-fim {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* ---------- Pontinhos e botões ---------- */
+.apr-pontos {
+    display: flex;
+    gap: 5px;
+    margin: 14px 0 10px;
+}
+
+.apr-ponto {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease, width 0.3s ease;
+}
+
+.apr-ponto-feito {
+    background: rgba(25, 223, 187, 0.55);
+}
+
+.apr-ponto-ativo {
+    width: 20px;
+    border-radius: 4px;
+    background: var(--color-accent);
+}
+
+.apr-botoes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.apr-pular {
+    margin-right: auto;
+    padding: 10px 4px;
+    min-height: 44px;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.apr-pular:hover {
+    color: var(--color-text-primary);
+}
+
+.apr-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 18px;
+    border-radius: var(--border-radius-full);
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+}
+
+.apr-botao-claro {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.apr-botao-claro:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 768px) {
+    .apr-palco {
+        bottom: calc(var(--navbar-mobile-height) + 12px);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .apr-fundo.apr-centro .apr-palco {
+        bottom: 50%;
+    }
+
+    .apr-faisca {
+        width: 84px;
+        height: 84px;
+        margin: 0 0 -6px 8px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .apr-cartao {
+        border-bottom-left-radius: var(--border-radius-lg);
+        border-top-left-radius: 6px;
+    }
+
+    .apr-cartao::before {
+        left: 28px;
+        top: -9px;
+        bottom: auto;
+        transform: rotate(135deg);
+    }
+
+    .apr-fala {
+        font-size: 1.02rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .apr-niveis { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .apr-foco, .apr-faisca, .apr-xp-numero, .apr-xp-cheia, .apr-niveis li {
+        animation: none !important;
+    }
+    .apr-xp-cheia { width: 55%; }
+}
