@@ -1,0 +1,15 @@
+# Dados do banco e senhas: NUNCA vão para o GitHub
+config/config.php
+.env
+
+# Bancos de teste e arquivos locais
+*.sqlite
+*.sqlite3
+*.log
+
+# Arquivos do sistema e do editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+node_modules/
