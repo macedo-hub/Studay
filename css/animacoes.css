@@ -1,0 +1,143 @@
+/* ==========================================================================
+   ANIMAÇÕES DO STUDAY
+   Movimentos suaves para o site inteiro. Quem prefere menos movimento
+   (configuração do celular/computador) não vê nada disso.
+   ========================================================================== */
+
+/* ---------- Entrada da página ---------- */
+.content,
+.auth-wrapper {
+    animation: entradaPagina 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+@keyframes entradaPagina {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.sidebar-item,
+.navbar-mobile-item {
+    animation: entradaMenu 0.5s ease backwards;
+}
+
+.sidebar-item:nth-child(1) { animation-delay: 0.02s; }
+.sidebar-item:nth-child(2) { animation-delay: 0.06s; }
+.sidebar-item:nth-child(3) { animation-delay: 0.10s; }
+.sidebar-item:nth-child(4) { animation-delay: 0.14s; }
+.sidebar-item:nth-child(5) { animation-delay: 0.18s; }
+.sidebar-item:nth-child(6) { animation-delay: 0.22s; }
+.sidebar-item:nth-child(7) { animation-delay: 0.26s; }
+.sidebar-item:nth-child(8) { animation-delay: 0.30s; }
+
+@keyframes entradaMenu {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------- Aparecer ao rolar ---------- */
+body.pagina-pronta .revelar:not(.revelado) {
+    opacity: 0;
+    transform: translateY(22px);
+}
+
+.revelar {
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Menu e botões ---------- */
+.sidebar-item svg,
+.navbar-mobile-item svg {
+    transition: transform var(--transition-normal);
+}
+
+.sidebar-item:hover svg {
+    transform: scale(1.15) rotate(-4deg);
+}
+
+.sidebar-item:hover {
+    padding-left: 24px;
+}
+
+.sidebar-item {
+    transition: background var(--transition-fast), color var(--transition-fast), padding var(--transition-fast);
+}
+
+.navbar-mobile-item:active svg {
+    transform: scale(0.85);
+}
+
+.btn-primary:active,
+.hero-btn-primary:active,
+.hero-btn-secondary:active,
+.cta-final-btn:active,
+.enem-highlight-btn:active {
+    transform: scale(0.97);
+}
+
+/* Foco de teclado bem visível (ajuda quem navega sem mouse) */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+/* ---------- Efeito de onda ao clicar ---------- */
+.com-onda {
+    position: relative;
+    overflow: hidden;
+}
+
+.onda {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(0);
+    animation: ondaCresce 0.6s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes ondaCresce {
+    to { transform: scale(2.6); opacity: 0; }
+}
+
+/* ---------- Cartões e painéis ficam "vivos" ---------- */
+.metodo-btn,
+.feature-card,
+.site-card,
+.numero-card,
+.conquista {
+    will-change: transform;
+}
+
+/* ---------- Faísca flutuando (tela inicial) ---------- */
+.hero-mascot-img {
+    animation: faiscaFlutua 4.2s ease-in-out infinite;
+}
+
+.hero-mascot-glow {
+    animation: brilhoPulsa 4.2s ease-in-out infinite;
+}
+
+@keyframes faiscaFlutua {
+    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+    50%      { transform: translateY(-14px) rotate(1.5deg); }
+}
+
+@keyframes brilhoPulsa {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50%      { transform: scale(1.18); opacity: 1; }
+}
+
+/* ---------- Menos movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    body.pagina-pronta .revelar:not(.revelado) {
+        opacity: 1;
+        transform: none;
+    }
+}

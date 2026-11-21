@@ -189,6 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btnIncorrect.classList.remove('feedback-active');
     // Lógica futura para marcar como "correto" (ex: mover para o final da fila, etc.)
     console.log('Flashcard marcado como correto!');
+    // Gamificação: cada acerto rende um pouquinho de XP (se a pessoa estiver logada)
+    if (window.Studay) { window.Studay.registrarXp('flashcard_certo'); }
     setTimeout(showNextFlashcard, 500); // Mostra o próximo após um pequeno delay
   });
 

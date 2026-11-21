@@ -2,160 +2,89 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Studay — Calculadora de Média</title>
     <link rel="shortcut icon" href="../img/logo/faisca.webp" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/avaliacoes.css">
+    <link rel="stylesheet" href="../css/gamificacao.css">
+    <link rel="stylesheet" href="../css/animacoes.css">
 </head>
 <body>
 <div class="main-container">
 
 
 <!-- SIDEBAR-->
+<!-- SIDEBAR -->
 <aside class="sidebar" aria-label="Menu de navegação principal">
 
-    <!-- Logo no topo da sidebar -->
     <div class="sidebar-header">
         <a href="metodos.html" class="studay-logo sidebar-logo" aria-label="Studay — ir para métodos">
             <span class="logo-stu">Stu</span><span class="logo-day">day</span>
         </a>
     </div>
 
-    <!-- Itens de navegação -->
     <nav class="sidebar-nav" aria-label="Páginas do Studay">
-
-        <!-- Métodos -->
-        <a href="metodos.html"
-           class="sidebar-item"
-           aria-label="Ir para Métodos de estudo">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                <rect x="14" y="14" width="7" height="7" rx="1"/>
-            </svg>
-            <span>Métodos</span>
+                <a href="metodos.html" class="sidebar-item" aria-label="Ir para Métodos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>            <span>Métodos</span>
         </a>
-
-        <!-- Modo ENEM -->
-        <a href="modoENEM.php"
-           class="sidebar-item"
-           aria-label="Ir para Modo ENEM">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                <path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/>
-            </svg>
-            <span>modoENEM</span>
+                <a href="modoENEM.php" class="sidebar-item" aria-label="Ir para modoENEM">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>            <span>modoENEM</span>
         </a>
-
-        <!-- Modo Faísca -->
-        <a href="modoFaisca.php"
-           class="sidebar-item"
-           aria-label="Ir para Modo Faísca">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
-            </svg>
-            <span>Modo Faísca</span>
+                <a href="sitesTurma.php" class="sidebar-item" aria-label="Ir para Sites da Turma">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>            <span>Sites da Turma</span>
         </a>
-
-        <!-- Calculadora de Média -->
-        <a href="avaliacoes.html"
-           class="sidebar-item active"
-           aria-label="Ir para Calculadora de Média">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="4" y="2" width="16" height="20" rx="2"/>
-                <line x1="8" y1="6" x2="16" y2="6"/>
-                <line x1="16" y1="10" x2="16" y2="10"/>
-                <line x1="12" y1="10" x2="12" y2="10"/>
-                <line x1="8"  y1="10" x2="8"  y2="10"/>
-                <line x1="16" y1="14" x2="16" y2="14"/>
-                <line x1="12" y1="14" x2="12" y2="14"/>
-                <line x1="8"  y1="14" x2="8"  y2="14"/>
-                <line x1="16" y1="18" x2="16" y2="18"/>
-                <line x1="12" y1="18" x2="12" y2="18"/>
-                <line x1="8"  y1="18" x2="8"  y2="18"/>
-            </svg>
-            <span>Calculadora de média</span>
+                <a href="modoFaisca.php" class="sidebar-item" aria-label="Ir para Modo Faísca">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>            <span>Modo Faísca</span>
         </a>
-
+                <a href="ranking.php" class="sidebar-item" aria-label="Ir para Ranking">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>            <span>Ranking</span>
+        </a>
+                <a href="avaliacoes.html" class="sidebar-item active" aria-label="Ir para Calculadora de média">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="16" y1="18" x2="16" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="8" y1="18" x2="8" y2="18"/></svg>            <span>Calculadora de média</span>
+        </a>
+        
         <!-- Música — abre o modal -->
         <button class="sidebar-item sidebar-item-music js-open-music-modal"
                 aria-label="Abrir player de música"
                 aria-haspopup="dialog"
                 type="button">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 18V5l12-2v13"/>
-                <circle cx="6" cy="18" r="3"/>
-                <circle cx="18" cy="16" r="3"/>
-            </svg>
-            <span>Música</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>            <span>Música</span>
         </button>
 
-        <!-- Sobre -->
-        <a href="sobre.html"
-           class="sidebar-item"
-           aria-label="Ir para página Sobre">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="8" x2="12" y2="8"/>
-                <line x1="12" y1="12" x2="12" y2="16"/>
-            </svg>
-            <span>Sobre</span>
+        <a href="sobre.html" class="sidebar-item" aria-label="Ir para página Sobre">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="8"/><line x1="12" y1="12" x2="12" y2="16"/></svg>            <span>Sobre</span>
         </a>
-
     </nav>
 
 </aside>
 
 
-<nav class="navbar-mobile" aria-label="Navegação principal mobile">
+<nav class="navbar-mobile" aria-label="Navegação principal no celular">
     <div class="navbar-mobile-inner">
 
-        <!-- Métodos -->
-        <a href="metodos.html"
-           class="navbar-mobile-item"
-           aria-label="Métodos">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                <rect x="14" y="14" width="7" height="7" rx="1"/>
-            </svg>
-            <span>Métodos</span>
+        <a href="metodos.html" class="navbar-mobile-item" aria-label="Métodos de estudo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>            <span>Métodos</span>
         </a>
 
-        <!-- modoENEM -->
-        <a href="modoENEM.php"
-           class="navbar-mobile-item"
-           aria-label="modoENEM">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                <path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/>
-            </svg>
-            <span>modoENEM</span>
+        <a href="modoENEM.php" class="navbar-mobile-item" aria-label="modoENEM">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>            <span>ENEM</span>
         </a>
 
-        <!-- Música -->
-        <button class="navbar-mobile-item js-open-music-modal"
-                type="button"
-                aria-label="Abrir player de música">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 18V5l12-2v13"/>
-                <circle cx="6" cy="18" r="3"/>
-                <circle cx="18" cy="16" r="3"/>
-            </svg>
-            <span>Música</span>
-        </button>
+        <a href="sitesTurma.php" class="navbar-mobile-item" aria-label="Sites da Turma">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>            <span>Sites</span>
+        </a>
+
+        <a href="ranking.php" class="navbar-mobile-item" aria-label="Ranking">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>            <span>Ranking</span>
+        </a>
+
         <button class="navbar-mobile-item js-more-toggle"
                 type="button"
                 aria-label="Mais opções"
                 aria-haspopup="true"
                 aria-expanded="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="js-more-chevron">
-                <polyline points="18 15 12 9 6 15"/>
-            </svg>
-            <span>Mais</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>            <span>Mais</span>
         </button>
 
     </div>
@@ -164,31 +93,15 @@
 <div class="navbar-more-overlay js-more-overlay" aria-hidden="true"></div>
 
 <div class="navbar-more-popup js-more-popup" role="menu" aria-label="Mais opções">
-    <a href="modoFaisca.php" class="navbar-more-item" role="menuitem">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
-        </svg>
-        Modo Faísca
-    </a>
-    <a href="avaliacoes.html" class="navbar-more-item" role="menuitem">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="4" y="2" width="16" height="20" rx="2"/>
-            <line x1="8" y1="6" x2="16" y2="6"/>
-            <line x1="8" y1="10" x2="16" y2="10"/>
-            <line x1="8" y1="14" x2="16" y2="14"/>
-        </svg>
-        Calculadora de média
-    </a>
-    <a href="sobre.html" class="navbar-more-item" role="menuitem">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="12" y1="8" x2="12" y2="8"/>
-            <line x1="12" y1="12" x2="12" y2="16"/>
-        </svg>
-        Sobre
-    </a>
+    <a href="progresso.php" class="navbar-more-item" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> <span>Meu progresso</span></a>
+    <a href="perfil.php" class="navbar-more-item" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <span>Meu perfil</span></a>
+    <a href="modoFaisca.php" class="navbar-more-item" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> <span>Modo Faísca</span></a>
+    <button type="button" class="navbar-more-item js-open-music-modal" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> <span>Música</span></button>
+    <a href="avaliacoes.html" class="navbar-more-item" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="16" y1="18" x2="16" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="8" y1="18" x2="8" y2="18"/></svg> <span>Calculadora de média</span></a>
+    <a href="comoFunciona.php" class="navbar-more-item" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> <span>Como funciona o XP</span></a>
+    <button type="button" class="navbar-more-item js-abrir-apresentacao" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> <span>Ver apresentação do Faísca</span></button>
+    <a href="sobre.html" class="navbar-more-item" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="8"/><line x1="12" y1="12" x2="12" y2="16"/></svg> <span>Sobre</span></a>
 </div>
-
 
 <div class="music-modal-overlay js-music-modal-overlay"
      role="dialog"
@@ -241,6 +154,7 @@
                 </button>
             </div>
 
+            <!-- Campo de URL personalizada -->
             <div class="music-url-row">
                 <input type="url"
                        class="music-url-input js-music-url-input"
@@ -330,5 +244,7 @@
 
 <script src="../js/avaliacoes.js"></script>
 <script src="../js/navigation.js"></script>
+<script src="../js/gamificacao.js"></script>
+<script src="../js/animacoes.js"></script>
 </body>
 </html>

@@ -108,6 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Adiciona novo
       const newId = Date.now(); 
       resumos.unshift({ id: newId, title, text }); 
+      // Gamificação: resumo novo rende XP (se a pessoa estiver logada)
+      if (window.Studay) { window.Studay.registrarXp('resumo_criado'); }
     }
 
     localStorage.setItem('resumos', JSON.stringify(resumos)); 

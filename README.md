@@ -17,7 +17,7 @@ Este projeto foi desenvolvido como parte da avaliação da disciplina de Desenvo
 - **Disciplina:** Desenvolvimento de Aplicações Web II
 - **Professor:** Felipe Ramos
 - **Bimestre:** 1º Bimestre - Avaliação 01 (Projeto em Equipe) e atualizações subsequentes.
-- **Versão atual:** 3º Bimestre - Avaliação 02 (validação de dados e proteção contra HTML/JavaScript Injection).
+- **Versão atual:** 4º Bimestre - Avaliação 02 (Plataforma ENEM: banco de dados, portal dos sites da turma, XP e ranking). Antes: 3º Bimestre (validação de dados e proteção contra HTML/JavaScript Injection).
 
 ---
 
@@ -110,7 +110,7 @@ O aluno informa a matéria, o conteúdo, o tempo disponível, a disposição, a 
 
 O PHP valida os dados recebidos e monta um **mini cronograma personalizado**. Por exemplo, uma sessão de uma hora em Matemática, com dificuldade em questões, pode ser organizada em aquecimento teórico, resolução de questões e revisão dos erros.
 
-A mascote **Faísca** participa da experiência: ela apresenta falas de acordo com a disposição escolhida e, durante a sessão, muda de estágio conforme o tempo do cronômetro diminui.
+O mascote **Faísca** participa da experiência: ele apresenta falas de acordo com a disposição escolhida e, durante a sessão, muda de estágio conforme o tempo do cronômetro diminui.
 
 #### Onde cada requisito foi aplicado
 
@@ -137,7 +137,7 @@ A mascote **Faísca** participa da experiência: ela apresenta falas de acordo c
 
 O envio dos dados é realizado por `POST`, e as mensagens de erro são exibidas abaixo dos respectivos campos.
 
-> **Observação:** o projeto não utiliza banco de dados. O login e o cadastro apenas validam os dados e seguem para a tela de métodos, mantendo o comportamento original do projeto. A senha não é armazenada nem exibida novamente.
+> **Observação (3º bimestre):** nessa etapa o projeto ainda não usava banco de dados. No 4º bimestre o login e o cadastro passaram a usar o banco (veja a seção abaixo).
 
 Os testes com dados válidos, inválidos e tentativas de injeção estão descritos em **`TESTES.md`**.
 
@@ -171,6 +171,49 @@ Os testes com dados válidos, inválidos e tentativas de injeção estão descri
 
 ---
 
+### 4º Bimestre — Plataforma ENEM (banco de dados, portal, XP e ranking)
+
+O Studay é a porta de entrada da Plataforma ENEM da turma. Esta etapa acrescentou, sem mudar o visual:
+
+- **Banco de dados MySQL (extra):** contas reais, sites da turma, XP, conquistas e resultados do quiz. As consultas usam PDO com *prepared statements*.
+- **Login e cadastro de verdade:** senha guardada só como hash (`password_hash`), sessão segura, proteção CSRF e limite de tentativas. O cadastro ganhou o campo **apelido** (é o nome que aparece no ranking, nunca o e-mail).
+- **Sites da Turma (portal):** cartões com matéria, descrição, "olhar da equipe", selos de **validado por** / **testado por** e **fontes e créditos**. Filtro por matéria e busca. O botão "Abrir site" passa por `pages/ir.php`, que conta as visitas.
+- **Área da equipe (`pages/adminSites.php`):** cadastrar, editar, esconder e apagar sites. Só administradores entram (e-mails em `config/config.php`). Assim ninguém consegue apagar o conteúdo, como pede o PDF.
+- **XP, níveis e Faísca evoluindo:** Pomodoro, Modo Faísca, quiz, flashcards, resumos e visitas aos sites dão XP. O servidor confere o tempo dos cronômetros e aplica limites por dia. 6 níveis: Fagulha, Chama Viva, Tocha, Fogueira, Labareda e Estrela.
+- **Ranking ao vivo:** semana (zera na segunda) e geral, com pódio. Atualiza sozinho a cada 10 s.
+- **Meu progresso:** nível, sequência de dias, gráfico dos últimos 7 dias, conquistas e histórico.
+- **Como funciona o XP (`pages/comoFunciona.php`):** página simples que explica quando se ganha XP, quanto vale cada atividade, como funcionam os níveis e as regras de jogo limpo. Sempre que a pessoa ganha XP aparece um aviso animado com o valor, o motivo e a barra do nível enchendo. Cada página de estudo mostra uma dica de XP no topo.
+- **Apresentação do Faísca (`js/apresentacao.js`):** passeio curtinho, com o Faísca falando frases bem pequenas e destacando cada área do menu. Abre sozinho na primeira vez que a pessoa cria a conta e pode ser aberto de novo em "Ver apresentação do Faísca" (menu lateral, "Mais" no celular, perfil e Como funciona o XP).
+- **Perfil e fotos prontas (`pages/perfil.php`):** troca de nome, apelido e senha, e escolha da foto de perfil entre avatares prontos (Faíscas, memes e animais). Não há envio de arquivos, para não pesar o servidor gratuito.
+- **Animações e celular:** entrada suave das páginas, elementos que aparecem ao rolar, efeito de onda nos botões, confete ao subir de nível. Tudo respeita "reduzir movimento".
+
+#### Como colocar no ar (InfinityFree)
+
+1. No painel do InfinityFree, abra **MySQL Databases** e crie um banco.
+2. Clique em **phpMyAdmin**, aba **Importar**, escolha `sql/banco.sql` e execute. (Se você já tinha importado a versão antiga, importe só `sql/atualizacao_perfil.sql`: ele acrescenta as colunas da foto de perfil e da apresentação.)
+3. Abra `config/config.php` e preencha host, banco, usuário e senha (o host é parecido com `sql123.infinityfree.com`, não `localhost`).
+4. Ainda em `config/config.php`, coloque os e-mails da equipe em `EMAILS_ADMIN`. Quem tiver esse e-mail vira administrador ao entrar.
+5. Envie todos os arquivos pela pasta `htdocs`. Coloque as imagens e vídeos novos (veja os arquivos `LEIA-ME.txt` dentro de `videos/faisca/`, `img/faisca/`, `img/avatares/` e `img/sites/`).
+6. Cadastre os sites das equipes em **Gerenciar sites** (aparece no menu para administradores).
+
+No XAMPP, use host `localhost`, usuário `root`, senha vazia e importe o mesmo `sql/banco.sql`.
+
+#### Novas pastas
+
+```text
+config/     # config.php (dados do banco e e-mails de admin) - bloqueada por .htaccess
+includes/   # conexão, sessão, funções, gamificação e menu - bloqueada por .htaccess
+sql/        # banco.sql (tabelas) - bloqueada por .htaccess
+api/        # estado.php, xp.php, ranking.php, apresentacao.php (respostas em JSON, usadas pelo JavaScript)
+videos/faisca/   # vídeos do Faísca (faisca-apresentacao.mp4, faisca-comemorando.mp4)
+img/faisca/      # nivel-1.webp ... nivel-6.webp (Faísca por nível)
+img/avatares/    # fotos de perfil prontas, em 3 pastas: faisca, memes e animais
+img/sites/       # capas dos sites da turma
+fontes/          # (opcional) StarsAndLove-BottomHeavy.ttf (ou .woff2), a fonte do logo, para não depender de site externo
+```
+
+---
+
 ### Link da Aplicação
 
 **Versão com PHP (Avaliação 02 — InfinityFree):**
@@ -179,7 +222,7 @@ Os testes com dados válidos, inválidos e tentativas de injeção estão descri
 
 O front-end base do projeto continua disponível no GitHub Pages:
 
-👉 https://macedo-hub.github.io/Studay/
+https://macedo-hub.github.io/Studay/
 
 > **Observação:** o GitHub Pages é um ambiente estático e não executa PHP. Por isso, os módulos que utilizam PHP, como o Modo ENEM e o Modo Faísca, devem ser executados em um servidor compatível com PHP.
 

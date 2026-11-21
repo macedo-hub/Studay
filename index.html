@@ -2,11 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Studay — Seu site de estudos</title>
     <link rel="shortcut icon" href="img/logo/faisca.webp" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/animacoes.css">
 </head>
 <body class="landing-page">
 
@@ -16,7 +17,9 @@
             <span class="logo-stu">Stu</span><span class="logo-day">day</span>
         </a>
         <div class="landing-nav-links">
-            <a href="index.html">Início</a>
+            <a href="index.html" class="landing-nav-extra">Início</a>
+            <a href="pages/sitesTurma.php" class="landing-nav-extra">Sites da Turma</a>
+            <a href="pages/ranking.php" class="landing-nav-extra">Ranking</a>
             <a href="pages/login.php">Login</a>
             <a href="pages/registro.php" class="landing-nav-cta">Criar conta</a>
         </div>
@@ -54,10 +57,82 @@
             <div class="hero-mascot" aria-hidden="true">
                 <div class="hero-mascot-glow"></div>
                 <img src="img/logo/faisca.webp"
-                     alt="Faísca — mascote do Studay"
+                     alt="Faísca, o mascote do Studay"
                      class="hero-mascot-img">
             </div>
 
         </div>
+    </section>
+
+    <!-- CONHEÇA O FAÍSCA -->
+    <section class="landing-section faisca-apresenta" aria-label="Conheça o Faísca">
+        <div class="faisca-video-caixa revelar">
+            <!-- Coloque o vídeo em videos/faisca/faisca-apresentacao.mp4 (se o arquivo não existir, aparece só a imagem) -->
+            <video class="faisca-video" muted loop playsinline autoplay preload="metadata"
+                   poster="img/logo/faisca.webp" aria-label="O Faísca se apresentando">
+                <source src="videos/faisca/faisca-apresentacao.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="faisca-apresenta-texto revelar">
+            <span class="section-label">Quem é o Faísca?</span>
+            <h2 class="section-title">O seu parceiro de estudos</h2>
+            <p class="section-subtitle">
+                O Faísca é o mascote do Studay. Ele derrete como uma vela enquanto você foca. Estude, ganhe XP e veja ele ficar cada vez mais forte.
+                Quanto mais você se dedica, mais a sua chama cresce!
+            </p>
+        </div>
+    </section>
+
+    <!-- O QUE TEM NO STUDAY -->
+    <section class="landing-section" aria-label="O que tem no Studay">
+        <span class="section-label">Tudo num lugar só</span>
+        <h2 class="section-title">Estudar fica mais leve</h2>
+        <p class="section-subtitle">Ferramentas simples para organizar o seu tempo e uma turma inteira de sites para estudar para o ENEM.</p>
+
+        <div class="features-grid">
+            <article class="feature-card revelar">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4"/><path d="M12 14v-4"/><circle cx="12" cy="14" r="8"/></svg></div>
+                <h3>Métodos de estudo</h3>
+                <p>Pomodoro, flashcards, resumos e videoaulas. Escolha o que combina com o seu dia.</p>
+                <a href="pages/metodos.html" class="feature-card-link">Ver métodos <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </article>
+            <article class="feature-card revelar">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+                <h3>Modo Faísca</h3>
+                <p>Conte quanto tempo você tem e a gente monta um mini cronograma só seu.</p>
+                <a href="pages/modoFaisca.php" class="feature-card-link">Acender o Faísca <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </article>
+            <article class="feature-card revelar">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></div>
+                <h3>XP e ranking</h3>
+                <p>Cada estudo vira XP. Suba de nível, ganhe conquistas e dispute o topo com a turma.</p>
+                <a href="pages/ranking.php" class="feature-card-link">Ver o ranking <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </article>
+            <article class="feature-card revelar">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <h3>Sites da turma</h3>
+                <p>Cada equipe criou um site com o seu jeito de ensinar. Aqui você encontra todos.</p>
+                <a href="pages/sitesTurma.php" class="feature-card-link">Explorar sites <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </article>
+        </div>
+    </section>
+
+    <!-- CONVITE FINAL -->
+    <section class="cta-final revelar" aria-label="Criar conta">
+        <img src="img/logo/faisca-sem-fundo.webp" alt="" class="cta-final-mascot">
+        <h2>Bora acender o seu Faísca?</h2>
+        <p>Crie a sua conta de graça, guarde o seu XP e comece hoje a subir de nível.</p>
+        <a href="pages/registro.php" class="cta-final-btn">
+            Criar minha conta
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+    </section>
+
+    <footer class="landing-footer">
+        <p>Studay · Projeto da turma do IFPB Campus Santa Luzia (Web II)</p>
+        <a href="pages/sobre.html">Quem somos</a>
+    </footer>
+
+    <script src="js/animacoes.js"></script>
 </body>
 </html>

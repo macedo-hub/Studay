@@ -75,6 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
       pauseBtn.style.display = 'inline-block';
       resetBtn.style.display = 'inline-block';
       pauseBtn.textContent = 'Pausar'; 
+
+      // Gamificação: avisa o servidor que o foco começou (ele confere o tempo no final)
+      if (window.Studay && ehTempoDeFoco()) { window.Studay.iniciarCronometro('pomodoro'); }
       
       timerInterval = setInterval(() => {
         timeLeft--;
@@ -86,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
           pauseBtn.style.display = 'none';
           resetBtn.style.display = 'none';
           playAlarm(); // Só som, sem alert
+          concluirFoco();
         }
       }, 1000);
       updateDisplay();
@@ -111,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
             pauseBtn.style.display = 'none';
             resetBtn.style.display = 'none';
             playAlarm(); 
+            concluirFoco();
           }
         }, 1000);
         isRunning = true;
@@ -128,6 +133,18 @@ document.addEventListener('DOMContentLoaded', function() {
       updateDisplay();
     });
   
+    // O botão "Temporizador" é o tempo de foco. Pausas não dão XP.
+    function ehTempoDeFoco() {
+      return currentMode === 'focus' || currentMode === 'temporizador';
+    }
+
+    // Gamificação: terminou o foco inteiro, então pede o XP ao servidor
+    function concluirFoco() {
+      if (window.Studay && ehTempoDeFoco()) {
+        window.Studay.registrarXp('pomodoro', { minutos: Math.round(originalTime / 60) });
+      }
+    }
+
     function playAlarm() {
       try {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();

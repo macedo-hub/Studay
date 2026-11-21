@@ -347,3 +347,14 @@
         margin-bottom: 20px;
     }
 }
+
+/* XP ganho no quiz (gamificação) */
+.enem-xp-ganho {
+    margin-top: 8px;
+    font-weight: 700;
+    animation: entradaPagina 0.6s ease 0.3s backwards;
+}
+
+.enem-xp-ganho a {
+    text-decoration: underline;
+}

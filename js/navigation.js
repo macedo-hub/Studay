@@ -95,6 +95,7 @@
 
     function openMusicModal() {
         if (!sel.overlay) return;
+        closeMorePopup();
         sel.overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
 

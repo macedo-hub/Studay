@@ -658,3 +658,66 @@
         justify-content: center;
     }
 }
+
+/* ==========================================================================
+   Seção "Conheça o Faísca" (vídeo) e ajustes de celular
+   ========================================================================== */
+.faisca-apresenta {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding-top: 40px;
+}
+
+.faisca-video-caixa {
+    flex-shrink: 0;
+    width: min(340px, 100%);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: var(--border-radius-lg);
+    background: #003554;   /* mesma cor de fundo do vídeo, para ele ficar sem emendas */
+    border: 1px solid rgba(25, 223, 187, 0.3);
+    box-shadow: var(--shadow-lg);
+}
+
+.faisca-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.faisca-apresenta-texto .section-subtitle {
+    margin-bottom: 0;
+}
+
+.landing-section .section-subtitle {
+    margin-bottom: 36px;
+}
+
+.faisca-apresenta-texto .section-subtitle {
+    margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+    .faisca-apresenta {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .faisca-video-caixa {
+        width: min(280px, 80vw);
+    }
+
+    .faisca-apresenta-texto .section-subtitle {
+        margin: 0 auto;
+    }
+}
+
+/* No celular a barra de cima mostra só Login e Criar conta (o resto fica no menu da página) */
+@media (max-width: 640px) {
+    .landing-nav-extra {
+        display: none;
+    }
+}
