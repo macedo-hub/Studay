@@ -1,0 +1,13 @@
+CAPAS DOS SITES DA TURMA — coloque os arquivos aqui
+====================================================
+
+Cada equipe tem uma capa (imagem que aparece no cartão do site).
+Nome sugerido:  capa-nomedaequipe.webp   (sem espaço e sem acento)
+Exemplos:       capa-matematica-facil.webp   capa-historia-viva.png
+
+Formato:  .webp (melhor), .png ou .jpg
+Tamanho:  16:9, 800x450
+Peso:     de preferência menos de 120 KB
+
+Depois, em "Gerenciar sites" (área da equipe), escreva só o NOME do arquivo no campo "Imagem de capa".
+Se o campo ficar vazio ou o arquivo não existir, o cartão mostra uma capa colorida com as iniciais do site.

@@ -1,0 +1,363 @@
+/* ==========================================================================
+   SITES DA TURMA (portal), ÁREA DA EQUIPE (admin) e tela "abrindo o site"
+   ========================================================================== */
+
+.sites-intro {
+    max-width: 620px;
+    text-align: center;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+}
+
+.sites-intro a { color: var(--color-accent); font-weight: 600; }
+
+.sites-botao-admin {
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 9px 20px;
+    border-radius: var(--border-radius-full);
+    border: 1px dashed rgba(25, 223, 187, 0.6);
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.88rem;
+    transition: background var(--transition-fast);
+}
+
+.sites-botao-admin:hover { background: rgba(25, 223, 187, 0.12); }
+
+/* ---------- Resumo ---------- */
+.sites-resumo {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 26px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.sites-resumo-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 8px;
+    border-radius: var(--border-radius-md);
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sites-resumo-item strong { font-family: var(--font-title); font-size: 1.7rem; color: var(--color-accent); }
+.sites-resumo-item span { font-size: 0.78rem; color: var(--color-text-secondary); }
+
+/* ---------- Filtros ---------- */
+.sites-filtros {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.sites-busca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    border-radius: var(--border-radius-full);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    transition: border-color var(--transition-fast);
+}
+
+.sites-busca:focus-within { border-color: var(--color-accent); }
+
+.sites-busca svg {
+    width: 18px; height: 18px; flex-shrink: 0;
+    stroke: var(--color-text-secondary); fill: none; stroke-width: 2; stroke-linecap: round;
+}
+
+.sites-busca input {
+    flex: 1; min-width: 0;
+    padding: 12px 0;
+    background: none; border: none; outline: none;
+    color: #fff; font-family: var(--font-body); font-size: 0.95rem;
+}
+
+.sites-busca input::placeholder { color: var(--color-text-muted); }
+
+.sites-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.sites-chip {
+    padding: 8px 16px;
+    border-radius: var(--border-radius-full);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.sites-chip:hover { background: rgba(255, 255, 255, 0.16); transform: translateY(-1px); }
+.sites-chip.ativo { background: var(--color-accent); color: #000; border-color: var(--color-accent); }
+
+/* ---------- Grade de cartões ---------- */
+.sites-grade {
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 22px;
+}
+
+.site-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), opacity 0.6s ease;
+}
+
+.site-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(25, 223, 187, 0.4);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+}
+
+.site-capa {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #002a44;
+}
+
+.site-capa img,
+.site-capa-padrao {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.site-capa img { object-fit: cover; z-index: 1; transition: transform 0.6s ease; }
+.site-card:hover .site-capa img { transform: scale(1.06); }
+
+.site-capa-padrao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-title);
+    font-size: 3.4rem;
+    color: rgba(255, 255, 255, 0.85);
+    background: linear-gradient(135deg, #006494, #19dfbb 140%);
+}
+
+.site-materia {
+    position: absolute;
+    z-index: 2;
+    top: 12px; left: 12px;
+    padding: 5px 12px;
+    border-radius: var(--border-radius-full);
+    background: rgba(0, 20, 40, 0.8);
+    border: 1px solid rgba(25, 223, 187, 0.4);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.site-corpo { display: flex; flex-direction: column; gap: 10px; padding: 18px 18px 16px; flex: 1; }
+.site-nome { font-family: var(--font-title); font-size: 1.35rem; line-height: 1.2; }
+.site-equipe { font-size: 0.8rem; color: var(--color-text-muted); }
+.site-descricao { font-size: 0.9rem; line-height: 1.55; color: var(--color-text-secondary); }
+
+.site-olhar {
+    padding: 10px 12px;
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+    background: rgba(25, 223, 187, 0.08);
+    font-size: 0.83rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+}
+
+.site-olhar strong { color: var(--color-accent); }
+
+.site-selos { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: var(--border-radius-full);
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.selo .icone { width: 13px; height: 13px; }
+.selo-ok { background: rgba(40, 167, 69, 0.25); color: #b9f5c8; }
+.selo-teste { background: rgba(0, 100, 148, 0.45); }
+.selo-espera { background: rgba(245, 124, 0, 0.22); color: #ffd9a8; }
+
+.site-fontes { font-size: 0.8rem; color: var(--color-text-secondary); }
+.site-fontes summary { cursor: pointer; font-weight: 600; }
+.site-fontes p { margin-top: 6px; line-height: 1.5; }
+
+.site-rodape {
+    margin-top: auto;
+    padding-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.site-visitas { font-size: 0.78rem; color: var(--color-text-muted); }
+
+.site-botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: var(--border-radius-full);
+    background: var(--color-accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.88rem;
+    box-shadow: 0 4px 14px var(--color-accent-glow);
+    transition: background var(--transition-fast), transform var(--transition-fast), gap var(--transition-fast);
+}
+
+.site-botao:hover { background: var(--color-accent-hover); gap: 12px; transform: translateY(-1px); }
+.site-botao svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.sites-nada, .sites-dica { margin-top: 22px; text-align: center; color: var(--color-text-secondary); font-size: 0.9rem; }
+.sites-dica a { color: var(--color-accent); font-weight: 600; }
+
+/* ---------- Vazio ---------- */
+.sites-vazio {
+    max-width: 420px;
+    text-align: center;
+    padding: 36px 24px;
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+}
+
+.sites-vazio-faisca { width: 120px; margin: 0 auto 14px; animation: faiscaFlutua 4s ease-in-out infinite; }
+.sites-vazio h2 { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 8px; }
+.sites-vazio p { color: var(--color-text-secondary); line-height: 1.55; }
+
+/* ---------- Admin ---------- */
+.admin-aviso {
+    width: 100%; max-width: 900px;
+    margin-bottom: 18px; padding: 12px 16px;
+    border-radius: var(--border-radius-md);
+    background: rgba(25, 223, 187, 0.15);
+    border: 1px solid rgba(25, 223, 187, 0.4);
+    text-align: center; font-weight: 600; font-size: 0.9rem;
+}
+
+.admin-caixa {
+    width: 100%; max-width: 900px;
+    margin-bottom: 26px; padding: 24px;
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-caixa h2 { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 16px; }
+
+.admin-form { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+.admin-coluna { display: flex; flex-direction: column; min-width: 0; }
+.admin-larga { grid-column: 1 / -1; }
+
+.auth-form select,
+.auth-form textarea {
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--border-radius-sm);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    width: 100%;
+    resize: vertical;
+}
+
+.auth-form select option { color: #000; }
+.auth-form select:focus, .auth-form textarea:focus { border-color: var(--color-accent); }
+
+.admin-dica { margin-top: 4px; font-size: 0.75rem; color: var(--color-text-muted); }
+.admin-dica code { color: var(--color-accent); }
+
+.admin-check { display: flex !important; flex-direction: row; align-items: center; gap: 10px; margin-top: 12px; }
+.admin-check input { width: auto; accent-color: var(--color-accent); }
+
+.admin-botoes { display: flex; align-items: center; gap: 16px; }
+.admin-botoes .btn-primary { width: auto; padding: 11px 28px; }
+.admin-cancelar { color: var(--color-text-secondary); text-decoration: underline; }
+
+.admin-lista { display: flex; flex-direction: column; gap: 10px; }
+
+.admin-item {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    padding: 12px 14px;
+    border-radius: var(--border-radius-md);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-item-escondido { opacity: 0.6; }
+.admin-item-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.admin-item-info span { font-size: 0.8rem; color: var(--color-text-secondary); }
+.admin-item-status { color: var(--color-accent) !important; font-weight: 600; }
+.admin-item-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+.admin-item-acoes form { display: inline; }
+
+.admin-mini {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: var(--border-radius-sm);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff; font-size: 0.8rem; font-weight: 600;
+    transition: background var(--transition-fast);
+}
+
+.admin-mini:hover { background: rgba(255, 255, 255, 0.22); }
+.admin-mini-perigo { background: rgba(255, 77, 77, 0.25); }
+.admin-mini-perigo:hover { background: rgba(255, 77, 77, 0.45); }
+.admin-vazio { color: var(--color-text-secondary); }
+
+/* ---------- Tela "abrindo o site" ---------- */
+.saindo-box {
+    width: 100%; max-width: 380px;
+    padding: 32px 24px; text-align: center;
+    border-radius: var(--border-radius-lg);
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--shadow-lg);
+    animation: entradaPagina 0.5s ease backwards;
+}
+
+.saindo-faisca { width: 110px; margin: 0 auto 12px; animation: faiscaFlutua 1.6s ease-in-out infinite; }
+.saindo-titulo { font-family: var(--font-title); font-size: 1.6rem; }
+.saindo-nome { margin: 8px 0 14px; color: var(--color-accent); font-weight: 700; }
+.saindo-xp { padding: 8px 14px; border-radius: var(--border-radius-full); background: rgba(25, 223, 187, 0.18); font-weight: 700; font-size: 0.9rem; animation: ondaCresce 0.01s; }
+.saindo-dica { font-size: 0.82rem; color: var(--color-text-secondary); }
+.saindo-botao { display: block; margin-top: 18px; font-size: 0.85rem; }
+
+/* ---------- Celular ---------- */
+@media (max-width: 640px) {
+    .admin-form { grid-template-columns: 1fr; }
+    .admin-caixa { padding: 18px 14px; }
+    .sites-grade { grid-template-columns: 1fr; }
+    /* chips deslizam para o lado em vez de ocupar a tela toda */
+    .sites-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+    .sites-chip { flex-shrink: 0; }
+}
