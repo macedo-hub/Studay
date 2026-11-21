@@ -1,17 +1,27 @@
 <?php
+/*
+ * REGISTRO — cria a conta no banco de dados.
+ * Validações: empty(), preg_match(), filter_var() e valida_dados() (igual à Avaliação 02).
+ */
+
 include "valida_dados.php";
+require_once __DIR__ . '/../includes/sessao.php';
+
+iniciar_sessao();
 
 // Padrões usados nas validações
 define('PADRAO_VALIDA_NOME', '/^[\p{L}][\p{L}\s\-.]{2,59}$/u');
+define('PADRAO_VALIDA_APELIDO', '/^[\p{L}\p{N}_]{3,20}$/u');
 define('PADRAO_VALIDA_SENHA', '/^(?=.*[A-Za-z])(?=.*\d).{8,64}$/');
 
 // Variáveis do formulário
-$nome = $email = $senha = $confirmarSenha = "";
-$nome_erro = $email_erro = $senha_erro = $confirmarSenha_erro = "";
+$nome = $apelido = $email = $senha = $confirmarSenha = "";
+$nome_erro = $apelido_erro = $email_erro = $senha_erro = $confirmarSenha_erro = $erro_geral = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nome = valida_dados($_POST["nome"] ?? "");
+    $apelido = valida_dados($_POST["apelido"] ?? "");
     $email = valida_dados($_POST["email"] ?? "");
     $senha = valida_dados($_POST["senha"] ?? "");
     $confirmarSenha = valida_dados($_POST["confirmarSenha"] ?? "");
@@ -21,6 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nome_erro = "Informe seu nome.";
     } elseif (!preg_match(PADRAO_VALIDA_NOME, $nome)) {
         $nome_erro = "Use de 3 a 60 caracteres: apenas letras, espaços, ponto e hífen.";
+    }
+
+    // Validação do apelido (é o nome que aparece no ranking)
+    if (empty($apelido)) {
+        $apelido_erro = "Escolha um apelido para o ranking.";
+    } elseif (!preg_match(PADRAO_VALIDA_APELIDO, $apelido)) {
+        $apelido_erro = "Use de 3 a 20 caracteres: letras, números e _ (sem espaço).";
     }
 
     // Validação do e-mail
@@ -44,10 +61,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $confirmarSenha_erro = "As senhas não coincidem.";
     }
 
-    // Se não houver erros, vai para a tela de métodos
-    if (empty($nome_erro) && empty($email_erro) && empty($senha_erro) && empty($confirmarSenha_erro)) {
-        header("Location: metodos.html");
-        exit;
+    if (!confere_csrf($_POST['token_csrf'] ?? '')) {
+        $erro_geral = "A página ficou aberta por muito tempo. Atualize e tente de novo.";
+    }
+
+    // Se o formulário está certo, tenta criar a conta no banco
+    if (empty($nome_erro) && empty($apelido_erro) && empty($email_erro) && empty($senha_erro)
+        && empty($confirmarSenha_erro) && empty($erro_geral)) {
+
+        try {
+            $banco = conectar_banco();
+
+            $existeEmail = $banco->prepare('SELECT COUNT(*) FROM usuarios WHERE email = ?');
+            $existeEmail->execute([strtolower($email)]);
+
+            $existeApelido = $banco->prepare('SELECT COUNT(*) FROM usuarios WHERE apelido = ?');
+            $existeApelido->execute([$apelido]);
+
+            if ((int) $existeEmail->fetchColumn() > 0) {
+                $email_erro = "Já existe uma conta com esse e-mail. Que tal entrar?";
+            } elseif ((int) $existeApelido->fetchColumn() > 0) {
+                $apelido_erro = "Esse apelido já está em uso. Escolha outro!";
+            } else {
+                $banco->prepare(
+                    'INSERT INTO usuarios (nome, apelido, email, senha_hash, papel, criado_em) VALUES (?, ?, ?, ?, ?, ?)'
+                )->execute([
+                    $nome, $apelido, strtolower($email),
+                    password_hash($senha, PASSWORD_DEFAULT),
+                    'aluno', date('Y-m-d H:i:s'),
+                ]);
+
+                $consulta = $banco->prepare('SELECT * FROM usuarios WHERE id = ?');
+                $consulta->execute([(int) $banco->lastInsertId()]);
+                $usuario = aplicar_papel_admin($banco, $consulta->fetch());
+
+                entrar_na_conta($usuario);
+                header("Location: metodos.html?bemvindo=1");
+                exit;
+            }
+        } catch (PDOException $erro) {
+            // 23000 = valor repetido (duas pessoas criando a mesma conta ao mesmo tempo)
+            if ($erro->getCode() === '23000') {
+                $erro_geral = "Esse e-mail ou apelido acabou de ser usado. Tente outro.";
+            } else {
+                error_log('Studay registro: ' . $erro->getMessage());
+                $erro_geral = "Estamos com um probleminha para falar com o banco de dados. Tente de novo daqui a pouco.";
+            }
+        } catch (Throwable $erro) {
+            error_log('Studay registro: ' . $erro->getMessage());
+            $erro_geral = "Estamos com um probleminha para falar com o banco de dados. Tente de novo daqui a pouco.";
+        }
     }
 }
 ?>
@@ -55,10 +118,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Studay &mdash; Criar Conta</title>
     <link rel="shortcut icon" href="../img/logo/faisca.webp" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animacoes.css">
 </head>
 <body>
 
@@ -77,16 +141,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="auth-box">
                 <h2>Criar Conta</h2>
+                <p class="auth-subtitulo">É rapidinho! Com a conta você ganha XP, evolui o Faísca e entra no ranking.</p>
+
+                <?php if (!empty($erro_geral)): ?>
+                <p class="form-error visivel" role="alert"><?php echo h($erro_geral); ?></p>
+                <?php endif; ?>
 
                 <!-- novalidate: quem valida é o PHP (servidor) -->
                 <form id="registroForm" class="auth-form" method="POST"
                       action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" novalidate>
+
+                    <?php echo campo_csrf(); ?>
 
                     <label for="nome">Nome</label>
                     <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>"
                            placeholder="Seu nome completo" autocomplete="name">
                     <?php if (!empty($nome_erro)): ?>
                     <p class="form-error form-error-campo visivel" role="alert"><?php echo $nome_erro; ?></p>
+                    <?php endif; ?>
+
+                    <label for="apelido">Apelido (aparece no ranking)</label>
+                    <input type="text" id="apelido" name="apelido" value="<?php echo $apelido; ?>"
+                           placeholder="Ex.: faisquinha_10" autocomplete="nickname" maxlength="20">
+                    <?php if (!empty($apelido_erro)): ?>
+                    <p class="form-error form-error-campo visivel" role="alert"><?php echo $apelido_erro; ?></p>
                     <?php endif; ?>
 
                     <label for="email">E-mail</label>
@@ -131,6 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="auth-options">
                     <p>Já tem uma conta? <a href="login.php">Fazer login</a></p>
+                    <p class="auth-olhadinha"><a href="metodos.html">Só quero dar uma olhada</a></p>
                 </div>
             </div>
 
