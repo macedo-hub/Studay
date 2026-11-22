@@ -5,7 +5,7 @@
  */
 
 const DESTINOS_PERMITIDOS = [
-    'metodos.html', 'sitesTurma.php', 'ranking.php', 'progresso.php', 'adminSites.php', 'modoENEM.php', 'modoFaisca.php',
+    'metodos.html', 'simulado.php', 'eraVargas.php', 'sitesTurma.php', 'ranking.php', 'progresso.php', 'adminSites.php', 'modoENEM.php', 'modoFaisca.php',
 ];
 
 function destino_seguro($valor): string

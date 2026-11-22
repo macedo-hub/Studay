@@ -24,6 +24,7 @@ const REGRAS_XP = [
     'pomodoro'        => ['limite_dia' => 120, 'unico' => false],
     'faisca'          => ['limite_dia' => 100, 'unico' => false],
     'quiz'            => ['limite_dia' => 100, 'unico' => false],
+    'simulado'        => ['limite_dia' => 120, 'unico' => false],
     'flashcard_certo' => ['limite_dia' => 20,  'unico' => false],
     'resumo_criado'   => ['limite_dia' => 15,  'unico' => false],
     'visita_site'     => ['limite_dia' => 25,  'unico' => true],   // só ganha na 1ª visita a cada site
@@ -35,6 +36,7 @@ const ROTULOS_XP = [
     'pomodoro'        => 'Foco concluído',
     'faisca'          => 'Sessão do Modo Faísca concluída',
     'quiz'            => 'Quiz do Modo ENEM',
+    'simulado'        => 'Simulado do ENEM concluído',
     'flashcard_certo' => 'Flashcard acertado',
     'resumo_criado'   => 'Resumo criado',
     'visita_site'     => 'Site novo explorado',
@@ -46,6 +48,7 @@ const NOMES_CURTOS_XP = [
     'pomodoro'        => 'Pomodoro',
     'faisca'          => 'Modo Faísca',
     'quiz'            => 'quiz',
+    'simulado'        => 'simulados',
     'flashcard_certo' => 'flashcards',
     'resumo_criado'   => 'resumos',
     'visita_site'     => 'visitas aos sites',
@@ -56,6 +59,7 @@ const TABELA_XP = [
     ['pomodoro',        'Pomodoro',          'Termine um tempo de foco inteiro, sem parar.',            '25 minutos de foco = 15 XP',                   'até 120 XP por dia'],
     ['faisca',          'Modo Faísca',       'Faça a sessão do começo ao fim, sem acelerar o tempo.',   '60 minutos = 30 XP',                           'até 100 XP por dia'],
     ['quiz',            'Quiz do Modo ENEM', 'Responda as 5 questões e confira.',                       '10 XP por acerto, mais 20 XP se acertar tudo', 'até 100 XP por dia'],
+    ['simulado',        'Simulado do ENEM',  'Termine um simulado e confira o resultado.',              '2 XP por acerto, mais 10 XP se acertar 70% ou mais',  'até 120 XP por dia'],
     ['flashcard_certo', 'Flashcards',        'Vire o cartão e marque "Correto" quando acertar.',        '2 XP por cartão',                              'até 20 XP por dia'],
     ['resumo_criado',   'Resumos',           'Escreva um resumo novo.',                                 '5 XP por resumo',                              'até 15 XP por dia'],
     ['visita_site',     'Sites da Turma',    'Abra um site novo pelo portal.',                          '5 XP na primeira visita a cada site',          'só vale 1 vez por site'],
@@ -68,7 +72,9 @@ const DICAS_XP = [
     'faisca'     => 'Faça a sessão do começo ao fim, sem acelerar, e ganhe XP. 60 minutos rendem 30 XP.',
     'flashcards' => 'Cada flashcard que você marcar como Correto rende 2 XP (até 20 XP por dia).',
     'resumos'    => 'Cada resumo novo que você criar rende 5 XP (até 15 XP por dia).',
-    'enem'       => 'No quiz, cada acerto vale 10 XP. Acertou tudo? Ganha mais 20 XP de bônus.',
+    'enem'       => 'No simulado, cada acerto vale 2 XP, e se você acertar 70% ou mais ganha mais 10 XP.',
+    'simulado'   => 'Termine o simulado e confira o resultado: cada acerto vale 2 XP (mais 10 XP se acertar 70% ou mais).',
+    'quiz'       => 'No quiz, cada acerto vale 10 XP. Acertou tudo? Ganha mais 20 XP de bônus.',
     'sites'      => 'Abriu um site novo da turma? Você ganha 5 XP na primeira visita.',
 ];
 
@@ -93,7 +99,7 @@ function mensagem_sem_xp(string $motivo, string $tipo): string
 }
 
 // Ações que dão sequência de dias (estudar de verdade).
-const TIPOS_QUE_CONTAM_SEQUENCIA = ['pomodoro', 'faisca', 'quiz', 'flashcard_certo', 'resumo_criado'];
+const TIPOS_QUE_CONTAM_SEQUENCIA = ['pomodoro', 'faisca', 'quiz', 'simulado', 'flashcard_certo', 'resumo_criado'];
 
 // Conquistas (medalhas). O nome do ícone vem de includes/icones.php.
 const CONQUISTAS = [
@@ -105,6 +111,8 @@ const CONQUISTAS = [
     'memoria_de_ferro'=> ['nome' => 'Memória de ferro', 'icone' => 'cartas', 'descricao' => 'Acertou 20 flashcards.'],
     'constante'       => ['nome' => 'Constante',       'icone' => 'calendario', 'descricao' => 'Estudou 3 dias seguidos.'],
     'semana_de_fogo'  => ['nome' => 'Semana de fogo',  'icone' => 'trofeu', 'descricao' => 'Estudou 7 dias seguidos.'],
+    'primeiro_simulado' => ['nome' => 'Primeiro simulado', 'icone' => 'lapis', 'descricao' => 'Terminou o seu primeiro simulado do ENEM.'],
+    'maratonista'     => ['nome' => 'Maratonista',     'icone' => 'cronometro', 'descricao' => 'Terminou um simulado com 90 questões ou mais.'],
     'tocha_acesa'     => ['nome' => 'Tocha acesa',     'icone' => 'estrela', 'descricao' => 'Chegou ao nível 3.'],
 ];
 
@@ -265,7 +273,21 @@ function verificar_conquistas(PDO $banco, int $usuarioId): array
     $perfeitos->execute([$usuarioId]);
     $quizPerfeitos = (int) $perfeitos->fetchColumn();
 
+    $simulados = 0;
+    $simuladosGrandes = 0;
+    try {
+        $feitos = $banco->prepare('SELECT COUNT(*) AS n, COALESCE(SUM(CASE WHEN respondidas >= 90 THEN 1 ELSE 0 END), 0) AS grandes FROM resultados_simulado WHERE usuario_id = ?');
+        $feitos->execute([$usuarioId]);
+        $linhaSim = $feitos->fetch();
+        $simulados = (int) ($linhaSim['n'] ?? 0);
+        $simuladosGrandes = (int) ($linhaSim['grandes'] ?? 0);
+    } catch (Throwable $e) {
+        // a tabela de simulados ainda não existe: tudo bem
+    }
+
     $merecidas = [];
+    if ($simulados >= 1)                             $merecidas[] = 'primeiro_simulado';
+    if ($simuladosGrandes >= 1)                      $merecidas[] = 'maratonista';
     if (($contagens['pomodoro'] ?? 0) >= 1)         $merecidas[] = 'foco_total';
     if (($contagens['faisca'] ?? 0) >= 1)           $merecidas[] = 'faisca_acesa';
     if ($quizPerfeitos >= 1)                         $merecidas[] = 'nota_maxima';
