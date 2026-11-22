@@ -1,0 +1,577 @@
+/* ==========================================================================
+   SIMULADO DO ENEM (e a página inicial do Modo ENEM)
+   ========================================================================== */
+
+/* ---------- Modo ENEM (hub) ---------- */
+
+.hub-enem { width: 100%; max-width: 860px; display: flex; flex-direction: column; gap: 22px; padding-bottom: 40px; }
+
+.hub-intro { text-align: center; color: var(--color-text-secondary); line-height: 1.6; max-width: 560px; margin: -8px auto 4px; }
+
+.hub-principal {
+    display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+    padding: 28px 30px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--border-radius-lg);
+}
+.hub-principal h2, .hub-tema h2 { font-family: var(--font-title); font-size: 1.6rem; margin-bottom: 8px; }
+.hub-principal p, .hub-tema p { color: var(--color-text-secondary); line-height: 1.6; font-size: 0.97rem; }
+
+.hub-etiqueta {
+    display: inline-block; margin-bottom: 10px; padding: 3px 10px;
+    border-radius: var(--border-radius-full);
+    background: var(--color-accent); color: #00261f;
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;
+}
+
+.hub-atalhos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.hub-atalho {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: 0 18px;
+    border-radius: var(--border-radius-full);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    font-weight: 700; font-size: 0.92rem;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.hub-atalho:hover { background: rgba(255, 255, 255, 0.22); transform: translateY(-1px); }
+.hub-atalho-forte { background: var(--color-accent); border-color: var(--color-accent); color: #00261f; }
+.hub-atalho-forte:hover { background: var(--color-accent-hover); }
+
+.hub-resumo { display: flex; flex-direction: column; gap: 10px; min-width: 150px; }
+.hub-resumo div { padding: 12px 16px; border-radius: var(--border-radius-md); background: rgba(0, 20, 34, 0.35); }
+.hub-resumo strong { display: block; font-size: 1.6rem; line-height: 1.1; }
+.hub-resumo span { font-size: 0.8rem; color: var(--color-text-secondary); }
+
+.hub-historico { padding: 18px 22px; border-radius: var(--border-radius-lg); background: rgba(0, 20, 34, 0.28); }
+.hub-historico h3 { font-size: 0.95rem; margin-bottom: 10px; color: var(--color-text-secondary); font-weight: 700; }
+.hub-historico li { display: grid; grid-template-columns: 56px 1fr; grid-template-areas: "nota barra" "nota info"; column-gap: 14px; row-gap: 4px; align-items: center; padding: 8px 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.hub-historico li:first-child { border-top: 0; }
+.hist-nota { grid-area: nota; font-weight: 800; font-size: 1.05rem; }
+.hist-barra { grid-area: barra; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); overflow: hidden; }
+.hist-barra i { display: block; height: 100%; background: var(--color-accent); border-radius: 3px; }
+.hist-info { grid-area: info; font-size: 0.8rem; color: var(--color-text-secondary); }
+
+.hub-tema {
+    display: flex; gap: 22px; align-items: center;
+    padding: 20px 24px;
+    border-radius: var(--border-radius-lg);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.hub-tema h2 { font-size: 1.25rem; }
+.hub-tema .hub-atalho { margin-top: 14px; }
+.hub-tema-img { width: 140px; height: 100px; object-fit: cover; border-radius: var(--border-radius-md); flex-shrink: 0; }
+
+.hub-creditos { font-size: 0.8rem; line-height: 1.6; color: var(--color-text-muted); text-align: center; }
+.hub-creditos a { text-decoration: underline; color: var(--color-text-secondary); }
+
+/* ---------- Estrutura geral do simulado ---------- */
+
+.sim-content { padding-bottom: 60px; }
+.sim-tela { width: 100%; max-width: 860px; }
+#sim-prova { max-width: 1120px; }
+.sim-tela.hidden { display: none; }
+
+.sim-voltar { display: inline-block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: var(--color-text-secondary); }
+.sim-voltar:hover { color: var(--color-accent); }
+#sim-config .page-title, #sim-resultado .page-title { margin-bottom: 20px; }
+
+.sim-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 0 24px;
+    border-radius: var(--border-radius-full);
+    font-weight: 700; font-size: 1rem;
+    border: 2px solid transparent;
+    transition: background var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
+}
+.sim-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.sim-btn-forte { background: var(--color-accent); color: #00261f; }
+.sim-btn-forte:not(:disabled):hover { background: var(--color-accent-hover); transform: translateY(-1px); }
+.sim-btn-claro { background: rgba(255, 255, 255, 0.10); border-color: rgba(255, 255, 255, 0.28); color: #fff; }
+.sim-btn-claro:not(:disabled):hover { background: rgba(255, 255, 255, 0.2); }
+.sim-btn-pequeno { min-height: 38px; padding: 0 16px; font-size: 0.88rem; }
+
+.sim-btn:focus-visible, .sim-pilula:focus-visible, .sim-alt-letra:focus-visible, .sim-ferr:focus-visible,
+.sim-mapa button:focus-visible, .sim-link:focus-visible {
+    outline: 3px solid #fff; outline-offset: 2px;
+}
+
+/* ---------- 1. Opções ---------- */
+
+.sim-retomar {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 18px; padding: 16px 20px;
+    border-radius: var(--border-radius-md);
+    background: rgba(25, 223, 187, 0.14); border: 1px solid rgba(25, 223, 187, 0.4);
+    line-height: 1.5; font-size: 0.95rem;
+}
+.sim-retomar strong { display: block; }
+.sim-retomar span { color: var(--color-text-secondary); }
+.sim-retomar-botoes { display: flex; gap: 10px; }
+.sim-retomar .sim-btn { min-height: 40px; padding: 0 18px; font-size: 0.9rem; }
+
+.sim-form { display: flex; flex-direction: column; gap: 16px; }
+
+.sim-bloco {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: var(--border-radius-lg);
+    padding: 20px 24px 24px;
+    min-width: 0;
+}
+.sim-bloco legend {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 8px; margin-left: -8px;
+    font-size: 1.1rem; font-weight: 800;
+}
+.sim-num {
+    display: inline-grid; place-items: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #fff; color: #003554; font-size: 0.82rem; font-weight: 800;
+}
+
+.sim-rotulo { margin: 18px 0 8px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; color: var(--color-text-secondary); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.sim-bloco legend + .sim-pilulas, .sim-bloco legend + .sim-rotulo { margin-top: 10px; }
+.sim-bloco legend + .sim-opcoes { margin-top: 10px; }
+.sim-bloco .sim-rotulo:first-of-type { margin-top: 12px; }
+
+.sim-atalhos { display: inline-flex; gap: 6px; }
+.sim-atalhos button { font-size: 0.78rem; font-weight: 600; padding: 3px 10px; border-radius: var(--border-radius-full); background: rgba(255, 255, 255, 0.1); color: #fff; }
+.sim-atalhos button:hover { background: rgba(255, 255, 255, 0.2); }
+
+.sim-pilulas { display: flex; flex-wrap: wrap; gap: 8px; }
+.sim-pilula {
+    min-height: 44px; padding: 0 18px;
+    border-radius: var(--border-radius-full);
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #fff; font-weight: 700; font-size: 0.95rem;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+.sim-pilula small { font-size: 0.74rem; font-weight: 500; opacity: 0.75; }
+.sim-pilula:hover { background: rgba(255, 255, 255, 0.16); }
+.sim-pilula.ativo { background: var(--color-accent); border-color: var(--color-accent); color: #00261f; }
+.sim-pilula.ativo small { opacity: 0.8; }
+
+.sim-campo-linha { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; font-size: 0.92rem; color: var(--color-text-secondary); }
+.sim-campo-linha.hidden { display: none; }
+.sim-numero, .sim-select {
+    min-height: 44px; padding: 0 14px;
+    border-radius: var(--border-radius-md);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: rgba(0, 20, 34, 0.45); color: #fff;
+    font-family: var(--font-body); font-size: 1rem;
+}
+.sim-numero { width: 96px; }
+.sim-select { min-width: 150px; }
+.sim-select option { color: #000; }
+.sim-numero:focus, .sim-select:focus { outline: none; border-color: var(--color-accent); }
+.sim-link { background: none; color: var(--color-accent); text-decoration: underline; font-size: 0.88rem; font-weight: 600; }
+
+.sim-opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.sim-opcao {
+    display: flex; gap: 12px; align-items: flex-start; cursor: pointer;
+    padding: 14px 16px;
+    border-radius: var(--border-radius-md);
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    background: rgba(0, 20, 34, 0.25);
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.sim-opcao:hover { border-color: rgba(255, 255, 255, 0.4); }
+.sim-opcao.ativo { border-color: var(--color-accent); background: rgba(25, 223, 187, 0.12); }
+.sim-opcao.desativada { opacity: 0.5; cursor: not-allowed; }
+.sim-opcao input { accent-color: var(--color-accent); width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; }
+.sim-opcao strong { display: block; font-size: 0.97rem; }
+.sim-opcao em { display: block; margin-top: 3px; font-style: normal; font-size: 0.82rem; line-height: 1.45; color: var(--color-text-secondary); }
+
+.sim-linha-dupla { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; margin-top: 6px; }
+.sim-campo { display: flex; flex-direction: column; }
+.sim-campo .sim-rotulo { margin-bottom: 8px; }
+
+.sim-chave { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; margin-top: 16px; font-weight: 600; font-size: 0.95rem; line-height: 1.4; }
+.sim-linha-dupla .sim-chave { margin-top: 0; padding-bottom: 6px; }
+.sim-chave small { display: block; font-weight: 400; font-size: 0.8rem; color: var(--color-text-secondary); margin-top: 2px; }
+.sim-chave input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.sim-chave-visual {
+    position: relative; flex-shrink: 0; width: 44px; height: 26px; margin-top: 1px;
+    border-radius: 13px; background: rgba(255, 255, 255, 0.22);
+    transition: background var(--transition-fast);
+}
+.sim-chave-visual::after {
+    content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+    border-radius: 50%; background: #fff; transition: transform var(--transition-fast);
+}
+.sim-chave input:checked + .sim-chave-visual { background: var(--color-accent); }
+.sim-chave input:checked + .sim-chave-visual::after { transform: translateX(18px); }
+.sim-chave input:focus-visible + .sim-chave-visual { outline: 3px solid #fff; outline-offset: 2px; }
+
+.sim-resumo {
+    padding: 16px 20px; border-radius: var(--border-radius-md);
+    background: rgba(0, 20, 34, 0.4); border-left: 4px solid var(--color-accent);
+    line-height: 1.6; font-size: 0.95rem; color: var(--color-text-secondary);
+}
+.sim-resumo strong { color: #fff; }
+.sim-resumo-alerta { margin-top: 6px; color: #ffd166; font-size: 0.88rem; }
+.sim-aviso { padding: 12px 16px; border-radius: var(--border-radius-md); background: rgba(255, 77, 77, 0.18); border: 1px solid rgba(255, 77, 77, 0.5); font-size: 0.92rem; line-height: 1.5; }
+.sim-aviso a { text-decoration: underline; font-weight: 700; }
+.sim-aviso.hidden { display: none; }
+
+.sim-acoes { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; }
+.sim-nota-salvo { text-align: right; font-size: 0.8rem; color: var(--color-text-muted); margin-top: -6px; }
+
+/* ---------- 2. Prova ---------- */
+
+.sim-topo {
+    position: sticky; top: 0; z-index: 30;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 12px 16px; margin-bottom: 0;
+    background: #00283f; border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+}
+.sim-topo-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.sim-topo-info strong { font-size: 1.02rem; }
+.sim-origem { font-size: 0.78rem; color: var(--color-text-secondary); }
+.sim-origem:empty { display: none; }
+
+.sim-relogios { display: flex; gap: 8px; align-items: center; }
+.sim-relogio {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 12px; border-radius: var(--border-radius-full);
+    background: rgba(255, 255, 255, 0.1); font-size: 0.9rem;
+}
+.sim-relogio.hidden { display: none; }
+.sim-relogio .icone { width: 16px; height: 16px; }
+.sim-relogio b { font-variant-numeric: tabular-nums; font-size: 1rem; }
+.sim-relogio i { font-style: normal; font-size: 0.74rem; color: var(--color-text-secondary); }
+.sim-relogio.acabando { background: rgba(255, 77, 77, 0.28); color: #ffd0d0; animation: simPulsa 1s ease-in-out infinite; }
+@keyframes simPulsa { 50% { opacity: 0.6; } }
+
+.sim-progresso { height: 4px; background: rgba(255, 255, 255, 0.12); margin-bottom: 16px; }
+.sim-progresso i { display: block; height: 100%; width: 0; background: var(--color-accent); transition: width 0.3s ease; }
+
+.sim-palco { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 18px; align-items: start; }
+
+.sim-questao {
+    background: rgba(255, 255, 255, 0.97); color: #1a2e3b;
+    border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.22);
+    padding: 0 0 20px; min-width: 0;
+}
+.sim-questao.trocou { animation: simEntra 0.25s ease; }
+@keyframes simEntra { from { opacity: 0.4; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.sim-questao-cabeca {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 12px 18px; background: #e8ecf0; border-radius: 16px 16px 0 0; border-bottom: 1px solid #d3dae1;
+}
+.sim-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.sim-chip { padding: 3px 10px; border-radius: var(--border-radius-full); background: #fff; border: 1px solid #c6d0d9; font-size: 0.78rem; font-weight: 600; color: #3a5163; }
+.sim-chip-ano { background: #003554; border-color: #003554; color: #fff; }
+
+.sim-ferramentas { display: flex; gap: 6px; }
+.sim-ferramentas.hidden { display: none; }
+.sim-ferr {
+    display: inline-flex; align-items: center; gap: 6px;
+    min-height: 36px; padding: 0 12px;
+    border-radius: var(--border-radius-full);
+    background: #fff; border: 1px solid #c6d0d9; color: #3a5163;
+    font-size: 0.82rem; font-weight: 700;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.sim-ferr .icone { width: 16px; height: 16px; }
+.sim-ferr:hover { background: #f1f5f8; }
+#ferr-duvida.ativo { background: #ffd9ec; border-color: #ef6fae; color: #8a1e56; }
+#ferr-marca.ativo { background: #ffb3d9; border-color: #ef6fae; color: #6d1245; }
+
+.sim-corpo { padding: 18px 22px 6px; font-size: 1rem; line-height: 1.65; overflow-wrap: anywhere; }
+.sim-corpo p, .sim-alt-texto p { margin: 0 0 0.8em; }
+.sim-corpo p:last-child, .sim-alt-texto p:last-child { margin-bottom: 0; }
+.sim-corpo ul { margin: 0 0 0.8em 1.2em; list-style: disc; }
+.sim-corpo img, .sim-alt-texto img { max-width: 100%; height: auto; margin: 10px auto; background: #fff; border-radius: 4px; }
+.sim-figura { margin: 10px 0; }
+.sim-introducao { margin-top: 12px; font-weight: 600; }
+.sim-enunciado + .sim-introducao { padding-top: 12px; border-top: 1px dashed #c9d3dc; }
+
+mark.sim-marca-texto { background: #ffb3d9; color: inherit; border-radius: 3px; padding: 0 1px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.modo-marca .sim-corpo, .modo-marca .sim-alt-texto { cursor: text; }
+.modo-marca mark.sim-marca-texto { cursor: pointer; outline: 1px dashed rgba(138, 30, 86, 0.5); }
+.sim-questao.modo-marca ::selection { background: #ffb3d9; color: #000; }
+
+.sim-alternativas { padding: 8px 22px 0; display: flex; flex-direction: column; gap: 10px; }
+.sim-alt {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 10px 10px 12px;
+    border: 2px solid #dde3ea; background: #f5f7fa; border-radius: 12px;
+    cursor: pointer; line-height: 1.55; font-size: 0.97rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.sim-alt:hover { border-color: #9fb6c8; }
+.sim-alt.sel { border-color: #19dfbb; background: #e6faf6; }
+.sim-alt-letra {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid #8da3b3; background: #fff; color: #1a2e3b;
+    font-weight: 800; font-size: 0.95rem;
+}
+.sim-alt.sel .sim-alt-letra { background: #003554; border-color: #003554; color: #fff; }
+.sim-alt-texto { flex: 1; min-width: 0; padding-top: 5px; overflow-wrap: anywhere; }
+.sim-alt-riscar {
+    flex-shrink: 0; min-width: 40px; height: 32px; margin-top: 2px; padding: 0 8px; border-radius: 8px;
+    color: #6b8296; font-size: 0.72rem; font-weight: 600; opacity: 0.75;
+}
+.sim-alt-riscar:hover { background: #e3e9ee; opacity: 1; }
+.sim-alt.riscada .sim-alt-texto { text-decoration: line-through; opacity: 0.4; }
+.sim-alt.riscada .sim-alt-letra { opacity: 0.5; }
+.sim-alt.riscada .sim-alt-riscar { background: #e3e9ee; opacity: 1; color: #3a5163; }
+
+/* Mesmas cores do quiz da Era Vargas: roxo = certa, laranja = errada */
+.sim-alt.certa { background: #ede7f6; border-color: #7e57c2; color: #311b92; }
+.sim-alt.certa .sim-alt-letra { background: #7e57c2; border-color: #7e57c2; color: #fff; }
+.sim-alt.errada { background: #fff3e0; border-color: #f57c00; color: #bf360c; }
+.sim-alt.errada .sim-alt-letra { background: #f57c00; border-color: #f57c00; color: #fff; }
+.sim-alternativas.travada .sim-alt { cursor: default; }
+.sim-alternativas.travada .sim-alt:hover { border-color: #dde3ea; }
+.sim-alternativas.travada .sim-alt.sel:hover { border-color: #19dfbb; }
+.sim-alternativas.travada .sim-alt.certa:hover { border-color: #7e57c2; }
+.sim-alternativas.travada .sim-alt.errada:hover { border-color: #f57c00; }
+
+.sim-feedback { margin: 14px 22px 0; padding: 12px 16px; border-radius: 10px; font-size: 0.93rem; line-height: 1.5; font-weight: 600; }
+.sim-feedback.hidden { display: none; }
+.sim-feedback.ok { background: #ede7f6; color: #311b92; }
+.sim-feedback.erro { background: #fff3e0; color: #bf360c; }
+.sim-feedback.branco { background: #eceff1; color: #37474f; }
+.sim-tempo-acabou { margin: 14px 22px 0; padding: 10px 14px; border-radius: 10px; background: #ffebee; color: #b71c1c; font-weight: 600; font-size: 0.9rem; }
+.sim-tempo-acabou.hidden { display: none; }
+.sim-confirmar { padding: 16px 22px 0; }
+.sim-confirmar.hidden { display: none; }
+.sim-confirmar .sim-btn { width: 100%; }
+
+/* Mapa */
+.sim-mapa-caixa {
+    position: sticky; top: 74px;
+    padding: 16px; border-radius: 16px;
+    background: rgba(0, 20, 34, 0.4); border: 1px solid rgba(255, 255, 255, 0.12);
+    max-height: calc(100vh - 100px); overflow: auto;
+}
+.sim-mapa-caixa h2 { font-size: 0.92rem; margin-bottom: 12px; color: var(--color-text-secondary); font-weight: 700; }
+.sim-mapa { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 6px; }
+.sim-mapa button {
+    height: 38px; border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1); border: 2px solid transparent;
+    color: #fff; font-weight: 700; font-size: 0.82rem; position: relative;
+}
+.sim-mapa button:hover { background: rgba(255, 255, 255, 0.2); }
+.sim-mapa .m-resp { background: rgba(25, 223, 187, 0.3); border-color: rgba(25, 223, 187, 0.6); }
+.sim-mapa .m-atual { border-color: #fff; background: rgba(255, 255, 255, 0.25); }
+.sim-mapa .m-resp.m-atual { background: rgba(25, 223, 187, 0.5); }
+.sim-mapa .m-duvida::after { content: ''; position: absolute; top: -3px; right: -3px; width: 10px; height: 10px; border-radius: 50%; background: #ff8cc6; border: 2px solid #003a5c; }
+.sim-mapa .m-certa { background: #7e57c2; border-color: #7e57c2; }
+.sim-mapa .m-errada { background: #f57c00; border-color: #f57c00; }
+.sim-mapa .m-branca { background: rgba(255, 255, 255, 0.1); border: 2px dashed rgba(255, 255, 255, 0.4); }
+
+.sim-legenda { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; font-size: 0.75rem; color: var(--color-text-secondary); }
+.sim-legenda li { display: inline-flex; align-items: center; gap: 6px; }
+.sim-legenda i { width: 12px; height: 12px; border-radius: 3px; border: 2px solid transparent; background: rgba(255, 255, 255, 0.1); }
+.sim-legenda .m-resp { background: rgba(25, 223, 187, 0.4); border-color: rgba(25, 223, 187, 0.7); }
+.sim-legenda .m-duvida { background: #ff8cc6; border-radius: 50%; }
+.sim-legenda .m-atual { border-color: #fff; }
+.sim-legenda .m-certa { background: #7e57c2; }
+.sim-legenda .m-errada { background: #f57c00; }
+.sim-legenda .m-branca { border: 2px dashed rgba(255, 255, 255, 0.5); background: none; }
+
+.sim-mapa-fechar { display: none; }
+.sim-so-celular { display: none; }
+
+.sim-rodape {
+    position: sticky; bottom: 0; z-index: 25;
+    display: flex; justify-content: space-between; gap: 10px;
+    margin-top: 16px; padding: 12px 0;
+}
+.sim-rodape .sim-btn { min-width: 130px; }
+.sim-rodape::before { content: ''; position: absolute; inset: 0 -100vw; z-index: -1; background: #00263c; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+/* Balão do marca-texto */
+.sim-flutuante {
+    position: fixed; z-index: 120; display: flex; gap: 2px; padding: 4px;
+    background: #1a2e3b; border-radius: 10px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+.sim-flutuante.hidden { display: none; }
+.sim-flutuante button { min-height: 40px; padding: 0 14px; border-radius: 8px; color: #fff; font-size: 0.88rem; font-weight: 700; }
+.sim-flutuante button:first-child { background: #ff8cc6; color: #3b0a24; }
+.sim-flutuante button:last-child:hover { background: rgba(255, 255, 255, 0.15); }
+
+/* Diálogo */
+.sim-dialogo { margin: auto; padding: 24px 26px; max-width: min(420px, calc(100vw - 32px)); border: 0; border-radius: 16px; background: #fff; color: #1a2e3b; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
+.sim-dialogo::backdrop { background: rgba(0, 10, 20, 0.6); }
+.sim-dialogo h2 { font-size: 1.15rem; margin-bottom: 8px; }
+.sim-dialogo p { line-height: 1.55; color: #3a5163; font-size: 0.95rem; }
+.sim-dialogo-botoes { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.sim-dialogo .sim-btn-claro { background: #eef2f5; color: #1a2e3b; border-color: #d3dae1; }
+
+/* ---------- 3. Resultado ---------- */
+
+.sim-res-topo {
+    display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+    padding: 24px 28px; border-radius: var(--border-radius-lg);
+    background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.sim-res-nota { text-align: center; min-width: 120px; }
+.sim-res-nota strong { display: block; font-family: var(--font-title); font-size: 4.2rem; line-height: 1; color: var(--color-accent); }
+.sim-res-nota span { font-size: 0.9rem; color: var(--color-text-secondary); }
+.sim-res-textos { flex: 1; min-width: 220px; }
+.sim-res-frase { font-size: 1.25rem; font-weight: 700; line-height: 1.35; }
+.sim-res-detalhes { margin-top: 8px; font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.5; }
+.sim-res-xp { display: inline-block; margin-top: 12px; padding: 6px 14px; border-radius: var(--border-radius-full); background: rgba(25, 223, 187, 0.2); border: 1px solid rgba(25, 223, 187, 0.5); font-weight: 700; font-size: 0.9rem; }
+.sim-res-xp.hidden { display: none; }
+
+.sim-res-bloco { margin-top: 18px; padding: 20px 24px; border-radius: var(--border-radius-lg); background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.12); }
+.sim-res-bloco h2 { font-size: 1.05rem; margin-bottom: 14px; }
+.sim-res-dica { font-size: 0.85rem; color: var(--color-text-secondary); margin: -8px 0 14px; }
+.sim-area { display: grid; grid-template-columns: 110px 1fr 56px; gap: 12px; align-items: center; padding: 6px 0; }
+.sim-area-nome { font-weight: 600; font-size: 0.92rem; }
+.sim-area-barra { height: 10px; border-radius: 5px; background: rgba(255, 255, 255, 0.14); overflow: hidden; }
+.sim-area-barra i { display: block; height: 100%; background: var(--color-accent); border-radius: 5px; transition: width 0.8s ease; }
+.sim-area-num { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 0.9rem; }
+.sim-mapa-resultado button { color: #fff; }
+.sim-acoes-resultado { margin-top: 22px; }
+#sim-resultado .sim-aviso { margin-top: 18px; background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.25); }
+
+/* ---------- 4. Prévia de impressão ---------- */
+
+.sim-tela-previa { max-width: 900px; }
+.sim-previa-barra {
+    position: sticky; top: 0; z-index: 30;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 12px 16px; margin-bottom: 16px;
+    background: #00283f; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: var(--border-radius-md);
+}
+.sim-previa-barra .sim-btn-forte { margin-left: auto; }
+.sim-check { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+.sim-check input { accent-color: var(--color-accent); width: 18px; height: 18px; }
+
+.sim-papel {
+    background: #fff; color: #000; padding: 34px 38px; border-radius: 6px;
+    font-family: 'Georgia', 'Times New Roman', serif; font-size: 0.98rem; line-height: 1.55;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+.papel-cabeca { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #000; padding-bottom: 10px; }
+.papel-cabeca h1 { font-size: 1.5rem; }
+.papel-cabeca p { font-size: 0.85rem; color: #333; }
+.papel-logo { font-family: var(--font-logo); font-size: 1.9rem; }
+.papel-campos { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin: 14px 0 6px; font-size: 0.95rem; }
+.papel-instrucao { font-size: 0.85rem; color: #333; margin-bottom: 18px; }
+.papel-questao { margin-bottom: 22px; }
+.papel-q-cab { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; padding: 4px 8px; margin-bottom: 8px; background: #eee; border-left: 4px solid #000; break-after: avoid; }
+.papel-q-cab span { font-size: 0.76rem; color: #444; font-family: Arial, sans-serif; }
+.papel-texto p { margin-bottom: 0.6em; text-align: justify; }
+.papel-texto img, .papel-alts img { max-width: 100%; max-height: 260px; width: auto; margin: 8px auto; }
+.papel-alts { margin-top: 6px; break-inside: avoid; }
+.papel-alts li { display: flex; gap: 10px; margin-bottom: 4px; }
+.papel-alts li > b { flex-shrink: 0; width: 1.4em; }
+.papel-alts p { margin: 0; }
+.papel-cartao, .papel-gabarito { break-before: page; padding-top: 6px; }
+.papel-cartao h2, .papel-gabarito h2 { font-size: 1.3rem; border-bottom: 2px solid #000; padding-bottom: 6px; margin-bottom: 8px; }
+.papel-cartao p { font-size: 0.85rem; margin-bottom: 14px; }
+.papel-cartao-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px 20px; }
+.papel-cartao-grade > div { display: flex; align-items: center; gap: 6px; font-family: Arial, sans-serif; font-size: 0.82rem; }
+.papel-cartao-grade b { width: 1.6em; }
+.bolinha { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid #000; border-radius: 50%; font-size: 0.66rem; }
+.papel-gabarito-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 6px 14px; font-family: Arial, sans-serif; font-size: 0.9rem; }
+.papel-rodape { margin-top: 26px; padding-top: 8px; border-top: 1px solid #999; font-size: 0.75rem; color: #555; font-family: Arial, sans-serif; }
+
+/* ---------- Telas menores ---------- */
+
+@media (max-width: 960px) {
+    .sim-palco { grid-template-columns: minmax(0, 1fr); }
+
+    /* o mapa vira uma gaveta que sobe de baixo */
+    .sim-mapa-caixa {
+        position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 60;
+        max-height: 62vh; border-radius: 18px 18px 0 0;
+        background: #00283f; border: 0; border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 18px 16px calc(18px + env(safe-area-inset-bottom, 0px));
+        transform: translateY(105%); transition: transform 0.28s ease;
+        visibility: hidden;
+    }
+    .sim-mapa-caixa.aberto { transform: none; visibility: visible; box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5); }
+    .sim-mapa-fechar { display: block; width: 100%; margin-top: 14px; min-height: 44px; border-radius: var(--border-radius-full); background: rgba(255, 255, 255, 0.12); color: #fff; font-weight: 700; }
+    body.sim-mapa-aberto::after { content: ''; position: fixed; inset: 0; z-index: 55; background: rgba(0, 10, 20, 0.55); }
+    .sim-so-celular { display: inline-flex; }
+}
+
+@media (max-width: 768px) {
+    .hub-principal { grid-template-columns: 1fr; padding: 22px 20px; }
+    .hub-resumo { flex-direction: row; }
+    .hub-resumo div { flex: 1; }
+    .hub-tema { flex-direction: column; align-items: stretch; text-align: left; }
+    .hub-tema-img { width: 100%; height: 130px; }
+
+    .sim-bloco { padding: 16px 16px 20px; }
+    .sim-opcoes { grid-template-columns: 1fr; }
+    .sim-acoes { flex-direction: column-reverse; }
+    .sim-acoes .sim-btn { width: 100%; }
+    .sim-nota-salvo { text-align: center; }
+    .sim-linha-dupla { flex-direction: column; align-items: stretch; gap: 14px; }
+    .sim-select { width: 100%; }
+
+    /* na prova, a barra de baixo do site some e usamos a nossa */
+    body.sim-em-prova .navbar-mobile, body.sim-em-prova .chip-xp { display: none; }
+    body.sim-em-prova .sim-content { padding: 0 0 calc(86px + env(safe-area-inset-bottom, 0px)); }
+    #sim-prova { max-width: none; }
+    .sim-topo { border-radius: 0; padding: 10px 14px; gap: 10px; }
+    .sim-topo-info strong { font-size: 0.95rem; }
+    .sim-relogio { padding: 5px 10px; }
+    .sim-relogio i { display: none; }
+    .sim-progresso { margin-bottom: 12px; }
+    .sim-palco { padding: 0 12px; }
+    .sim-questao-cabeca { padding: 10px 12px; }
+    .sim-ferr span { display: none; }
+    .sim-ferr { padding: 0; width: 40px; height: 40px; justify-content: center; }
+    .sim-corpo { padding: 14px 14px 4px; font-size: 0.97rem; }
+    .sim-alternativas { padding: 8px 12px 0; }
+    .sim-alt { padding: 9px 6px 9px 9px; gap: 9px; }
+    .sim-feedback, .sim-tempo-acabou { margin-left: 12px; margin-right: 12px; }
+    .sim-confirmar { padding: 14px 12px 0; }
+    .sim-rodape {
+        position: fixed; left: 0; right: 0; bottom: 0; margin: 0;
+        padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+        background: #00263c; border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .sim-rodape::before { display: none; }
+    .sim-rodape .sim-btn { min-width: 0; flex: 1; padding: 0 10px; }
+    .sim-rodape #sim-abrir-mapa { flex: 0 0 auto; }
+
+    .sim-res-topo { padding: 20px; gap: 16px; }
+    .sim-res-nota strong { font-size: 3.4rem; }
+    .sim-res-bloco { padding: 16px; }
+    .sim-area { grid-template-columns: 84px 1fr 46px; gap: 8px; }
+
+    .sim-previa-barra { padding: 10px 12px; gap: 10px; }
+    .sim-previa-barra .sim-btn-forte { margin-left: 0; flex: 1; }
+    .sim-papel { padding: 20px 16px; font-size: 0.92rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sim-questao.trocou, .sim-relogio.acabando { animation: none; }
+    .sim-mapa-caixa, .sim-area-barra i, .sim-progresso i { transition: none; }
+}
+
+/* ---------- Impressão ---------- */
+
+@media print {
+    @page { margin: 14mm 12mm; }
+    html, body { background: #fff !important; }
+    body.sim-em-previa > *:not(.main-container) { display: none !important; }
+    body.sim-em-previa .sidebar,
+    body.sim-em-previa .navbar-mobile,
+    body.sim-em-previa .sim-previa-barra { display: none !important; }
+    body.sim-em-previa .main-container { display: block; min-height: 0; }
+    body.sim-em-previa .content { margin: 0; padding: 0; display: block; min-height: 0; }
+    body.sim-em-previa .sim-tela:not(.sim-tela-previa) { display: none !important; }
+    body.sim-em-previa .sim-tela-previa { max-width: none; width: 100%; }
+    .sim-papel { box-shadow: none; padding: 0; border-radius: 0; font-size: 10.5pt; }
+    .papel-texto img, .papel-alts img { max-height: 220px; }
+    .papel-cartao, .papel-gabarito { break-before: page; }
+    a { color: inherit; }
+}

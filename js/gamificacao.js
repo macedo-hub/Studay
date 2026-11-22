@@ -586,15 +586,25 @@
             if (!r.dados || !r.dados.ok) return null;
             if (r.dados.motivo === 'muito_rapido') return r.dados;
 
-            if (r.dados.estado) {
-                estadoAtual = Object.assign({}, estadoAtual || {}, r.dados.estado);
-                desenharMenu(estadoAntes && estadoAntes.nivel ? estadoAntes.nivel.porcentagem : undefined);
-            }
-            celebrar(r.dados, r.dados.estado, estadoAntes);
+            aplicarRespostaXp(r.dados, estadoAntes);
             return r.dados;
         } catch (e) {
             return null;
         }
+    }
+
+    /**
+     * Pega a resposta de qualquer API que dá XP (xp.php, simulado.php...) e
+     * atualiza o menu e mostra o "+XP". Outras páginas usam: Studay.aplicarRespostaXp(dados)
+     */
+    function aplicarRespostaXp(dados, estadoAntes) {
+        if (!dados) return;
+        const antes = estadoAntes || estadoAtual;
+        if (dados.estado) {
+            estadoAtual = Object.assign({}, estadoAtual || {}, dados.estado);
+            desenharMenu(antes && antes.nivel ? antes.nivel.porcentagem : undefined);
+        }
+        celebrar(dados, dados.estado, antes);
     }
 
     /* ------------------------------------------------------------------ */
@@ -628,6 +638,7 @@
 
     window.Studay = {
         registrarXp: registrarXp,
+        aplicarRespostaXp: aplicarRespostaXp,
         iniciarCronometro: iniciarCronometro,
         mostrarAviso: mostrarAviso,
         mostrarToast: mostrarAviso,
