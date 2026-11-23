@@ -358,3 +358,13 @@
 .enem-xp-ganho a {
     text-decoration: underline;
 }
+
+/* Link para voltar ao Modo ENEM (página do tema) */
+.enem-voltar {
+  align-self: flex-start;
+  margin: -12px 0 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+.enem-voltar:hover { color: var(--color-accent); }

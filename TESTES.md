@@ -84,3 +84,22 @@ Resultado esperado: "Matéria inválida. Escolha uma das opções da lista."
 - [ ] Tentativa de JavaScript Injection (formulário e observações)
 - [ ] Testes de Registro e Login (válido e inválido)
 - [ ] Teste de Resumos e Pomodoro com código injetado
+
+---
+
+## Simulado do ENEM (`pages/simulado.php`)
+
+| # | O que fazer | Resultado esperado |
+|---|---|---|
+| 1 | Abrir `modoENEM.php` e clicar em "25 questões" | Abre o simulado já com 25 marcado |
+| 2 | Marcar só "Matemática" e "ENEM 2022", "Tudo do mesmo ano" | Resumo mostra as opções; só aparecem questões de 2022 |
+| 3 | Gabarito "Na hora": escolher uma alternativa e clicar em "Confirmar resposta" | Mostra roxo (certa) e laranja (errada) e não deixa mudar |
+| 4 | Tempo por questão = 1 min e esperar | Aviso "tempo da questão acabou" e passa para a próxima |
+| 5 | Ligar "Marca-texto", selecionar um trecho do enunciado | Trecho fica rosa; ao tocar na marca, ela sai |
+| 6 | Marcar "Dúvida" e olhar o mapa | Pontinho rosa no número da questão |
+| 7 | Recarregar a página no meio da prova | Aparece "Você tem um simulado em andamento" |
+| 8 | Finalizar com respostas em branco | Janela de confirmação; resultado por área e XP (ou aviso do motivo) |
+| 9 | Resultado -> "Imprimir com gabarito" | Prévia da prova; marcar "Gabarito no final" e imprimir |
+| 10 | Mandar `POST api/simulado.php` sem o cabeçalho `X-Requested-With` | Erro 403 |
+| 11 | Pedir `dados/enem/2023.json` direto no navegador (no InfinityFree) | Acesso negado (403) |
+| 12 | Usar o simulado sem entrar na conta | Funciona, mas sem XP e sem "dúvidas/erros" |

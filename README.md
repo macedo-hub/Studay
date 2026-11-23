@@ -89,7 +89,25 @@ O projeto conta com funcionalidades desenvolvidas tanto no front-end quanto no b
 - **Validação de senha:** Verificação dos requisitos definidos para a senha e confirmação da senha.
 - **UX:** Funcionalidade de "Mostrar/Ocultar Senha" alterando o atributo `type` do input entre `password` e `text` dinamicamente.
 
-#### 6. Modo ENEM — Era Vargas
+#### 6. Modo ENEM — Simulado e Era Vargas
+
+O Modo ENEM (`pages/modoENEM.php`) agora é uma página inicial com duas opções: o **Simulado do ENEM** e o tema **Era Vargas** (a página antiga, agora em `pages/eraVargas.php`).
+
+**Simulado do ENEM (`pages/simulado.php`, `js/simulado.js`, `css/simulado.css`, `api/simulado.php`)**
+
+- 533 questões reais das provas do ENEM 2021, 2022 e 2023, escritas em HTML (com as imagens, tabelas e gráficos), não só em PDF. O link para as provas originais em PDF fica no site do INEP.
+- Modos de 10, 25, 45, 90 (um dia) e 180 questões (prova toda), ou qualquer número de 1 a 180.
+- Escolha dos anos e das áreas, "misturar os anos" ou "tudo do mesmo ano", idioma das questões 1 a 5 (inglês ou espanhol) e ordem da prova ou embaralhada. Cada questão mostra de qual prova é: ano, dia, número da questão e área.
+- Gabarito **na hora** (depois de confirmar cada questão) ou **só no final**.
+- Tempo: sem limite, por questão (passa sozinho para a próxima) ou total (o simulado termina quando zera). Cronômetro opcional na tela.
+- Ferramentas na prova: marcar como **dúvida**, **marca-texto rosa**, riscar alternativa, mapa de questões e atalhos de teclado.
+- Resultado por área, revisão de cada questão com gabarito, "caderno de dúvidas" e "caderno de erros" (dá para fazer um simulado só com elas).
+- **Imprimir a prova:** prévia na tela e impressão com cartão-resposta e gabarito opcional.
+- As escolhas ficam salvas na conta (tabela `preferencias_simulado`) ou no aparelho, para quem não entrou. Se a página for recarregada no meio da prova, dá para continuar.
+- Segurança: o gabarito não vai junto com as questões. O servidor corrige e calcula o XP, cada simulado só vale uma vez, e há limite de 120 XP por dia. Os arquivos de `dados/` ficam bloqueados por `.htaccess`.
+- Créditos: as questões são das provas oficiais do INEP. Os textos foram organizados a partir do projeto aberto enem.dev (`ferramentas/importar_questoes.py`). Algumas questões do repositório vieram incompletas e foram deixadas de fora.
+
+**Era Vargas (`pages/eraVargas.php`)**
 
 *Módulo interdisciplinar com foco no ENEM, abordando a Revolução de 1930, Governo Provisório e Estado Novo.*
 
@@ -179,7 +197,7 @@ O Studay é a porta de entrada da Plataforma ENEM da turma. Esta etapa acrescent
 - **Login e cadastro de verdade:** senha guardada só como hash (`password_hash`), sessão segura, proteção CSRF e limite de tentativas. O cadastro ganhou o campo **apelido** (é o nome que aparece no ranking, nunca o e-mail).
 - **Sites da Turma (portal):** cartões com matéria, descrição, "olhar da equipe", selos de **validado por** / **testado por** e **fontes e créditos**. Filtro por matéria e busca. O botão "Abrir site" passa por `pages/ir.php`, que conta as visitas.
 - **Área da equipe (`pages/adminSites.php`):** cadastrar, editar, esconder e apagar sites. Só administradores entram (e-mails em `config/config.php`). Assim ninguém consegue apagar o conteúdo, como pede o PDF.
-- **XP, níveis e Faísca evoluindo:** Pomodoro, Modo Faísca, quiz, flashcards, resumos e visitas aos sites dão XP. O servidor confere o tempo dos cronômetros e aplica limites por dia. 6 níveis: Fagulha, Chama Viva, Tocha, Fogueira, Labareda e Estrela.
+- **XP, níveis e Faísca evoluindo:** Pomodoro, Modo Faísca, simulado, quiz, flashcards, resumos e visitas aos sites dão XP. O servidor confere o tempo dos cronômetros e aplica limites por dia. 6 níveis: Fagulha, Chama Viva, Tocha, Fogueira, Labareda e Estrela.
 - **Ranking ao vivo:** semana (zera na segunda) e geral, com pódio. Atualiza sozinho a cada 10 s.
 - **Meu progresso:** nível, sequência de dias, gráfico dos últimos 7 dias, conquistas e histórico.
 - **Como funciona o XP (`pages/comoFunciona.php`):** página simples que explica quando se ganha XP, quanto vale cada atividade, como funcionam os níveis e as regras de jogo limpo. Sempre que a pessoa ganha XP aparece um aviso animado com o valor, o motivo e a barra do nível enchendo. Cada página de estudo mostra uma dica de XP no topo.
@@ -190,7 +208,7 @@ O Studay é a porta de entrada da Plataforma ENEM da turma. Esta etapa acrescent
 #### Como colocar no ar (InfinityFree)
 
 1. No painel do InfinityFree, abra **MySQL Databases** e crie um banco.
-2. Clique em **phpMyAdmin**, aba **Importar**, escolha `sql/banco.sql` e execute. (Se você já tinha importado a versão antiga, importe só `sql/atualizacao_perfil.sql`: ele acrescenta as colunas da foto de perfil e da apresentação.)
+2. Clique em **phpMyAdmin**, aba **Importar**, escolha `sql/banco.sql` e execute. (Se você já tinha importado uma versão antiga, importe também `sql/atualizacao_perfil.sql` e `sql/atualizacao_simulado.sql`: eles acrescentam o que faltava.)
 3. Abra `config/config.php` e preencha host, banco, usuário e senha (o host é parecido com `sql123.infinityfree.com`, não `localhost`).
 4. Ainda em `config/config.php`, coloque os e-mails da equipe em `EMAILS_ADMIN`. Quem tiver esse e-mail vira administrador ao entrar.
 5. Envie todos os arquivos pela pasta `htdocs`. Coloque as imagens e vídeos novos (veja os arquivos `LEIA-ME.txt` dentro de `videos/faisca/`, `img/faisca/`, `img/avatares/` e `img/sites/`).
@@ -203,8 +221,11 @@ No XAMPP, use host `localhost`, usuário `root`, senha vazia e importe o mesmo `
 ```text
 config/     # config.php (dados do banco e e-mails de admin) - bloqueada por .htaccess
 includes/   # conexão, sessão, funções, gamificação e menu - bloqueada por .htaccess
-sql/        # banco.sql (tabelas) - bloqueada por .htaccess
-api/        # estado.php, xp.php, ranking.php, apresentacao.php (respostas em JSON, usadas pelo JavaScript)
+sql/        # banco.sql (tabelas) - bloqueada por .htaccess. atualizacao_simulado.sql acrescenta as tabelas do simulado
+dados/enem/ # questões do ENEM 2021, 2022 e 2023 em JSON - bloqueada por .htaccess
+ferramentas/ # importar_questoes.py (gera dados/enem e img/enem/provas) - bloqueada por .htaccess
+img/enem/provas/ # imagens das questões (webp)
+api/        # estado.php, xp.php, ranking.php, apresentacao.php, simulado.php (respostas em JSON, usadas pelo JavaScript)
 videos/faisca/   # vídeos do Faísca (faisca-apresentacao.mp4, faisca-comemorando.mp4)
 img/faisca/      # nivel-1.webp ... nivel-6.webp (Faísca por nível)
 img/avatares/    # fotos de perfil prontas, em 3 pastas: faisca, memes e animais
