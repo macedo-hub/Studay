@@ -575,3 +575,21 @@ mark.sim-marca-texto { background: #ffb3d9; color: inherit; border-radius: 3px; 
     .papel-cartao, .papel-gabarito { break-before: page; }
     a { color: inherit; }
 }
+
+/* ---------- Telas bem pequenas (320 a 400 px) ---------- */
+@media (max-width: 400px) {
+    .sim-topo { gap: 6px 8px; padding: 8px 10px; }
+    .sim-relogio { padding: 4px 8px; }
+    .sim-relogio .icone { display: none; }
+    .sim-relogio b { font-size: 0.92rem; }
+    .sim-rodape .sim-btn { font-size: 0.9rem; white-space: nowrap; padding: 0 6px; }
+    .sim-pilula { padding: 0 14px; }
+    .sim-corpo { font-size: 0.95rem; }
+}
+
+/* Símbolos e fórmulas pequenas ficam dentro da frase, não em linha separada */
+.sim-corpo img.sim-inline, .sim-alt-texto img.sim-inline {
+    display: inline-block; margin: 0 2px; vertical-align: middle;
+    width: auto; max-height: 3.4em; border-radius: 0;
+}
+.papel-texto img.sim-inline, .papel-alts img.sim-inline { display: inline-block; margin: 0 1px; vertical-align: middle; max-height: 2.6em; width: auto; }

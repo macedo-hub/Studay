@@ -1049,3 +1049,24 @@ ul, ol {
     font-family: var(--font-body);
     font-weight: 800;
 }
+
+
+/* ==========================================================================
+   AJUSTES DE CELULAR (auditoria de responsividade)
+   ========================================================================== */
+
+/* Um conteúdo largo (texto, campo, abas) não pode esticar a página inteira.
+   Sem isso, em telas pequenas a página ficava mais larga que o celular. */
+.main-container, .content { min-width: 0; }
+.content { max-width: 100%; }
+
+@media (max-width: 768px) {
+    /* alvos de toque com pelo menos ~40px, para não errar o dedo */
+    .mode-btn { min-height: 40px; }
+    .toggle-password-btn { min-width: 40px; min-height: 40px; }
+    .search-icon { min-height: 40px; min-width: 40px; }
+    .nav-top a { display: inline-flex; align-items: center; min-height: 40px; }
+    .feature-card-link, .sim-voltar, .enem-voltar, .progresso-link-mais, .progresso-sair, .perfil-topo-link, .explica-link {
+        display: inline-flex; align-items: center; min-height: 40px;
+    }
+}

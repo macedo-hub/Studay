@@ -95,7 +95,7 @@ O Modo ENEM (`pages/modoENEM.php`) agora é uma página inicial com duas opçõe
 
 **Simulado do ENEM (`pages/simulado.php`, `js/simulado.js`, `css/simulado.css`, `api/simulado.php`)**
 
-- 533 questões reais das provas do ENEM 2021, 2022 e 2023, escritas em HTML (com as imagens, tabelas e gráficos), não só em PDF. O link para as provas originais em PDF fica no site do INEP.
+- 528 questões reais das provas do ENEM 2021, 2022 e 2023, escritas em HTML (com as imagens, tabelas e gráficos), não só em PDF. O link para as provas originais em PDF fica no site do INEP.
 - Modos de 10, 25, 45, 90 (um dia) e 180 questões (prova toda), ou qualquer número de 1 a 180.
 - Escolha dos anos e das áreas, "misturar os anos" ou "tudo do mesmo ano", idioma das questões 1 a 5 (inglês ou espanhol) e ordem da prova ou embaralhada. Cada questão mostra de qual prova é: ano, dia, número da questão e área.
 - Gabarito **na hora** (depois de confirmar cada questão) ou **só no final**.

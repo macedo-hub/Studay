@@ -331,3 +331,6 @@
         padding: 6px 11px;
     }
 }
+
+/* o campo de tarefa pode encolher em telas pequenas (senão empurra a página para o lado) */
+#task-input { min-width: 0; }

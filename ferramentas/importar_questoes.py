@@ -43,7 +43,7 @@ def md_para_html(texto, ano, pasta, mapa_imagens):
         nome = mapa_imagens.get(os.path.basename(url))
         if not nome:
             return ''
-        imagens.append('<img src="img/enem/provas/%s/%s/%s" alt="Imagem da questão" loading="lazy">' % (ano, pasta, nome))
+        imagens.append('img/enem/provas/%s/%s/%s' % (ano, pasta, nome))
         return '\x00IMG%d\x00' % (len(imagens) - 1)
     texto = re.sub(r'!\[[^\]]*\]\(([^)]*)\)', guarda_imagem, texto)
 
@@ -68,14 +68,20 @@ def md_para_html(texto, ano, pasta, mapa_imagens):
             continue
         bloco = re.sub(r'^#+\s*(.+)$', r'<strong>\1</strong>', bloco, flags=re.M)
         bloco = re.sub(r' {2,}\n', '\n', bloco)
+        # Linhas quebradas no meio da frase (quebra do PDF) viram uma linha só.
+        # Mantém a quebra em poemas, referências e quando a linha anterior termina em ponto etc.
+        bloco = re.sub(r'(?<![.!?:;…»”"\)>])[ \t]*\n(?=[a-zà-ú0-9(,])', ' ', bloco)
         bloco = bloco.strip().replace('\n', '<br>')
         if bloco.startswith('\x00IMG') and bloco.endswith('\x00') and bloco.count('\x00') == 2:
-            blocos.append('<figure class="sim-figura">%s</figure>' % bloco)
+            # imagem sozinha na linha: vira figura (bloco)
+            n = int(bloco.strip('\x00')[3:])
+            blocos.append('<figure class="sim-figura"><img src="%s" alt="Imagem da questão" loading="lazy"></figure>' % imagens[n])
         else:
             blocos.append('<p>%s</p>' % bloco)
     saida = ''.join(blocos)
 
-    saida = re.sub(r'\x00IMG(\d+)\x00', lambda m: imagens[int(m.group(1))], saida)
+    # imagem no meio do texto (símbolos e fórmulas): fica na linha, sem quebrar a frase
+    saida = re.sub(r'\x00IMG(\d+)\x00', lambda m: '<img class="sim-inline" src="%s" alt="símbolo ou fórmula" loading="lazy">' % imagens[int(m.group(1))], saida)
     saida = re.sub(r'\x01(\d+)\x01', lambda m: html.escape(escapados[int(m.group(1))], quote=False), saida)
     return saida
 
@@ -97,7 +103,10 @@ def processa_ano(ano, origem, saida):
         pasta = os.path.basename(os.path.dirname(arq))
         d = json.load(open(arq, encoding='utf-8'))
 
-        # pula questões com dados incompletos (anuladas ou sem alternativas)
+        # pula questões com dados incompletos (anuladas, sem alternativas ou com imagem quebrada na fonte)
+        if 'broken-image' in json.dumps(d):
+            print('  pulando %s-%s (imagem quebrada na fonte)' % (ano, pasta))
+            continue
         alts = d.get('alternatives') or []
         if len(alts) != 5 or any(not (a.get('text') or a.get('file')) for a in alts) \
                 or d.get('correctAlternative') not in [a['letter'] for a in alts]:

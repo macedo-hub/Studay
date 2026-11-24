@@ -211,3 +211,8 @@
     .avatar-moldura { width: 72px; height: 72px; }
     .perfil-botao-salvar { align-self: stretch; }
 }
+
+/* as abas de avatar rolam para o lado dentro da caixa, sem esticar a página */
+.avatar-abas { max-width: 100%; min-width: 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.avatar-abas::-webkit-scrollbar { display: none; }
+.perfil-caixa, .js-form-avatar { min-width: 0; }

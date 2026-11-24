@@ -352,12 +352,72 @@
 .saindo-dica { font-size: 0.82rem; color: var(--color-text-secondary); }
 .saindo-botao { display: block; margin-top: 18px; font-size: 0.85rem; }
 
+/* ---------- Segurança contra "página mais larga que a tela" ----------
+   Textos longos (links, nomes) e a lista de matérias não podem esticar a página. */
+body[data-xp-pagina="sites"] .main-container,
+body[data-xp-pagina="sites"] .content { min-width: 0; max-width: 100%; }
+body[data-xp-pagina="sites"] .content { overflow-x: clip; }
+
+.sites-filtros, .sites-grade, .sites-resumo, .sites-intro { min-width: 0; }
+.sites-chips { min-width: 0; max-width: 100%; }
+.sites-grade { grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); }
+.site-card { min-width: 0; }
+.site-card[hidden] { display: none; }          /* o filtro usa "hidden" */
+.site-corpo, .site-nome, .site-equipe, .site-descricao, .site-olhar, .site-fontes p, .selo {
+    min-width: 0; overflow-wrap: anywhere; word-break: break-word;
+}
+.site-capa img { max-width: none; }            /* a foto de capa cobre o quadro, nunca estica o cartão */
+
+/* Celular não tem "passar o mouse": evita o cartão ficar levantado depois do toque */
+@media (hover: none) {
+    .site-card:hover { transform: none; box-shadow: var(--shadow-md); border-color: rgba(255, 255, 255, 0.10); }
+    .site-card:hover .site-capa img { transform: none; }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+    .sites-grade { gap: 18px; }
+}
+
 /* ---------- Celular ---------- */
 @media (max-width: 640px) {
     .admin-form { grid-template-columns: 1fr; }
     .admin-caixa { padding: 18px 14px; }
-    .sites-grade { grid-template-columns: 1fr; }
-    /* chips deslizam para o lado em vez de ocupar a tela toda */
-    .sites-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
-    .sites-chip { flex-shrink: 0; }
+
+    .sites-intro { font-size: 0.92rem; margin-bottom: 18px; }
+    .sites-resumo { gap: 8px; margin-bottom: 18px; }
+    .sites-resumo-item { padding: 10px 4px; }
+    .sites-resumo-item strong { font-size: 1.4rem; }
+
+    .sites-filtros { gap: 12px; margin-bottom: 20px; }
+    .sites-busca { padding: 0 14px; }
+    .sites-busca input { min-height: 46px; font-size: 16px; }   /* 16px evita o zoom automático do iPhone */
+
+    /* as matérias deslizam para o lado em vez de ocupar a tela toda */
+    .sites-chips {
+        flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .sites-chips::-webkit-scrollbar { display: none; }
+    .sites-chip { flex-shrink: 0; min-height: 40px; }
+
+    .sites-grade { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .site-capa { aspect-ratio: 16 / 8; }
+    .site-capa-padrao { font-size: 2.6rem; }
+    .site-corpo { padding: 14px 14px 14px; gap: 9px; }
+    .site-nome { font-size: 1.2rem; }
+    .site-descricao { font-size: 0.88rem; }
+
+    /* rodapé do cartão: visitas em cima, botão grande embaixo */
+    .site-rodape { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
+    .site-visitas { text-align: center; }
+    .site-botao { justify-content: center; min-height: 46px; }
+
+    .sites-dica { font-size: 0.84rem; padding: 0 4px; }
+    .saindo-box { padding: 24px 18px; }
+}
+
+@media (max-width: 360px) {
+    .site-selos { gap: 5px; }
+    .selo { font-size: 0.7rem; padding: 4px 8px; }
 }
