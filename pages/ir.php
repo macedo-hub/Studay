@@ -54,6 +54,11 @@ if ($destino === '') {
     <meta http-equiv="refresh" content="2;url=<?= h($destino) ?>">
     <title>Studay — Abrindo o site...</title>
     <link rel="shortcut icon" href="../img/logo/faisca.webp" type="image/x-icon">
+    <!-- Ícones do site -->
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="../img/icones/icone-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/icones/icone-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/icones/apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/animacoes.css">
     <link rel="stylesheet" href="../css/sitesTurma.css">

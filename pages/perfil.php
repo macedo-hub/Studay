@@ -128,6 +128,11 @@ $nivel = calcular_nivel((int) $usuario['xp_total']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Studay — Meu perfil</title>
     <link rel="shortcut icon" href="../img/logo/faisca.webp" type="image/x-icon">
+    <!-- Ícones do site -->
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="../img/icones/icone-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/icones/icone-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/icones/apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/perfil.css">
     <link rel="stylesheet" href="../css/gamificacao.css">

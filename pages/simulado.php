@@ -80,6 +80,11 @@ function total_do_ano(array $contagem, int $ano): int
     <meta name="twitter:image:alt" content="Studay: o Faísca, mascote do site, ao lado do nome Studay">
     <!-- Fim da pré-visualização de links -->
     <link rel="shortcut icon" href="../img/logo/faisca.webp" type="image/x-icon">
+    <!-- Ícones do site -->
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="../img/icones/icone-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/icones/icone-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/icones/apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/simulado.css">
     <link rel="stylesheet" href="../css/gamificacao.css">
