@@ -45,6 +45,27 @@ function formata_duracao(int $seg): string
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Studay — Modo ENEM</title>
+    <!-- Pré-visualização de links (Open Graph e Twitter Cards) -->
+    <meta name="description" content="Faça simulados com questões do ENEM de 2021, 2022 e 2023 e acompanhe seu desempenho por área.">
+    <link rel="canonical" href="https://studay.site.je/pages/modoENEM.php">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Studay">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Modo ENEM | Studay">
+    <meta property="og:description" content="Faça simulados com questões do ENEM de 2021, 2022 e 2023 e acompanhe seu desempenho por área.">
+    <meta property="og:url" content="https://studay.site.je/pages/modoENEM.php">
+    <meta property="og:image" content="https://studay.site.je/img/compartilhar/studay-preview.jpg">
+    <meta property="og:image:secure_url" content="https://studay.site.je/img/compartilhar/studay-preview.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Studay: o Faísca, mascote do site, ao lado do nome Studay">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Modo ENEM | Studay">
+    <meta name="twitter:description" content="Faça simulados com questões do ENEM de 2021, 2022 e 2023 e acompanhe seu desempenho por área.">
+    <meta name="twitter:image" content="https://studay.site.je/img/compartilhar/studay-preview.jpg">
+    <meta name="twitter:image:alt" content="Studay: o Faísca, mascote do site, ao lado do nome Studay">
+    <!-- Fim da pré-visualização de links -->
     <link rel="shortcut icon" href="../img/logo/faisca.webp" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/modoENEM.css">
