@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /api/
+Disallow: /pages/perfil.php
+Disallow: /pages/progresso.php
+Disallow: /pages/adminSites.php
+Disallow: /pages/ir.php
+Disallow: /pages/sair.php
+
+Sitemap: https://studay.site.je/sitemap.xml
